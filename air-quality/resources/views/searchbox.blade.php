@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" rel="stylesheet"/>
     <title>Document</title>
 </head>
 <body>
@@ -17,6 +18,11 @@
         </form>
     </div>
 
-    <div class="mapContainer"></div>
+
+
+    <div id="osm-map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+<script src="/js/generalMap.js"></script>
 </body>
 </html>

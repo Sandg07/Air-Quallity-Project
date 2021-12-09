@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\SearchboxController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,4 +25,4 @@ Route::get('/dashboard', function () {
 require __DIR__ . '/auth.php';
 
 // Route::get('/testSB', [TestController::class, 'index']);
-Route::get('/testSB', [TestController::class, 'read_api']);
+Route::get('/searchbox', [SearchboxController::class, 'index']);
