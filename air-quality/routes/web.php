@@ -25,6 +25,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+//API LUX DATA
+Route::get('/readApiLux',  [ApiController::class, 'readApiLux']);
+Route::get('/readApiTransform',  [ApiController::class, 'transformCoordinates']);
+
 require __DIR__ . '/auth.php';
 
 // Route::get('/testSB', [TestController::class, 'index']);
