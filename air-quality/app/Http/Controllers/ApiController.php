@@ -21,25 +21,33 @@ class ApiController extends Controller
 
 
         //Transform the coordinates to a format we can use it
+
+        //creating variables to use later
         $string = '';
         $transformed = [];
         $i = 0;
         $j = count($data);
-        echo $j;
+        /* echo $j; */
+
 
         foreach ($data as $key => $grid) {
+            //transform the XY points to a string to pass it to the URL for the transform API
             $coords = explode(':', $grid->gc_id);
             $x = trim($coords[0], 'X-');
             $y = trim($coords[1], 'Y-');
             $string .= $x . "," . $y . ';';
 
             $i++;
+
+            //Cutting of the loop inbetween before the query for the API gets to big
             if ($i == 300 || ($j == 193 && $i == 193)) {
+                //retrieving the ; at the end to have the right string
                 $string = substr($string, 0, -1);
-
+                //transform the coordinates
                 $temp = $this->transformCoordinates($string);
+                //change json string to php object
                 $jsontemp = json_decode($temp);
-
+                //save everything into an array
                 if (empty($transformed)) {
                     $transformed = $jsontemp;
                 } else {
@@ -53,7 +61,7 @@ class ApiController extends Controller
                 $j -= 300;
             }
         }
-
+        //saving also the value in the array
         foreach ($transformed as $key => $finalObject) {
             $finalObject->value = $data[$key]->value;
             $finalObject->index = $data[$key]->index;
