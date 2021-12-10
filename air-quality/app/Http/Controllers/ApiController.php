@@ -56,6 +56,7 @@ class ApiController extends Controller
 
         foreach ($transformed as $key => $finalObject) {
             $finalObject->value = $data[$key]->value;
+            $finalObject->value = $data[$key]->index;
         }
 
         dd($transformed);
