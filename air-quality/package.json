@@ -21,6 +21,7 @@
         "tailwindcss": "^2.0.2"
     },
     "dependencies": {
+        "heatmap.js": "^2.0.5",
         "ol": "^6.9.0"
     }
 }

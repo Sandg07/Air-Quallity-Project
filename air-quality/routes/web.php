@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\SearchboxController;
+use App\Http\Controllers\MapController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
 
@@ -27,3 +29,4 @@ require __DIR__ . '/auth.php';
 
 // Route::get('/testSB', [TestController::class, 'index']);
 Route::get('/searchbox', [SearchboxController::class, 'index']);
+Route::get('/map', [MapController::class, 'index']);
