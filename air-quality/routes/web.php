@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\SearchboxController;
 use App\Http\Controllers\MapController;
+use App\Http\Controllers\TeamController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
@@ -44,6 +46,4 @@ Route::get('/', function () {
 
 
 //Team page
-Route::get('/team', function () {
-    return view('team');
-});
+Route::get('/team', [TeamController::class, 'index']);

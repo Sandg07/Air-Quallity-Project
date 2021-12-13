@@ -44,6 +44,7 @@
             </li>
         </ul>
     </nav>
+    <hr>
 
     <div class="content">
         @yield('content')
@@ -51,7 +52,7 @@
 
 
 
-
+    <hr>
     <footer>
         Footer
     </footer>
