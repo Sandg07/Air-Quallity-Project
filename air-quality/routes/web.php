@@ -3,10 +3,11 @@
 use App\Http\Controllers\SearchboxController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\ApiController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ApiController;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,14 +29,14 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 //API LUX DATA
-Route::get('/readApiLux',  [ApiController::class, 'readApiLux']);
-Route::get('/readApiTransform',  [ApiController::class, 'transformCoordinates']);
+
 
 require __DIR__ . '/auth.php';
 
 // Route::get('/testSB', [TestController::class, 'index']);
 Route::get('/searchbox', [SearchboxController::class, 'index']);
 Route::get('/map', [MapController::class, 'index']);
+Route::get('/map',  [ApiController::class, 'readApiLux']);
 
 
 

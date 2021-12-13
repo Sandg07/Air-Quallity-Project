@@ -10,8 +10,6 @@ class ApiController extends Controller
 {
     public function readApiLux()
     {
-        $path = 'app/public/json/timestamp.txt';
-
         if (!Storage::disk('json')->has('timestamp.txt') || (Storage::disk('json')->has('timestamp.txt') && (int)Storage::disk('json')->get('timestamp.txt') < time())) {
             //Call the API to get the URL for the data from luxembourg
             $response = Http::get('https://data.public.lu/api/1/datasets/qualite-air-modelisation-interpolation-geostatistique',);
@@ -30,6 +28,13 @@ class ApiController extends Controller
                 Storage::disk('json')->put($key . '.json', json_encode([$key => $data], JSON_PRETTY_PRINT));
             }
         }
+        $array = [
+            'pm10' => Storage::disk('json')->get('pm10.json'),
+            'pm25' => Storage::disk('json')->get('pm25.json'),
+            'no2' => Storage::disk('json')->get('no2.json'),
+            'o3' => Storage::disk('json')->get('o3.json'),
+        ];
+        return view('map', ['array' => $array]);
     }
 
     public function controllTimestamp($date)
