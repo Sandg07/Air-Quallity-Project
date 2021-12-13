@@ -15,8 +15,10 @@
 
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
     <script type="text/javascript">
-        var json = JSON.parse({!! json_encode($array['pm10']) !!});
-        console.log(json);
+        var pm10 = JSON.parse({!! json_encode($array['pm10']) !!});
+        var pm25 = JSON.parse({!! json_encode($array['pm25']) !!});
+        var o3 = JSON.parse({!! json_encode($array['o3']) !!});
+        var no2 = JSON.parse({!! json_encode($array['no2']) !!});
     </script>
     <script type="text/javascript" src="/js/map.js"></script>
 </body>

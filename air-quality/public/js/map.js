@@ -26,7 +26,10 @@
 }
 
 map.on("click", onMapClick); */
-
+    console.log(pm10);
+    console.log(pm25);
+    console.log(o3);
+    console.log(no2);
     var myLines = [
         {
             type: "LineString",
