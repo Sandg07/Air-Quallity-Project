@@ -55,7 +55,7 @@ L.geoJSON(myLines, {
 
 
 // const pm10 = require("storage/json/pm10.json");
-var datas = JSON.parse(pm10);
+var datas = JSON.parse('pm10');
 
 
 

@@ -49,7 +49,7 @@ L.geoJSON(myLines, {
 }).addTo(map); */
 // const pm10 = require("storage/json/pm10.json");
 
-var datas = JSON.parse(pm10);
+var datas = JSON.parse('pm10');
 /* const fs = require("storage/json/pm10.json")
 function jsonReader(filePath, cb) {
     fs.readFile(filePath, (err, fileData) => {
