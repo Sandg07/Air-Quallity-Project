@@ -42,6 +42,7 @@ Route::get('/', function () {
     return view('homepage');
 });
 
+
 //Team page
 Route::get('/team', function () {
     return view('team');
