@@ -12,6 +12,7 @@
     <div id="osm-map"></div>
 
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-<script src="/js/map.js"></script>
+    <script type="text/javascript" src="storage/json/pm10.json"></script>
+<script type="text/javascript" src="/js/map.js"></script>
 </body>
 </html>
