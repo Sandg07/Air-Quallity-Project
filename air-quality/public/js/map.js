@@ -26,7 +26,7 @@
 }
 
 map.on("click", onMapClick); */
-
+    console.log(json);
     var myLines = [
         {
             type: "LineString",
