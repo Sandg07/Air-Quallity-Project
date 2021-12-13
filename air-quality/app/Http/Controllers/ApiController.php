@@ -10,26 +10,46 @@ class ApiController extends Controller
 {
     public function readApiLux()
     {
+        $path = 'app/public/json/timestamp.txt';
 
-        //Call the API to get the URL for the data from luxembourg
-        $response = Http::get('https://data.public.lu/api/1/datasets/qualite-air-modelisation-interpolation-geostatistique/resources/3289d6ff-4b87-415d-80e8-af2bac1286b8',);
+        if (!Storage::disk('json')->has('timestamp.txt') || (Storage::disk('json')->has('timestamp.txt') && (int)Storage::disk('json')->get('timestamp.txt') < time())) {
+            //Call the API to get the URL for the data from luxembourg
+            $response = Http::get('https://data.public.lu/api/1/datasets/qualite-air-modelisation-interpolation-geostatistique',);
+            $time = $response->object()->resources[18]->last_modified;
 
-        //API Call to the specific URL we want to use
-        $response2 = Http::get($response->object()->url);
+            $this->controllTimestamp($time);
+            $urls = [
+                'no2' => $response->object()->resources[15]->url,
+                'pm25' => $response->object()->resources[16]->url,
+                'pm10' => $response->object()->resources[17]->url,
+                'o3' => $response->object()->resources[18]->url
+            ];
+
+            foreach ($urls as $key => $url) {
+                $data = $this->makeCall($url);
+                Storage::disk('json')->put($key . '.json', json_encode([$key => $data], JSON_PRETTY_PRINT));
+            }
+        }
+    }
+
+    public function controllTimestamp($date)
+    {
+        $formattedDate = strtotime('+1 day', strtotime(implode(' ', explode('T', strstr($date, '.', true)))));
+        Storage::disk('json')->put('timestamp.txt', $formattedDate);
+    }
+
+    public function makeCall($url)
+    {
+        $response = Http::get($url);
+
         //Retrieving only coordinates, value and index from the object
-        $data = $response2->object()->grid;
-        /*  dd($data); */
-
+        $data = $response->object()->grid;
 
         //Transform the coordinates to a format we can use it
-
-        //creating variables to use later
         $string = '';
         $transformed = [];
         $i = 0;
         $j = count($data);
-        /* echo $j; */
-
 
         foreach ($data as $key => $grid) {
             //transform the XY points to a string to pass it to the URL for the transform API
@@ -41,7 +61,7 @@ class ApiController extends Controller
             $i++;
 
             //Cutting of the loop inbetween before the query for the API gets to big
-            if ($i == 300 || ($j == 193 && $i == 193)) {
+            if ($i == 300 || $j == $i) {
                 //retrieving the ; at the end to have the right string
                 $string = substr($string, 0, -1);
                 //transform the coordinates
@@ -68,11 +88,7 @@ class ApiController extends Controller
             $finalObject->index = $data[$key]->index;
         }
 
-        /* dd($transformed); */
-
-        Storage::disk('json')->put('pm10.json', json_encode($transformed, JSON_PRETTY_PRINT));
-
-        /* return view('readApi', ['data' => $data]); */
+        return $transformed;
     }
 
     public function transformCoordinates($url)
