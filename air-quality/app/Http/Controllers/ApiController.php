@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 
 class ApiController extends Controller
 {
@@ -67,7 +68,9 @@ class ApiController extends Controller
             $finalObject->index = $data[$key]->index;
         }
 
-        dd($transformed);
+        /* dd($transformed); */
+
+        Storage::disk('json')->put('pm10.json', json_encode($transformed, JSON_PRETTY_PRINT));
 
         /* return view('readApi', ['data' => $data]); */
     }
