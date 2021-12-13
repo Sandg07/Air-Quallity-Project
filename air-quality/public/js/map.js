@@ -47,21 +47,34 @@ var myStyle = {
 L.geoJSON(myLines, {
     style: myStyle,
 }).addTo(map); */
+// const pm10 = require("storage/json/pm10.json");
 
-var datas = [{
-  x: "6.44587485",
-  y: "49.68132074",
-  z: "47.96606075",
-  value: "11",
-  index: "2"
-}, {
-  x: "6.44592624",
-  y: "49.69031152",
-  z: "47.96987591",
-  value: "13",
-  index: "2"
-}]; //this one use first y then x
+var datas = JSON.parse(pm10);
+/* const fs = require("storage/json/pm10.json")
+function jsonReader(filePath, cb) {
+    fs.readFile(filePath, (err, fileData) => {
+        if (err) {
+            return cb && cb(err)
+        }
+        try {
+            const object = JSON.parse(fileData)
+            return cb && cb(null, object)
+        } catch(err) {
+            return cb && cb(err)
+        }
+    })
+}
+jsonReader('storage/json/pm10.json', (err, customer) => {
+    if (err) {
+        console.log(err)
+        return
+    } */
 
+/*   console.log(customer.address) // => "Infinity Loop Drive"
+})*/
+//this one use first y then x
+
+console.log(datas);
 datas.forEach(function (data) {
   var LatLgn = L.latLng(data.y, data.x);
   addPoint(LatLgn);
