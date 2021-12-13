@@ -42,7 +42,7 @@ var myLines = [
     //     ],
     // },
 ];
-
+/* 
 var myStyle = {
     color: "#ff7800",
     weight: 5,
@@ -51,19 +51,48 @@ var myStyle = {
 
 L.geoJSON(myLines, {
     style: myStyle,
-}).addTo(map);
+}).addTo(map); */
+
+var datas = [
+    {
+        x: "6.44587485",
+        y: "49.68132074",
+        z: "47.96606075",
+        value: "11",
+        index: "2",
+    },
+
+    {
+        x: "6.44592624",
+        y: "49.69031152",
+        z: "47.96987591",
+        value: "13",
+        index: "2",
+    },
+];
 
 //this one use first y then x
-var circleredange = L.circle([49.760736, 5.906932], {
-    color: "red",
-    fillColor: "#f03",
-    fillOpacity: 0.5,
-    radius: 1000,
-}).addTo(map);
 
-var circle = L.circle([49.760736, 5.906932], {
+datas.forEach(function (data) {
+    var LatLgn = L.latLng(data.y, data.x);
+    addPoint(LatLgn);
+});
+
+function addPoint(LatLgn) {
+    var circle = L.circle(LatLgn, {
+        color: "red",
+        fillColor: "#f03",
+        fillOpacity: 0.5,
+        radius: 1000,
+    }).addTo(map);
+    console.log(LatLgn);
+    
+}
+
+/* var circle = L.circle([49.68132074, 6.44587485], {
     color: "red",
     fillColor: "#f03",
     fillOpacity: 0.5,
     radius: 1000,
 }).addTo(map);
+ */
