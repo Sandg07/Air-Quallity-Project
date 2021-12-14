@@ -26,14 +26,55 @@ var xlat = 0.0002;
 map.on("click", function (e) {
   console.log(e.latlng.lat, e.latlng.lng); //var c = L.circle([e.latlng.lat,e.latlng.lng], {radius: 15}).addTo(map);
 
-  L.polygon([[e.latlng.lat - xlat, e.latlng.lng - xlng], [e.latlng.lat + xlat, e.latlng.lng - xlng], [e.latlng.lat - xlat, e.latlng.lng + xlng], [e.latlng.lat + xlat, e.latlng.lng + xlng]]).addTo(map);
-  L.polyline([[e.latlng.lat, e.latlng.lng - xlng], [e.latlng.lat, e.latlng.lng + xlng]]).addTo(map);
-  $("<input>").attr({
-    value: "(" + e.latlng.lat + "," + e.latlng.lng + ")",
-    id: "coordinates",
-    name: "coordinates"
-  }).appendTo("form"); // $("#coordinates").append("(" + e.latlng.lat + "," + e.latlng.lng + ")");
+  currentMarker1 = L.polygon([[e.latlng.lat - xlat, e.latlng.lng - xlng], [e.latlng.lat + xlat, e.latlng.lng - xlng], [e.latlng.lat - xlat, e.latlng.lng + xlng], [e.latlng.lat + xlat, e.latlng.lng + xlng]]).addTo(map).on("click", function (e) {
+    e.originalEvent.stopPropagation();
+  });
+  currentMarker2 = L.polyline([[e.latlng.lat, e.latlng.lng - xlng], [e.latlng.lat, e.latlng.lng + xlng]]).addTo(map).on("click", function (e) {
+    e.originalEvent.stopPropagation();
+  });
+
+  if (currentMarker1 && currentMarker2) {
+    $("<input>").attr({
+      value: "(" + e.latlng.lat + "," + e.latlng.lng + ")",
+      id: "coordinates",
+      name: "coordinates"
+    }).appendTo("form");
+    return;
+  } // $("#coordinates").append("(" + e.latlng.lat + "," + e.latlng.lng + ")");
   // console.log(e);
+  // map.clearLayers();
+
 });
+document.getElementById("clearBtn").addEventListener("click", function () {
+  currentMarker1 = null;
+  currentMarker2 = null;
+}); // tileLayer.on("click", () => {
+//     if (L.polygon) this.remove();
+//     if (L.popyline) this.remove();
+// });
+
+/**
+ *  console.log(e.latlng.lat, e.latlng.lng);
+    //var c = L.circle([e.latlng.lat,e.latlng.lng], {radius: 15}).addTo(map);
+    L.polygon([
+        [e.latlng.lat - xlat, e.latlng.lng - xlng],
+        [e.latlng.lat + xlat, e.latlng.lng - xlng],
+        [e.latlng.lat - xlat, e.latlng.lng + xlng],
+        [e.latlng.lat + xlat, e.latlng.lng + xlng],
+    ]).addTo(map);
+
+    L.polyline([
+        [e.latlng.lat, e.latlng.lng - xlng],
+        [e.latlng.lat, e.latlng.lng + xlng],
+    ]).addTo(map);
+
+    $("<input>")
+        .attr({
+            value: "(" + e.latlng.lat + "," + e.latlng.lng + ")",
+            id: "coordinates",
+            name: "coordinates",
+        })
+        .appendTo("form");
+ */
 /******/ })()
 ;

@@ -34,6 +34,9 @@
 
     <h2>My Favorites</h2>
 
+    <div class="myFavoritesPlaces">
+    </div>
+    
     <div class="favoriteForm">
         <form action="" method="get">
             @csrf
@@ -43,7 +46,9 @@
                 <option value="city">City</option>
                 <option value="running path">Running</option>
             </select>
+            
             <button type="submit" name="submitBtn" id="submitBtn">Add</button>
+            <button type="submit" name="clearBtn" id="clearBtn">Clear selected marker</button>
         </form>
     </div>
     <br>
