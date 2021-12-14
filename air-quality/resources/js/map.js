@@ -25,7 +25,7 @@ map.setView(targetLuxCity, 9);
 }
 
 map.on("click", onMapClick); */
-var myLines = [
+/* var myLines = [
     {
         type: "LineString",
         coordinates: [
@@ -33,7 +33,7 @@ var myLines = [
             [5.95722194, 49.50027806],
             [5.906932, 49.760736],
         ],
-    },
+    }, */
     // {
     //     type: "LineString",
     //     coordinates: [
@@ -41,7 +41,7 @@ var myLines = [
     //         [-110, 45],
     //     ],
     // },
-];
+//];
 /* 
 var myStyle = {
     color: "#ff7800",
@@ -55,7 +55,7 @@ L.geoJSON(myLines, {
 
 
 // const pm10 = require("storage/json/pm10.json");
-var datas = JSON.parse('pm10');
+//var datas = JSON.parse('pm10');
 
 
 
@@ -84,22 +84,26 @@ jsonReader('storage/json/pm10.json', (err, customer) => {
 
 
 //this one use first y then x
-console.log(datas);
-datas.forEach(function (data) {
+console.log(pm10);
+
+
+
+
+
+    pm10.pm10.forEach(function (data) {
     var LatLgn = L.latLng(data.y, data.x);
     addPoint(LatLgn);
-});
+});   
 
-function addPoint(LatLgn) {
+ function addPoint(LatLgn) {
     var circle = L.circle(LatLgn, {
         color: "red",
-        fillColor: "#f03",
-        fillOpacity: 0.5,
-        radius: 1000,
+        fillColor: "#f02",
+        fillOpacity: 0.2,
+        radius: 500,
     }).addTo(map);
     console.log(LatLgn);
-    
-}
+} 
 
 /* var circle = L.circle([49.68132074, 6.44587485], {
     color: "red",
