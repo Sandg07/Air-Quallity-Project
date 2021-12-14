@@ -37,13 +37,7 @@ class FavoriteController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'name' => 'required|max:255',
-            'coordinates' => 'required'
-        ]);
-        $newFavorite = Favorite::create($data);
-
-        return Response::json($newFavorite);
+        //
     }
 
     /**

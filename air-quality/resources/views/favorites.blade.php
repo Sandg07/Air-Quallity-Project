@@ -38,13 +38,12 @@
         <form action="" method="get">
             @csrf
             <input type="text" name="name" placeholder="Name of place">
-            <input id="coordinates">
             <select name="category">
                 <option value="park">Park</option>
                 <option value="city">City</option>
                 <option value="running path">Running</option>
             </select>
-            <button type="submit" name="submitBtn" id="submitBtn"></button>
+            <button type="submit" name="submitBtn" id="submitBtn">Add</button>
         </form>
     </div>
     <br>
