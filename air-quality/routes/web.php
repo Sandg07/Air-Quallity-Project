@@ -4,7 +4,7 @@ use App\Http\Controllers\SearchboxController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\ApiController;
-
+use App\Http\Controllers\ForecastController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -28,23 +28,18 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-//API LUX DATA
-
-
 require __DIR__ . '/auth.php';
 
 // Route::get('/testSB', [TestController::class, 'index']);
 Route::get('/searchbox', [SearchboxController::class, 'index']);
 Route::get('/map', [MapController::class, 'index']);
 Route::get('/map',  [ApiController::class, 'readApiLux']);
-
-
+Route::get('/forecast', [ForecastController::class, 'calculatingDayAverage']);
 
 //Home page
 Route::get('/', function () {
     return view('homepage');
 });
-
 
 //Team page
 Route::get('/team', [TeamController::class, 'index']);
