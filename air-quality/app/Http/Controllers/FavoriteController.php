@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Response;
+use App\Models\Favorite;
 
 class FavoriteController extends Controller
 {
@@ -13,7 +15,8 @@ class FavoriteController extends Controller
      */
     public function index()
     {
-        return view('favorites');
+        $favorites = Favorite::all();
+        return view('favorites', ['favorites' => $favorites]);
     }
 
     /**
@@ -34,7 +37,13 @@ class FavoriteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|max:255',
+            'coordinates' => 'required'
+        ]);
+        $newFavorite = Favorite::create($data);
+
+        return Response::json($newFavorite);
     }
 
     /**
