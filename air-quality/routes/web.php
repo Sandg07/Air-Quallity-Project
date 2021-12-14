@@ -5,6 +5,8 @@ use App\Http\Controllers\MapController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\ForecastController;
+use App\Http\Controllers\FavoriteController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -43,3 +45,8 @@ Route::get('/', function () {
 
 //Team page
 Route::get('/team', [TeamController::class, 'index']);
+
+//favorites
+Route::get('/favorites', function () {
+    return view('favorites');
+});

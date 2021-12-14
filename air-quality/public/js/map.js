@@ -74,7 +74,7 @@ jsonReader('storage/json/pm10.json', (err, customer) => {
 })*/
 //this one use first y then x
 
-console.log(datas);
+    /* console.log(datas);
 datas.forEach(function (data) {
   var LatLgn = L.latLng(data.y, data.x);
   addPoint(LatLgn);
