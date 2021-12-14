@@ -14,7 +14,7 @@
         <h1>Air Quality app</h1>
         <h3>Some text about app</h3>
     </header>
-
+    <hr>
     <main>
         <div>
             <h2>Section 2 Title</h2>

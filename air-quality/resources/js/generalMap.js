@@ -2,7 +2,7 @@
 var element = document.getElementById("osm-map");
 
 // Height has to be set. You can do this in CSS too.
-element.style = "height:600px;";
+element.style = "height:200px; width:400px";
 
 // Create Leaflet map on map element.
 var map = L.map(element);
