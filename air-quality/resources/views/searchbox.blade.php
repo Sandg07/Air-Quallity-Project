@@ -1,5 +1,10 @@
 <h2>Search</h2>
 
+
+<div class="favorites">
+
+
+</div>
 <div class="searchDiv">
     <form action="" method="get">
         <input type="search" name="searchboxMap" id="searchboxMap">

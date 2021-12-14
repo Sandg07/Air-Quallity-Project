@@ -4,6 +4,7 @@ use App\Http\Controllers\SearchboxController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\FavoriteController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +46,10 @@ Route::get('/', function () {
     return view('homepage');
 });
 
-
 //Team page
 Route::get('/team', [TeamController::class, 'index']);
+
+//favorites
+Route::get('/favorites', function () {
+    return view('favorites');
+});
