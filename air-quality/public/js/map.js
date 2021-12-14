@@ -25,18 +25,24 @@ map.setView(targetLuxCity, 9); // Get the coordinates on click
 
 map.on("click", onMapClick); */
 
-var myLines = [{
-  type: "LineString",
-  coordinates: [//this one use first x then y
-  [5.95722194, 49.50027806], [5.906932, 49.760736]]
-} // {
+/* var myLines = [
+    {
+        type: "LineString",
+        coordinates: [
+            //this one use first x then y
+            [5.95722194, 49.50027806],
+            [5.906932, 49.760736],
+        ],
+    }, */
+// {
 //     type: "LineString",
 //     coordinates: [
 //         [-105, 40],
 //         [-110, 45],
 //     ],
 // },
-];
+//];
+
 /* 
 var myStyle = {
     color: "#ff7800",
@@ -48,8 +54,8 @@ L.geoJSON(myLines, {
     style: myStyle,
 }).addTo(map); */
 // const pm10 = require("storage/json/pm10.json");
+//var datas = JSON.parse('pm10');
 
-var datas = JSON.parse('pm10');
 /* const fs = require("storage/json/pm10.json")
 function jsonReader(filePath, cb) {
     fs.readFile(filePath, (err, fileData) => {
