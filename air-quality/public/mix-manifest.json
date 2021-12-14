@@ -2,5 +2,6 @@
     "/js/app.js": "/js/app.js",
     "/js/map.js": "/js/map.js",
     "/js/generalMap.js": "/js/generalMap.js",
+    "/js/Control.Coordinates.js": "/js/Control.Coordinates.js",
     "/css/app.css": "/css/app.css"
 }
