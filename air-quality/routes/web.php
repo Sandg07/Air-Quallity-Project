@@ -47,6 +47,9 @@ Route::get('/', function () {
 Route::get('/team', [TeamController::class, 'index']);
 
 //favorites
-Route::get('/favorites', function () {
-    return view('favorites');
-});
+Route::get('/favorites', [FavoriteController::class, 'index']);
+
+// Show the form :
+Route::get('/favorites/create', [FavoriteController::class, 'create']);
+// Submit the form :
+Route::post('/favorites/create', [FavoriteController::class, 'store']);

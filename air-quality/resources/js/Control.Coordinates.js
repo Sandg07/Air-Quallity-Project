@@ -24,6 +24,9 @@ L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
 var xlng = 0.000256;
 var xlat = 0.0002;
 
+//Empty array to add all favorites
+var allFavorites = [];
+
 map.on("click", function (e) {
     console.log(e.latlng.lat, e.latlng.lng);
     //var c = L.circle([e.latlng.lat,e.latlng.lng], {radius: 15}).addTo(map);
@@ -56,6 +59,8 @@ map.on("click", function (e) {
                 name: "coordinates",
             })
             .appendTo("form");
+
+        array_push();
         return;
     }
     // $("#coordinates").append("(" + e.latlng.lat + "," + e.latlng.lng + ")");

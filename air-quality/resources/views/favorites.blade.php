@@ -35,21 +35,25 @@
     <h2>My Favorites</h2>
 
     <div class="myFavoritesPlaces">
+        @if (!empty($favorites))
+        @foreach ($favorites as $favorite)
+            <strong>Name of place : </strong>{{ $favorite->name }}<br>
+            <strong>Type: </strong>{{ $favorite->type }}<br>
+            <strong>Author_id: </strong>{{ $favorite->author_id }}<br>
+           
+            <button type="submit" name="submitBtn" id="submitBtn">Add</button>
+            {{-- <a href="{{ route('favorites.details', [$favorite->id]) }}">Detail page</a><br>
+            <a href="{{ route('favorites.edit', [$favorite->id]) }}">Edit</a><br>
+            <a href="{{ route('favorites.delete', [$favorite->id]) }}">Delete</a> --}}
+            <hr>
+        @endforeach
+    @else
+        <p>No favorites in my DB.</p>
+    @endif
     </div>
     
     <div class="favoriteForm">
-        <form action="" method="get">
-            @csrf
-            <input type="text" name="name" placeholder="Name of place">
-            <select name="category">
-                <option value="park">Park</option>
-                <option value="city">City</option>
-                <option value="running path">Running</option>
-            </select>
-            
-            <button type="submit" name="submitBtn" id="submitBtn">Add</button>
-            <button type="submit" name="clearBtn" id="clearBtn">Clear selected marker</button>
-        </form>
+     
     </div>
     <br>
 

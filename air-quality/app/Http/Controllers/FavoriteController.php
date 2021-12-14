@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Response;
 use App\Models\Favorite;
+use Illuminate\Support\Facades\DB;
 
 class FavoriteController extends Controller
 {
@@ -26,7 +26,7 @@ class FavoriteController extends Controller
      */
     public function create()
     {
-        //
+        return view('new-favorite');
     }
 
     /**
@@ -37,7 +37,19 @@ class FavoriteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validations
+        // $request->validated();
+
+        $favorite = new Favorite;
+        $favorite->name = $request->name;
+        $favorite->type = $request->type;
+        $favorite->coordinates = $request->coordinates;
+        $favorite->author_id = $request->author_id;
+
+        if ($favorite->save())
+            return back()->with('success', 'Saved the favorite in the DB');
+        else
+            return back()->with('error', 'Something wrong with the DB.');
     }
 
     /**
