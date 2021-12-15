@@ -16,7 +16,8 @@ class CreateFavoritesTable extends Migration
         Schema::create('favorites', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->float('coordinates');
+            $table->float('coordinates_x');
+            $table->float('coordinates_y');
             $table->enum('category', ['park', 'city']);
             $table->integer('user_id');
             $table->timestamps();

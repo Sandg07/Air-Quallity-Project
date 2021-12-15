@@ -46,10 +46,10 @@ Route::get('/', function () {
 //Team page
 Route::get('/team', [TeamController::class, 'index']);
 
-//favorites
-Route::get('/favorites', [FavoriteController::class, 'index']);
 
 // Show the form :
-Route::get('/favorites/create', [FavoriteController::class, 'create']);
+// Route::get('/favorites', [FavoriteController::class, 'create']);
 // Submit the form :
-Route::post('/favorites/create', [FavoriteController::class, 'store']);
+Route::post('/favorites', [FavoriteController::class, 'store']);
+//favorites
+Route::get('/favorites', [FavoriteController::class, 'index']);

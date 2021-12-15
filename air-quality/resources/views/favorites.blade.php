@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('template')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+@section('title', 'Favorite page')
+
+@section('css')
 
     {{-- link for the map --}}
     <link href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" rel="stylesheet" />
@@ -25,79 +23,57 @@
         .leaflet-control-coordinates-lng {
             padding-left: 5px;
         }
+        </style>
+@endsection
 
-    </style>
-    <title>Document</title>
-</head>
 
-<body>
+@section('content')
 
-    <h2>My Favorites</h2>
+    <div class="favorite-container">
+        <h2>My Favorites</h2>
 
-    <div class="myFavoritesPlaces">
-        @if (!empty($favorites))
-        @foreach ($favorites as $favorite)
+        {{-- ERRORS HANDLING --}}
+        @if ($message = Session::get('success'))
+        <p style="color:green">{{ $message }}</p>
+    @endif
+
+    @if ($message = Session::get('error'))
+        <p style="color:red">{{ $message }}</p>
+    @endif
+
+    {{-- FORM --}}
+
+         @if (!empty($favorites))
+         @foreach ($favorites as $favorite)
             <strong>Name of place : </strong>{{ $favorite->name }}<br>
-            <strong>Type: </strong>{{ $favorite->type }}<br>
-            <strong>Author_id: </strong>{{ $favorite->author_id }}<br>
+            <strong>Category: </strong>{{ $favorite->category }}<br>
+            <strong>User_id: </strong>{{ $favorite->user_id }}<br>
            
-            <button type="submit" name="submitBtn" id="submitBtn">Add</button>
+            <button type="submit" name="submitBtn" id="submitBtn">Edit</button>
             {{-- <a href="{{ route('favorites.details', [$favorite->id]) }}">Detail page</a><br>
             <a href="{{ route('favorites.edit', [$favorite->id]) }}">Edit</a><br>
             <a href="{{ route('favorites.delete', [$favorite->id]) }}">Delete</a> --}}
             <hr>
-        @endforeach
-    @else
-        <p>No favorites in my DB.</p>
-    @endif
+            @endforeach
+     @else
+         <p>No favorites in my DB.</p>
+     @endif
     </div>
     
-    <div class="favoriteForm">
-     
-    </div>
     <br>
-
-    <div id="test"></div>
-    <div id="favoriteMap"></div>
-
+    <div class="map-form-container d-flex flex-row justify-content-center">
+        <div id="test"></div>
+        <div id="favoriteMap"></div>
+        <div class="favorite-form-container d-flex flex-column flex-fill justify-content-center align-items-center">
+         @include('new-favorite');
+        </div>
+    </div>
+    
     <!--  Script for Map -->
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
     {{-- <script src="/js/generalMap.js"></script> --}}
     <script src="/js/Control.Coordinates.js"></script>
 
-    <!-- JQUERY FOR AJAX CALL -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+   
 
-    <!-- AJAX call on LIKE icon to add in Favorite page -->
-    {{-- <script>
-        /* Wait for the page to be loaded/ready */
-        $('#favoriteMap').click(function(e) {
-            // 'Stop' the form
-            e.preventDefault();
-
-            // let e = $(this).attr('coordinates');
-
-            console.log(this.value);
-            // Ajax call
-            $.ajax({
-                    url: "FavoriteModel.php",
-                    method: "get",
-                    data: {
-                        e: this.value,
-                    }
-                })
-                .done(function(result) {
-                    // If AJAX call worked
-                    $("#coordinates").input(result);
-                    // alert('insert in playlist content');
-                })
-                .fail(function(result) {
-                    console.log("AJAX FAILED");
-                });
-        });
-    </script> --}}
-
-</body>
-
-</html>
+    @endsection

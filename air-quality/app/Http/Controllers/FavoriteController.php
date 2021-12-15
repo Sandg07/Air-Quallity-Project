@@ -40,11 +40,16 @@ class FavoriteController extends Controller
         // Validations
         // $request->validated();
 
+        $array = explode(',', $request->coordinates);
+        // dd($array);
+
         $favorite = new Favorite;
         $favorite->name = $request->name;
-        $favorite->type = $request->type;
-        $favorite->coordinates = $request->coordinates;
-        $favorite->author_id = $request->author_id;
+        $coordinates_x = $array[0];
+        $coordinates_y = $array[1];
+        // dd($array[1]);
+        $favorite->category = $request->category;
+        $favorite->user_id = $request->user_id;
 
         if ($favorite->save())
             return back()->with('success', 'Saved the favorite in the DB');
@@ -94,6 +99,11 @@ class FavoriteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $result = Favorite::destroy($id);
+
+        if ($result)
+            return back()->with('success', 'Favorite was deleted from the DB');
+        else
+            return back()->with('error', 'Something wrong with the DB.');
     }
 }

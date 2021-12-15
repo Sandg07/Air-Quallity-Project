@@ -54,7 +54,8 @@ map.on("click", function (e) {
     if (currentMarker1 && currentMarker2) {
         $("<input>")
             .attr({
-                value: "(" + e.latlng.lat + "," + e.latlng.lng + ")",
+                value: e.latlng.lat + "," + e.latlng.lng,
+                // value: "(" + e.latlng.lat + "," + e.latlng.lng + ")",
                 id: "coordinates",
                 name: "coordinates",
             })
