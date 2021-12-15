@@ -15,7 +15,7 @@
         <input type="number" name="user_id" placeholder="user_id hidden">
         <br>
         <button type="submit" name="addFavoriteBtn" id="addFavoriteBtn">Add</button>
-        <button type="submit" name="clearBtn" id="clearBtn">Clear</button>
+       
     
     </form>
 </div>

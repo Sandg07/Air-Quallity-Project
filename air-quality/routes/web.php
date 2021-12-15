@@ -50,14 +50,13 @@ Route::get('/team', [TeamController::class, 'index']);
 
 //favorites
 Route::get('/favorites', [FavoriteController::class, 'index']);
-
 // Show the form :
 // Route::get('/favorites', [FavoriteController::class, 'create']);
 // Submit the form :
 Route::post('/favorites', [FavoriteController::class, 'store']);
 
 //Delete the form:
-Route::put('/favorites', [FavoriteController::class, 'destroy'])->name('favorites.delete');
+Route::get('/favorites{id}', [FavoriteController::class, 'destroy'])->name('favorites.delete');
     
     /* 
     * NOT TO USE

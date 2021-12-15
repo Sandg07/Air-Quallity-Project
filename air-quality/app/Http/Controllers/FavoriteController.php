@@ -120,17 +120,11 @@ class FavoriteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
-        $favorite = Favorite::find($id);
-        $favorite->id = $request->id;
-        $favorite->name = $request->name;
-        $favorite->coordinates_x = $request->coordinates_x;
-        $favorite->coordinates_y  =  $request->coordinates_y;
-        $favorite->category = $request->category;
-        $favorite->user_id = $request->user_id; // use the auth id
 
-        $result = Favorite::destroy($favorite);
+
+        $result = Favorite::destroy($id);
 
 
 

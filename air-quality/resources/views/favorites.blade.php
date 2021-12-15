@@ -54,8 +54,15 @@
     
     <br>
     <div class="map-form-container d-flex flex-row justify-content-center">
-        <div id="test"></div>
-        <div id="favoriteMap"></div>
+        
+        <div id="test">
+            <form action="" method="get">
+            <button type="submit" name="clearBtn" id="clearBtn">Clear marker</button>
+        </form>
+    </div>
+
+        <div id="favoriteMap">
+        </div>
         <div class="favorite-form-container d-flex flex-column flex-fill justify-content-center align-items-center">
          @include('new-favorite');
         </div>
