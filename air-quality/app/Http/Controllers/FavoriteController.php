@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Favorite;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Auth;
 
 class FavoriteController extends Controller
 {
@@ -51,6 +52,8 @@ class FavoriteController extends Controller
         // dd($array[1]);
         $favorite->category = $request->category;
         $favorite->user_id = $request->user_id; // use the auth id
+        // $favorite->user_id = $request->Auth::user()->id; // use the auth id
+        // dd(Auth::user()->id);
 
         if ($favorite->save())
             return back()->with('success', 'Saved the favorite in the DB');
@@ -106,6 +109,7 @@ class FavoriteController extends Controller
         $favorite->coordinates_y  =  $request->coordinates_y;
         $favorite->category = $request->category;
         $favorite->user_id = $request->user_id; // use the auth id
+        // $favorite->user_id = $request->Auth::user()->id; // use the auth id
 
         if ($favorite->save())
             return back()->with('success', 'Updated in the DB');
