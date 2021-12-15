@@ -1,5 +1,3 @@
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <nav class="nav justify-content-end">
     <a class="nav-link" href="{{ url('/login') }}">Login</a>
     <a class="nav-link" href="{{ url('/register') }}">Register</a>
