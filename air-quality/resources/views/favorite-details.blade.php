@@ -1,7 +1,8 @@
-<h2>Edit a place</h2>
-<p>You may select a new place on the map to edit the current position.</p>
+<h2>My place</h2>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
 
 <div>
+<p>ID</p> {{ $favorite->id}} <br>
 <p>Name of Place</p> {{ $favorite->name}} <br>
-<p>Name of Place</p> {{ $favorite->category}} <br>
-        
+<p>Category</p> {{ $favorite->category}} <br>
+</div>

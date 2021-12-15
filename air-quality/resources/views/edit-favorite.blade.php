@@ -28,6 +28,7 @@
     <form action="" method="post">
         @csrf
         @method('PUT')
+        <input type="hidden" name="id" value="{{$favorite->id}}"> <br>
         <input type="text" name="name" placeholder="Name of place" value="{{$favorite->name}}"> <br>
           <select name="category">
             <option <?php if ($favorite->category == 'park') { echo 'selected';} ?> value="park">Park</option>

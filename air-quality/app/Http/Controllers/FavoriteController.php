@@ -44,6 +44,7 @@ class FavoriteController extends Controller
         // dd($array);
 
         $favorite = new Favorite;
+        $favorite->id = $request->id;
         $favorite->name = $request->name;
         $favorite->coordinates_x = $array[0];
         $favorite->coordinates_y  = $array[1];
@@ -63,10 +64,11 @@ class FavoriteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function show($id)
     {
-        $favorite = Favorite::find($id);
-        return view('favorites', ['favorite' => $favorite]);
+        //Need to use favorite_id as a hidden field to use the edit/show/update method
+        //             $favorite = Favorite::find($id);
+        //     return view('favorites', ['favorite' => $favorite]);
     }
 
     /**
@@ -77,9 +79,9 @@ class FavoriteController extends Controller
      */
     public function edit($id)
     {
-        $favorite = Favorite::find($id);
-
-        return view('edit-favorite', ['favorite' => $favorite]);
+        //Need to use favorite_id as a hidden field to use the edit/show/update method
+        // $favorite = Favorite::find($id);
+        // return view('edit-favorite', ['favorite' => $favorite]);
     }
 
     /**
@@ -97,6 +99,8 @@ class FavoriteController extends Controller
         // dd($array);
 
         $favorite = Favorite::find($id);
+
+        $favorite->id = $request->id;
         $favorite->name = $request->name;
         $favorite->coordinates_x = $request->coordinates_x;
         $favorite->coordinates_y  =  $request->coordinates_y;
@@ -116,9 +120,19 @@ class FavoriteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $result = Favorite::destroy($id);
+        $favorite = Favorite::find($id);
+        $favorite->id = $request->id;
+        $favorite->name = $request->name;
+        $favorite->coordinates_x = $request->coordinates_x;
+        $favorite->coordinates_y  =  $request->coordinates_y;
+        $favorite->category = $request->category;
+        $favorite->user_id = $request->user_id; // use the auth id
+
+        $result = Favorite::destroy($favorite);
+
+
 
         if ($result)
             return back()->with('success', 'Favorite was deleted from the DB');

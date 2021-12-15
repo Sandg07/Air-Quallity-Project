@@ -12,8 +12,8 @@
 
 
 @section('content')
-<div  class="favorite-section d-flex flex-row justify-content-around align-items-center">
-    <div class="favorite-container">
+<div  class="favorite-section ">
+    <div class="favorite-container d-flex flex-row justify-content-around align-items-center">
         <h2>My Favorites</h2>
 
         {{-- ERRORS HANDLING --}}
@@ -25,29 +25,31 @@
         <p style="color:red">{{ $message }}</p>
     @endif
 
-    {{-- FORM --}}
+    {{-- SHOW FAVORITES --}}
 
          @if (!empty($favorites))
          @foreach ($favorites as $favorite)
-            <strong>Name of place : </strong>{{ $favorite->name }}<br>
-            <strong>Category: </strong>{{ $favorite->category }}<br>
-            <strong>User_id: </strong>{{ $favorite->user_id }}<br>
-            <strong>Coordinates_x: </strong>{{ $favorite->coordinates_x }}<br>
-            <strong>Coordinates_y: </strong>{{ $favorite->coordinates_y }}<br>
-           
-            <button type="submit" name="submitBtn" id="submitBtn">Edit</button>
-            {{-- <a href="{{ route('favorites.details', [$favorite->id]) }}">Detail page</a><br>
-            <a href="{{ route('favorites.edit', [$favorite->id]) }}">Edit</a><br>
-            <a href="{{ route('favorites.delete', [$favorite->id]) }}">Delete</a> --}}
-            <hr>
+         <div>
+
+             <strong>ID: </strong>{{ $favorite->id }}<br>
+             <strong>Name of place : </strong>{{ $favorite->name }}<br>
+             <strong>Category: </strong>{{ $favorite->category }}<br>
+             <strong>Coordinates_x: </strong>{{ $favorite->coordinates_x }}<br>
+             <strong>Coordinates_y: </strong>{{ $favorite->coordinates_y }}<br>
+             <strong>User_id: </strong>{{ $favorite->user_id }}<br>
+            
+                       
+             <a href="{{ route('favorites.delete', [$favorite->id]) }}">Delete</a>
+             <hr>
+         </div>
             @endforeach
      @else
          <p>No favorites in my DB.</p>
      @endif
     </div>
-    <div class="edit-container">
+    {{-- <div class="edit-container">
         @include('edit-favorite');
-    </div>
+    </div> --}}
 </div>
     
     <br>
