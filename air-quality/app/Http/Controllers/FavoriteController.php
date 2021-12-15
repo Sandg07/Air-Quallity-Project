@@ -45,11 +45,11 @@ class FavoriteController extends Controller
 
         $favorite = new Favorite;
         $favorite->name = $request->name;
-        $coordinates_x = $array[0];
-        $coordinates_y = $array[1];
+        $favorite->coordinates_x = $array[0];
+        $favorite->coordinates_y  = $array[1];
         // dd($array[1]);
         $favorite->category = $request->category;
-        $favorite->user_id = $request->user_id;
+        $favorite->user_id = $request->user_id; // use the auth id
 
         if ($favorite->save())
             return back()->with('success', 'Saved the favorite in the DB');
@@ -63,9 +63,10 @@ class FavoriteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+        $favorite = Favorite::find($id);
+        return view('favorites', ['favorite' => $favorite]);
     }
 
     /**
@@ -76,7 +77,9 @@ class FavoriteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $favorite = Favorite::find($id);
+
+        return view('edit-favorite', ['favorite' => $favorite]);
     }
 
     /**
@@ -88,8 +91,24 @@ class FavoriteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Validations
+        // $request->validated();
+        $array = explode(',', $request->coordinates);
+        // dd($array);
+
+        $favorite = Favorite::find($id);
+        $favorite->name = $request->name;
+        $favorite->coordinates_x = $request->coordinates_x;
+        $favorite->coordinates_y  =  $request->coordinates_y;
+        $favorite->category = $request->category;
+        $favorite->user_id = $request->user_id; // use the auth id
+
+        if ($favorite->save())
+            return back()->with('success', 'Updated in the DB');
+        else
+            return back()->with('error', 'Something wrong with the DB');
     }
+
 
     /**
      * Remove the specified resource from storage.

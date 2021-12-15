@@ -7,28 +7,12 @@
     {{-- link for the map --}}
     <link href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" rel="stylesheet" />
 
-    <style>
-        .leaflet-control-coordinates {
-            background: white;
-            border-radius: 4px;
-            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
-            cursor: pointer;
-            padding: 2px 5px;
-        }
-
-        .leaflet-control-coordinates.hidden {
-            display: none;
-        }
-
-        .leaflet-control-coordinates-lng {
-            padding-left: 5px;
-        }
-        </style>
-@endsection
+    <link rel="stylesheet" href="style.css">
+    @endsection
 
 
 @section('content')
-
+<div  class="favorite-section d-flex flex-row justify-content-around align-items-center">
     <div class="favorite-container">
         <h2>My Favorites</h2>
 
@@ -48,6 +32,8 @@
             <strong>Name of place : </strong>{{ $favorite->name }}<br>
             <strong>Category: </strong>{{ $favorite->category }}<br>
             <strong>User_id: </strong>{{ $favorite->user_id }}<br>
+            <strong>Coordinates_x: </strong>{{ $favorite->coordinates_x }}<br>
+            <strong>Coordinates_y: </strong>{{ $favorite->coordinates_y }}<br>
            
             <button type="submit" name="submitBtn" id="submitBtn">Edit</button>
             {{-- <a href="{{ route('favorites.details', [$favorite->id]) }}">Detail page</a><br>
@@ -59,6 +45,10 @@
          <p>No favorites in my DB.</p>
      @endif
     </div>
+    <div class="edit-container">
+        @include('edit-favorite');
+    </div>
+</div>
     
     <br>
     <div class="map-form-container d-flex flex-row justify-content-center">
