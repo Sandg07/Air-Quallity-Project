@@ -3,5 +3,6 @@
     "/js/map.js": "/js/map.js",
     "/js/generalMap.js": "/js/generalMap.js",
     "/js/Control.Coordinates.js": "/js/Control.Coordinates.js",
+    "/js/datepicker.js": "/js/datepicker.js",
     "/css/app.css": "/css/app.css"
 }
