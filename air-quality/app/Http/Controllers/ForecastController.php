@@ -37,7 +37,7 @@ class ForecastController extends Controller
 
     public function calculatingDayAverage($day = '01')
     {
-        $stationDayly = [
+        $stations = [
             'Esch1' => [
                 'polLabel' => [
                     'PM10' => 0,
@@ -135,16 +135,16 @@ class ForecastController extends Controller
                                 foreach ($station->data as $polluant) {
                                     switch ($polluant->polLabel) {
                                         case 'PM10':
-                                            $stationDayly['Esch1']['polLabel']['PM10'] += $polluant->value;
-                                            $stationDayly['Esch1']['i']++;
+                                            $stations['Esch1']['polLabel']['PM10'] += $polluant->value;
+                                            $stations['Esch1']['i']++;
                                             break;
                                         case 'Ozone':
-                                            $stationDayly['Esch1']['polLabel']['Ozone'] += $polluant->value;
-                                            $stationDayly['Esch1']['j']++;
+                                            $stations['Esch1']['polLabel']['Ozone'] += $polluant->value;
+                                            $stations['Esch1']['j']++;
                                             break;
                                         case 'NO2':
-                                            $stationDayly['Esch1']['polLabel']['NO2'] += $polluant->value;
-                                            $stationDayly['Esch1']['k']++;
+                                            $stations['Esch1']['polLabel']['NO2'] += $polluant->value;
+                                            $stations['Esch1']['k']++;
                                             break;
                                     }
                                 }
@@ -153,16 +153,16 @@ class ForecastController extends Controller
                                 foreach ($station->data as $polluant) {
                                     switch ($polluant->polLabel) {
                                         case 'PM10':
-                                            $stationDayly['Esch2']['polLabel']['PM10'] += $polluant->value;
-                                            $stationDayly['Esch2']['i']++;
+                                            $stations['Esch2']['polLabel']['PM10'] += $polluant->value;
+                                            $stations['Esch2']['i']++;
                                             break;
                                         case 'Ozone':
-                                            $stationDayly['Esch2']['polLabel']['Ozone'] += $polluant->value;
-                                            $stationDayly['Esch2']['j']++;
+                                            $stations['Esch2']['polLabel']['Ozone'] += $polluant->value;
+                                            $stations['Esch2']['j']++;
                                             break;
                                         case 'NO2':
-                                            $stationDayly['Esch2']['polLabel']['NO2'] += $polluant->value;
-                                            $stationDayly['Esch2']['k']++;
+                                            $stations['Esch2']['polLabel']['NO2'] += $polluant->value;
+                                            $stations['Esch2']['k']++;
                                             break;
                                     }
                                 }
@@ -171,16 +171,16 @@ class ForecastController extends Controller
                                 foreach ($station->data as $polluant) {
                                     switch ($polluant->polLabel) {
                                         case 'PM10':
-                                            $stationDayly['Oberpallen']['polLabel']['PM10'] += $polluant->value;
-                                            $stationDayly['Oberpallen']['i']++;
+                                            $stations['Oberpallen']['polLabel']['PM10'] += $polluant->value;
+                                            $stations['Oberpallen']['i']++;
                                             break;
                                         case 'Ozone':
-                                            $stationDayly['Oberpallen']['polLabel']['Ozone'] += $polluant->value;
-                                            $stationDayly['Oberpallen']['j']++;
+                                            $stations['Oberpallen']['polLabel']['Ozone'] += $polluant->value;
+                                            $stations['Oberpallen']['j']++;
                                             break;
                                         case 'NO2':
-                                            $stationDayly['Oberpallen']['polLabel']['NO2'] += $polluant->value;
-                                            $stationDayly['Oberpallen']['k']++;
+                                            $stations['Oberpallen']['polLabel']['NO2'] += $polluant->value;
+                                            $stations['Oberpallen']['k']++;
                                             break;
                                     }
                                 }
@@ -189,16 +189,16 @@ class ForecastController extends Controller
                                 foreach ($station->data as $polluant) {
                                     switch ($polluant->polLabel) {
                                         case 'PM10':
-                                            $stationDayly['Vianden']['polLabel']['PM10'] += $polluant->value;
-                                            $stationDayly['Vianden']['i']++;
+                                            $stations['Vianden']['polLabel']['PM10'] += $polluant->value;
+                                            $stations['Vianden']['i']++;
                                             break;
                                         case 'Ozone':
-                                            $stationDayly['Vianden']['polLabel']['Ozone'] += $polluant->value;
-                                            $stationDayly['Vianden']['j']++;
+                                            $stations['Vianden']['polLabel']['Ozone'] += $polluant->value;
+                                            $stations['Vianden']['j']++;
                                             break;
                                         case 'NO2':
-                                            $stationDayly['Vianden']['polLabel']['NO2'] += $polluant->value;
-                                            $stationDayly['Vianden']['k']++;
+                                            $stations['Vianden']['polLabel']['NO2'] += $polluant->value;
+                                            $stations['Vianden']['k']++;
                                             break;
                                     }
                                 }
@@ -207,16 +207,16 @@ class ForecastController extends Controller
                                 foreach ($station->data as $polluant) {
                                     switch ($polluant->polLabel) {
                                         case 'PM10':
-                                            $stationDayly['Beidweiler']['polLabel']['PM10'] += $polluant->value;
-                                            $stationDayly['Beidweiler']['i']++;
+                                            $stations['Beidweiler']['polLabel']['PM10'] += $polluant->value;
+                                            $stations['Beidweiler']['i']++;
                                             break;
                                         case 'Ozone':
-                                            $stationDayly['Beidweiler']['polLabel']['Ozone'] += $polluant->value;
-                                            $stationDayly['Beidweiler']['j']++;
+                                            $stations['Beidweiler']['polLabel']['Ozone'] += $polluant->value;
+                                            $stations['Beidweiler']['j']++;
                                             break;
                                         case 'NO2':
-                                            $stationDayly['Beidweiler']['polLabel']['NO2'] += $polluant->value;
-                                            $stationDayly['Beidweiler']['k']++;
+                                            $stations['Beidweiler']['polLabel']['NO2'] += $polluant->value;
+                                            $stations['Beidweiler']['k']++;
                                             break;
                                     }
                                 }
@@ -225,16 +225,16 @@ class ForecastController extends Controller
                                 foreach ($station->data as $polluant) {
                                     switch ($polluant->polLabel) {
                                         case 'PM10':
-                                            $stationDayly['Luxembourg1']['polLabel']['PM10'] += $polluant->value;
-                                            $stationDayly['Luxembourg1']['i']++;
+                                            $stations['Luxembourg1']['polLabel']['PM10'] += $polluant->value;
+                                            $stations['Luxembourg1']['i']++;
                                             break;
                                         case 'Ozone':
-                                            $stationDayly['Luxembourg1']['polLabel']['Ozone'] += $polluant->value;
-                                            $stationDayly['Luxembourg1']['j']++;
+                                            $stations['Luxembourg1']['polLabel']['Ozone'] += $polluant->value;
+                                            $stations['Luxembourg1']['j']++;
                                             break;
                                         case 'NO2':
-                                            $stationDayly['Luxembourg1']['polLabel']['NO2'] += $polluant->value;
-                                            $stationDayly['Luxembourg1']['k']++;
+                                            $stations['Luxembourg1']['polLabel']['NO2'] += $polluant->value;
+                                            $stations['Luxembourg1']['k']++;
                                             break;
                                     }
                                 }
@@ -243,16 +243,16 @@ class ForecastController extends Controller
                                 foreach ($station->data as $polluant) {
                                     switch ($polluant->polLabel) {
                                         case 'PM10':
-                                            $stationDayly['Luxembourg2']['polLabel']['PM10'] += $polluant->value;
-                                            $stationDayly['Luxembourg2']['i']++;
+                                            $stations['Luxembourg2']['polLabel']['PM10'] += $polluant->value;
+                                            $stations['Luxembourg2']['i']++;
                                             break;
                                         case 'Ozone':
-                                            $stationDayly['Luxembourg2']['polLabel']['Ozone'] += $polluant->value;
-                                            $stationDayly['Luxembourg2']['j']++;
+                                            $stations['Luxembourg2']['polLabel']['Ozone'] += $polluant->value;
+                                            $stations['Luxembourg2']['j']++;
                                             break;
                                         case 'NO2':
-                                            $stationDayly['Luxembourg2']['polLabel']['NO2'] += $polluant->value;
-                                            $stationDayly['Luxembourg2']['k']++;
+                                            $stations['Luxembourg2']['polLabel']['NO2'] += $polluant->value;
+                                            $stations['Luxembourg2']['k']++;
                                             break;
                                     }
                                 }
@@ -263,12 +263,12 @@ class ForecastController extends Controller
             }
         }
 
-        foreach ($stationDayly as $station => $value) {
+        foreach ($stations as $station => $value) {
             /*  dd($value['polLabel']['Ozone']); */
-            $stationDayly[$station]['polLabel']['PM10'] = $value['polLabel']['PM10']  / $value['i'];
-            $stationDayly[$station]['polLabel']['Ozone'] = $value['polLabel']['Ozone'] / $value['j'];
-            $stationDayly[$station]['polLabel']['NO2'] = $value['polLabel']['NO2'] / $value['k'];
+            $stations[$station]['polLabel']['PM10'] = $value['polLabel']['PM10']  / $value['i'];
+            $stations[$station]['polLabel']['Ozone'] = $value['polLabel']['Ozone'] / $value['j'];
+            $stations[$station]['polLabel']['NO2'] = $value['polLabel']['NO2'] / $value['k'];
         }
-        return $stationDayly;
+        return view('forecast', ['stations' => $stations]);
     }
 }
