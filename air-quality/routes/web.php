@@ -30,13 +30,18 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('logout');
+
 require __DIR__ . '/auth.php';
 
 // Route::get('/testSB', [TestController::class, 'index']);
-Route::get('/searchbox', [SearchboxController::class, 'index']);
-Route::get('/map', [MapController::class, 'index']);
-Route::get('/map',  [ApiController::class, 'readApiLux']);
-Route::get('/forecast', [ForecastController::class, 'calculatingDayAverage']);
+Route::get('/searchbox', [SearchboxController::class, 'index'])->middleware(['auth']);
+Route::get('/map', [MapController::class, 'index'])->middleware(['auth']);
+Route::get('/map',  [ApiController::class, 'index'])->middleware(['auth']);
+Route::post('map', [ApiController::class, 'dataRequest'])->middleware((['auth']));
+Route::get('/forecast', [ForecastController::class, 'calculatingDayAverage'])->middleware(['auth']);
 
 //Home page
 Route::get('/', function () {
@@ -49,4 +54,4 @@ Route::get('/team', [TeamController::class, 'index']);
 //favorites
 Route::get('/favorites', function () {
     return view('favorites');
-});
+})->middleware(['auth']);
