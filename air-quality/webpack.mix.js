@@ -20,6 +20,10 @@ mix.js("resources/js/map.js", "public/js");
 
 mix.js("resources/js/generalMap.js", "public/js");
 
-mix.js("resources/js/Control.Coordinates.js", "public/js");
+mix.js("resources/js/Control.Coordinates.js", "public/js").postCss(
+    "resources/css/style.css",
+    "public/css",
+    [require("postcss-import"), require("tailwindcss"), require("autoprefixer")]
+);
 
 mix.js("resources/js/datepicker.js", "public/js");
