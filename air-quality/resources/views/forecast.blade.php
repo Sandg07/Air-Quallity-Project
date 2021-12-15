@@ -8,6 +8,8 @@
 
 @section('content')
 
+@endsection
 
-
+@section('script')
+    <script src="/js/datepicker.js"></script>
 @endsection
