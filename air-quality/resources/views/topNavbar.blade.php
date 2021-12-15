@@ -1,7 +1,7 @@
 
 
 
-<nav class="nav justify-content-end">
+<nav class="navbar justify-content-end">
     <a class="nav-link" href="{{ url('/login') }}">Login</a>
     <a class="nav-link" href="{{ url('/register') }}">Register</a>
     <a class="nav-link disabled" href="{{ url('/dashboard') }}">Dashboard</a>
