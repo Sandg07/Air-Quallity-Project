@@ -39,7 +39,8 @@ require __DIR__ . '/auth.php';
 // Route::get('/testSB', [TestController::class, 'index']);
 Route::get('/searchbox', [SearchboxController::class, 'index'])->middleware(['auth']);
 Route::get('/map', [MapController::class, 'index'])->middleware(['auth']);
-Route::get('/map',  [ApiController::class, 'readApiLux'])->middleware(['auth']);
+Route::get('/map',  [ApiController::class, 'index'])->middleware(['auth']);
+Route::post('map', [ApiController::class, 'dataRequest'])->middleware((['auth']));
 Route::get('/forecast', [ForecastController::class, 'calculatingDayAverage'])->middleware(['auth']);
 
 //Home page

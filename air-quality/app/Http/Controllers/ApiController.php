@@ -8,6 +8,27 @@ use Illuminate\Support\Facades\Storage;
 
 class ApiController extends Controller
 {
+    public function index()
+    {
+        $array = ['pollutant' => Storage::disk('json')->get('pm10.json')];
+        return view('map', ['array' => $array]);
+    }
+    public function dataRequest(Request $request)
+    {
+
+        if ($request->no2)
+            $array = ['pollutant' => Storage::disk('json')->get('no2.json')];
+        elseif ($request->pm10)
+            $array = ['pollutant' => Storage::disk('json')->get('pm10.json')];
+        elseif ($request->pm25)
+            $array = ['pollutant' => Storage::disk('json')->get('pm25.json')];
+        else
+            $array = ['pollutant' => Storage::disk('json')->get('o3.json')];
+
+        return view('map', ['array' => $array]);
+    }
+
+
     public function readApiLux()
     {
         if (!Storage::disk('json')->has('timestamp.txt') || (Storage::disk('json')->has('timestamp.txt') && (int)Storage::disk('json')->get('timestamp.txt') < time())) {
@@ -28,13 +49,6 @@ class ApiController extends Controller
                 Storage::disk('json')->put($key . '.json', json_encode([$key => $data], JSON_PRETTY_PRINT));
             }
         }
-        $array = [
-            'pm10' => Storage::disk('json')->get('pm10.json'),
-            'pm25' => Storage::disk('json')->get('pm25.json'),
-            'no2' => Storage::disk('json')->get('no2.json'),
-            'o3' => Storage::disk('json')->get('o3.json'),
-        ];
-        return view('map', ['array' => $array]);
     }
 
     public function controllTimestamp($date)
