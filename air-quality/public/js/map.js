@@ -17,13 +17,15 @@ L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
 var targetLuxCity = L.latLng("49.8096317", "6.064453"); //Luxembourg
 // Set map's center to target with zoom 14.
 
-map.setView(targetLuxCity, 9); // Get the coordinates on click
+map.setView(targetLuxCity, 9); // ********** Get the coordinates on click ********** 
 
 /* function onMapClick(e) {
     alert("You clicked the map at " + e.latlng);
 }
 
 map.on("click", onMapClick); */
+// *************************************************** 
+// ********** INSERT LINES ********** 
 
 /* var myLines = [
     {
@@ -53,48 +55,58 @@ var myStyle = {
 L.geoJSON(myLines, {
     style: myStyle,
 }).addTo(map); */
-// const pm10 = require("storage/json/pm10.json");
-//var datas = JSON.parse('pm10');
-
-/* const fs = require("storage/json/pm10.json")
-function jsonReader(filePath, cb) {
-    fs.readFile(filePath, (err, fileData) => {
-        if (err) {
-            return cb && cb(err)
-        }
-        try {
-            const object = JSON.parse(fileData)
-            return cb && cb(null, object)
-        } catch(err) {
-            return cb && cb(err)
-        }
-    })
-}
-jsonReader('storage/json/pm10.json', (err, customer) => {
-    if (err) {
-        console.log(err)
-        return
-    } */
-
-/*   console.log(customer.address) // => "Infinity Loop Drive"
-})*/
+// *************************************************** 
+// ***************** SCALE COLORS ********************* 
+// > 200 = #800000
+// 151 - 200 = #bf0000 
+// 101 - 150 = #FF0000
+// 71 - 100 = #FF9800
+// 51 - 70 = #FFCC00
+// 41 - 50 = #FFFF66
+// 31 - 40 = #d9e1f9
+// 21 - 30 = #b3c3f3
+// 11 - 20 = #7a96ea
+// <= 10 = #4169E1
 //this one use first y then x
 
-    /* console.log(datas);
-datas.forEach(function (data) {
-  var LatLgn = L.latLng(data.y, data.x);
-  addPoint(LatLgn);
-});
+console.log(pm10);
 
-function addPoint(LatLgn) {
+function addPoint(LatLgn, color) {
   var circle = L.circle(LatLgn, {
-    color: "red",
-    fillColor: "#f02",
-    fillOpacity: 0.2,
+    color: "transparent",
+    fillColor: color,
+    fillOpacity: 0.9,
     radius: 500
   }).addTo(map);
   console.log(LatLgn);
 }
+
+pm10.pm10.forEach(function (data) {
+  if (data.index == 1) {
+    var color = "#4169E1";
+  } else if (data.index == 2) {
+    var color = "#7a96ea";
+  } else if (data.index == 3) {
+    var color = "#b3c3f3";
+  } else if (data.index == 4) {
+    var color = "#d9e1f9";
+  } else if (data.index == 5) {
+    var color = "#FFFF66";
+  } else if (data.index == 6) {
+    var color = "#FFCC00";
+  } else if (data.index == 7) {
+    var color = "#FF9800";
+  } else if (data.index == 8) {
+    var color = "#FF0000";
+  } else if (data.index == 9) {
+    var color = "#bf0000";
+  } else if (data.index == 9) {
+    var color = "#800000";
+  }
+
+  var LatLgn = L.latLng(data.y, data.x);
+  addPoint(LatLgn, color);
+});
 /* var circle = L.circle([49.68132074, 6.44587485], {
     color: "red",
     fillColor: "#f03",
