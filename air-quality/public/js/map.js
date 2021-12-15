@@ -70,6 +70,10 @@ L.geoJSON(myLines, {
 //this one use first y then x
 
 console.log(pm10);
+pm10.pm10.forEach(function (data) {
+  var LatLgn = L.latLng(data.y, data.x);
+  addPoint(LatLgn);
+});
 
 function addPoint(LatLgn, color) {
   var circle = L.circle(LatLgn, {
