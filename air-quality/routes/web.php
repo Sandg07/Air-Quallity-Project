@@ -4,6 +4,7 @@ use App\Http\Controllers\SearchboxController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\ForecastController;
 use App\Http\Controllers\FavoriteController;
 
@@ -39,9 +40,14 @@ require __DIR__ . '/auth.php';
 // Route::get('/testSB', [TestController::class, 'index']);
 Route::get('/searchbox', [SearchboxController::class, 'index'])->middleware(['auth']);
 Route::get('/map', [MapController::class, 'index'])->middleware(['auth']);
-Route::get('/map',  [ApiController::class, 'index'])->middleware(['auth']);
-Route::post('map', [ApiController::class, 'dataRequest'])->middleware((['auth']));
+
+Route::get('/map',  [AjaxController::class, 'index'])->middleware(['auth']);
+Route::post('map', [AjaxController::class, 'dataRequest'])->middleware((['auth']));
 Route::get('/forecast', [ForecastController::class, 'calculatingDayAverage'])->middleware(['auth']);
+
+
+//Route::get('ajax-request', 'AjaxController@index');
+//Route::post('/map', 'AjaxController@dataRequest'); 
 
 //Home page
 Route::get('/', function () {

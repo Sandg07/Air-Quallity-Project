@@ -6,7 +6,26 @@ var __webpack_exports__ = {};
 // Where you want to render the map.
 var element = document.getElementById("osm-map"); // Height has to be set. You can do this in CSS too.
 
-element.style = "height:600px; width:600px"; // Create Leaflet map on map element.
+element.style = "height:600px; width:600px";
+/* 
+var basemaps = {
+    Grayscale: L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }),
+    Streets: L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    })
+  };
+
+  var groups = {
+    poluents: new L.LayerGroup(),
+    favorites: new L.LayerGroup()
+  };
+
+ */
+// Create Leaflet map on map element.
 
 var map = L.map(element); // Add OSM tile layer to the Leaflet map.
 
@@ -67,9 +86,34 @@ L.geoJSON(myLines, {
 // 21 - 30 = #b3c3f3
 // 11 - 20 = #7a96ea
 // <= 10 = #4169E1
-//this one use first y then x
+// *************************************************** 
 
-console.log(pm10);
+/*  L.marker([39.61, -105.02]).bindPopup('Littleton, CO.').addTo(groups.poluents);
+
+var groupedOverlays = {
+   "Poluents": {
+     "PM10": groups.poluents,
+     
+   },
+   "Favorites": {
+     "Favorite": groups.favorites,
+    
+   }
+ };
+ 
+ L.control.groupedLayers(basemaps, groupedOverlays, options).addTo(map);
+
+var options = {
+   exclusiveGroups: ["Poluents"],
+   groupCheckboxes:true};
+
+
+
+var layerControl = L.control.groupedLayers(groupedOverlays, options);
+map.addControl(layerControl);
+
+  */
+// ***************** FUNCTION TO ADD THE POINTS ********************* 
 
 function addPoint(LatLgn, color) {
   var circle = L.circle(LatLgn, {
@@ -79,9 +123,12 @@ function addPoint(LatLgn, color) {
     radius: 500
   }).addTo(map);
   console.log(LatLgn);
-}
+} // *************************************************** 
+// ***************** INSERT PM10 POINTS ********************* 
 
-pm10.pm10.forEach(function (data) {
+
+console.log(pollutant);
+var allpm10 = pollutant.pm10.forEach(function (data) {
   if (data.index == 1) {
     var color = "#4169E1";
   } else if (data.index == 2) {
@@ -102,17 +149,11 @@ pm10.pm10.forEach(function (data) {
     var color = "#bf0000";
   } else if (data.index == 9) {
     var color = "#800000";
-  }
+  } //this one use first y then x
+
 
   var LatLgn = L.latLng(data.y, data.x);
   addPoint(LatLgn, color);
 });
-/* var circle = L.circle([49.68132074, 6.44587485], {
-    color: "red",
-    fillColor: "#f03",
-    fillOpacity: 0.5,
-    radius: 1000,
-}).addTo(map);
- */
 /******/ })()
 ;
