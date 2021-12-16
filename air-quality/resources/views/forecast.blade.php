@@ -20,44 +20,18 @@
             <input type="submit" id='submitBtn' value="Submit">
         </div>
     </form>
-    <div>
-        <table border="1">
-            <tr>
-                <th width='30px'></th>
-                @foreach ($stations as $key => $station)
-                    <th>{{ $key }}</th>
-                @endforeach
-            </tr>
-            <tr>
-                <th>PM10</th>
-                @foreach ($stations as $station)
-
-                    <td>{{ $station['polLabel']['PM10'] }}</td>
-
-                @endforeach
-            </tr>
-            <tr>
-                <th>NO2</th>
-                @foreach ($stations as $station)
-
-                    <td>{{ $station['polLabel']['NO2'] }}</td>
-
-                @endforeach
-            </tr>
-            <tr>
-                <th>Ozone</th>
-                @foreach ($stations as $station)
-
-                    <td>{{ $station['polLabel']['Ozone'] }}</td>
-
-                @endforeach
-            </tr>
-        </table>
-    </div>
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 
 
 
 </body>
+<script>
+    let stations = {!! json_encode($stations) !!};
+</script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script src="/js/datepicker.js"></script>
+<script>
+
+</script>
 
 </html>

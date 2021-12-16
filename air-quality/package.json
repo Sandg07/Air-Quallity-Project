@@ -24,6 +24,7 @@
         "composer": "^4.1.0",
         "flatpickr": "^4.6.9",
         "heatmap.js": "^2.0.5",
+        "jquery": "^3.6.0",
         "ol": "^6.9.0"
     }
 }

@@ -20,10 +20,10 @@ class ForecastController extends Controller
     {
         if ($request->has('date')) {
             $date = explode('/', $request->date);
-            $stations = $this->calculatingDayAverage($date[0], $date[1]);
+            $responseStations = $this->calculatingDayAverage($date[0], $date[1]);
 
 
-            return response()->json(['stations' => $stations]);
+            return response()->json(['responseStations' => $responseStations]);
         }
     }
     public function getUrlsForMonth($month = '11')
@@ -61,11 +61,12 @@ class ForecastController extends Controller
                     'NO2' => 0,
                     'Ozone' => 0,
                 ],
-                'x' => '49.5050417',
-                'y' => '5.976887',
+                /* 'x' => '49.5050417',
+                'y' => '5.976887', */
                 'i' => 0,
                 'j' => 0,
                 'k' => 0,
+                'index' => 10,
 
             ],
             'Esch2' => [
@@ -74,11 +75,12 @@ class ForecastController extends Controller
                     'NO2' => 0,
                     'Ozone' => 0,
                 ],
-                'x' => '49.494166',
-                'y' => '5.9847832',
+                /* 'x' => '49.494166',
+                'y' => '5.9847832', */
                 'i' => 0,
                 'j' => 0,
                 'k' => 0,
+                'index' => 20,
             ],
             'Oberpallen' => [
                 'polLabel' => [
@@ -86,11 +88,12 @@ class ForecastController extends Controller
                     'NO2' => 0,
                     'Ozone' => 0,
                 ],
-                'x' => '49.7318503',
-                'y' => '5.8471282',
+                /* 'x' => '49.7318503',
+                'y' => '5.8471282', */
                 'i' => 0,
                 'j' => 0,
                 'k' => 0,
+                'index' => 30,
             ],
             'Vianden' => [
                 'polLabel' => [
@@ -98,11 +101,12 @@ class ForecastController extends Controller
                     'NO2' => 0,
                     'Ozone' => 0,
                 ],
-                'x' => '49.9439319',
-                'y' => '6.1759306',
+                /* 'x' => '49.9439319',
+                'y' => '6.1759306', */
                 'i' => 0,
                 'j' => 0,
                 'k' => 0,
+                'index' => 40,
             ],
             'Beidweiler' => [
                 'polLabel' => [
@@ -110,11 +114,12 @@ class ForecastController extends Controller
                     'NO2' => 0,
                     'Ozone' => 0,
                 ],
-                'x' => '49.7222753',
-                'y' => '6.3052517',
+                /* 'x' => '49.7222753',
+                'y' => '6.3052517', */
                 'i' => 0,
                 'j' => 0,
                 'k' => 0,
+                'index' => 50,
             ],
             'Luxembourg1' => [
                 'polLabel' => [
@@ -122,11 +127,12 @@ class ForecastController extends Controller
                     'NO2' => 0,
                     'Ozone' => 0,
                 ],
-                'x' => '49.5977126',
-                'y' => '6.1375938',
+                /* 'x' => '49.5977126',
+                'y' => '6.1375938', */
                 'i' => 0,
                 'j' => 0,
                 'k' => 0,
+                'index' => 60,
             ],
             'Luxembourg2' => [
                 'polLabel' => [
@@ -134,11 +140,12 @@ class ForecastController extends Controller
                     'NO2' => 0,
                     'Ozone' => 0,
                 ],
-                'x' => '49.6115433',
-                'y' => '6.1184772',
+                /* 'x' => '49.6115433',
+                'y' => '6.1184772', */
                 'i' => 0,
                 'j' => 0,
                 'k' => 0,
+                'index' => 70,
             ],
         ];
 
