@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\ApiController;
+
 use Illuminate\Http\Request;
 use App\Models\Favorite;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Auth;
+
 
 class FavoriteController extends Controller
 {
@@ -17,7 +20,11 @@ class FavoriteController extends Controller
     public function index()
     {
         $favorites = Favorite::all();
-        return view('favorites', ['favorites' => $favorites]);
+        $api = new ApiController();
+        $data = $api->index();
+        $array = [$favorites, $data];
+
+        return view('test', ['array' => $array]);
     }
 
     /**

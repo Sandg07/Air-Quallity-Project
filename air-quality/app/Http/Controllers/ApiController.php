@@ -12,7 +12,9 @@ class ApiController extends Controller
     {
         $this->readApiLux();
         $array = ['pollutant' => Storage::disk('json')->get('pm10.json')];
-        return view('map', ['array' => $array]);
+        return $array;
+        /* dd($favorite);
+        return view('test', ['favorite' => $favorite]); */
     }
 
     public function dataRequest(Request $request)
