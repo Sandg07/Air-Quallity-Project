@@ -41,7 +41,11 @@ Route::get('/searchbox', [SearchboxController::class, 'index'])->middleware(['au
 Route::get('/map', [MapController::class, 'index'])->middleware(['auth']);
 Route::get('/map',  [ApiController::class, 'index'])->middleware(['auth']);
 Route::post('map', [ApiController::class, 'dataRequest'])->middleware((['auth']));
-Route::get('/forecast', [ForecastController::class, 'calculatingDayAverage'])->middleware(['auth']);
+
+
+
+Route::get('/forecast', [ForecastController::class, 'index'])->middleware(['auth']);
+Route::post('/forecast', [ForecastController::class, 'ajaxCall'])->middleware(['auth']);
 
 //Home page
 Route::get('/', function () {

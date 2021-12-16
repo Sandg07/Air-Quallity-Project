@@ -5,10 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
-use App\Http\Controllers\ApiController\transformCoordinates;
+
 
 class ForecastController extends Controller
 {
+    public function index()
+    {
+
+        $stations = $this->calculatingDayAverage(date('d'), date('m'));
+
+        return view('forecast', ['stations' => $stations]);
+    }
+    public function ajaxCall(Request $request)
+    {
+        if ($request->has('date')) {
+            $date = explode('/', $request->date);
+            $stations = $this->calculatingDayAverage($date[0], $date[1]);
+
+
+            return response()->json(['stations' => $stations]);
+        }
+    }
     public function getUrlsForMonth($month = '11')
     {
         $response = Http::get('https://data.public.lu/api/1/datasets/qualite-air-reseau-telemetrique/',);
@@ -35,7 +52,7 @@ class ForecastController extends Controller
         return $arrays;
     }
 
-    public function calculatingDayAverage($day = '01')
+    public function calculatingDayAverage($day = '01', $month = '11')
     {
         $stations = [
             'Esch1' => [
@@ -125,7 +142,7 @@ class ForecastController extends Controller
             ],
         ];
 
-        foreach ($this->getMonthData() as $dataArray) {
+        foreach ($this->getMonthData($month) as $dataArray) {
             foreach ($dataArray as $dataDay) {
                 if (explode('/', strstr($dataDay->generated, ' ', true))[2] == $day) {
                     foreach ($dataDay->station as $station) {
@@ -265,10 +282,10 @@ class ForecastController extends Controller
 
         foreach ($stations as $station => $value) {
             /*  dd($value['polLabel']['Ozone']); */
-            $stations[$station]['polLabel']['PM10'] = $value['polLabel']['PM10']  / $value['i'];
-            $stations[$station]['polLabel']['Ozone'] = $value['polLabel']['Ozone'] / $value['j'];
-            $stations[$station]['polLabel']['NO2'] = $value['polLabel']['NO2'] / $value['k'];
+            $stations[$station]['polLabel']['PM10'] = round(($value['polLabel']['PM10']  / $value['i']), 2);
+            $stations[$station]['polLabel']['Ozone'] = round(($value['polLabel']['Ozone'] / $value['j']), 2);;
+            $stations[$station]['polLabel']['NO2'] = round(($value['polLabel']['NO2'] / $value['k']), 2);;
         }
-        return view('forecast', ['stations' => $stations]);
+        return $stations;
     }
 }
