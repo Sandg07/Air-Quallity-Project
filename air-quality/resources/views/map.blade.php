@@ -18,20 +18,26 @@
 </head>
 
 <body>
-    <div class="container .flex-column .justify-content-start p-2 m-2 col-12">
-        <div class="w-100 m-2">
-            <form class="flex-fill" id="myform" method="post">
-                @csrf
-                <input type="submit" name="no2" value="NO2">
-                <input type="submit" name="o3" value="O3">
-                <input type="submit" name="pm10" value="PM10">
-                <input type="submit" name="pm25" value="PM25">
-            </form>
-        </div>
+    <div class="container .flex-column w-100 .justify-content-start p-2 mb-2 mt-2 col-12">
+        <div class="btn-group btn-group-toggle w-100 mb-2 mt-2" data-toggle="buttons">
+            <label class="btn btn-primary active">
+              <input type="radio" name="options" id="pm10" autocomplete="off" checked> PM10
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" name="options" id="no2" autocomplete="off"> NO2
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" name="options" id="o3" autocomplete="off"> O3
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" name="options" id="pm25" autocomplete="off"> PM25
+            </label>
+          </div>
+        
 
         <div class="w-100">
             <div id="osm-map"></div>
-            <div class="scale .d-flex p-2 row w-100">
+            <div class="scale .d-flex p-2 row ">
                 <div class="column flex-fill">
                     <div class="square  m-2 p-2  rounded" style="background-color: #800000;"></div>
                     <span class="p-2" style="font-size:10px"> > 400</span>
