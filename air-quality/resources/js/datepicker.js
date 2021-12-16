@@ -18,10 +18,11 @@ $("#submitBtn").on("click", function (e) {
             _token: _token,
         },
         success: function (response) {
-            let myResponseData = [];
+            let myResponseDataPM10 = [];
+            let myResponseDataNO2 = [];
+            let myResponseDataOzone = [];
 
             for (const responseLooped in response) {
-                console.log(response);
                 if (Object.hasOwnProperty.call(response, responseLooped)) {
                     const responseStations = response[responseLooped];
                     for (const responseStation in responseStations) {
@@ -33,15 +34,22 @@ $("#submitBtn").on("click", function (e) {
                         ) {
                             const newData = responseStations[responseStation];
 
-                            myResponseData.push({
+                            myResponseDataPM10.push({
                                 label: responseStation,
                                 y: newData.polLabel.PM10,
                             });
+                            myResponseDataNO2.push({
+                                label: responseStation,
+                                y: newData.polLabel.NO2,
+                            });
+                            myResponseDataOzone.push({
+                                label: responseStation,
+                                y: newData.polLabel.Ozone,
+                            });
                         }
                     }
-                    console.log(myResponseData);
 
-                    var newChart = new CanvasJS.Chart("chartContainer", {
+                    var newChartPM10 = new CanvasJS.Chart("chartContainer1", {
                         animationEnabled: true,
                         exportEnabled: true,
                         theme: "light1",
@@ -54,28 +62,68 @@ $("#submitBtn").on("click", function (e) {
                                 indexLabel: "{y}",
                                 indexLabelFontColor: "#5A5757",
                                 indexLabelPlacement: "inside",
-                                dataPoints: myResponseData,
+                                dataPoints: myResponseDataPM10,
                             },
                         ],
                     });
-                    newChart.render();
+                    newChartPM10.render();
+                    var newChartNO2 = new CanvasJS.Chart("chartContainer2", {
+                        animationEnabled: true,
+                        exportEnabled: true,
+                        theme: "light1",
+                        title: {
+                            text: "NO2",
+                        },
+                        data: [
+                            {
+                                type: "column",
+                                indexLabel: "{y}",
+                                indexLabelFontColor: "#5A5757",
+                                indexLabelPlacement: "inside",
+                                dataPoints: myResponseDataNO2,
+                            },
+                        ],
+                    });
+                    newChartNO2.render();
+                    var newChartOzone = new CanvasJS.Chart("chartContainer3", {
+                        animationEnabled: true,
+                        exportEnabled: true,
+                        theme: "light1",
+                        title: {
+                            text: "Ozone",
+                        },
+                        data: [
+                            {
+                                type: "column",
+                                indexLabel: "{y}",
+                                indexLabelFontColor: "#5A5757",
+                                indexLabelPlacement: "inside",
+                                dataPoints: myResponseDataOzone,
+                            },
+                        ],
+                    });
+                    newChartOzone.render();
                 }
             }
         },
     });
 });
 
-let myData = [];
+let myDataPM10 = [];
+let myDataNO2 = [];
+let myDataOzone = [];
 
 for (const station in stations) {
     if (Object.hasOwnProperty.call(stations, station)) {
         const element = stations[station];
-        myData.push({ label: station, y: element.polLabel.PM10 });
+        myDataPM10.push({ label: station, y: element.polLabel.PM10 });
+        myDataNO2.push({ label: station, y: element.polLabel.NO2 });
+        myDataOzone.push({ label: station, y: element.polLabel.Ozone });
     }
 }
 
 window.onload = function () {
-    var chart = new CanvasJS.Chart("chartContainer", {
+    var chartPM10 = new CanvasJS.Chart("chartContainer1", {
         animationEnabled: true,
         exportEnabled: true,
         theme: "light1",
@@ -88,9 +136,45 @@ window.onload = function () {
                 indexLabel: "{y}",
                 indexLabelFontColor: "#5A5757",
                 indexLabelPlacement: "inside",
-                dataPoints: myData,
+                dataPoints: myDataPM10,
             },
         ],
     });
-    chart.render();
+    chartPM10.render();
+    var chartNO2 = new CanvasJS.Chart("chartContainer2", {
+        animationEnabled: true,
+        exportEnabled: true,
+        theme: "light1",
+        title: {
+            text: "NO2",
+        },
+        data: [
+            {
+                type: "column",
+                indexLabel: "{y}",
+                indexLabelFontColor: "#5A5757",
+                indexLabelPlacement: "inside",
+                dataPoints: myDataNO2,
+            },
+        ],
+    });
+    chartNO2.render();
+    var chartOzone = new CanvasJS.Chart("chartContainer3", {
+        animationEnabled: true,
+        exportEnabled: true,
+        theme: "light1",
+        title: {
+            text: "NO2",
+        },
+        data: [
+            {
+                type: "column",
+                indexLabel: "{y}",
+                indexLabelFontColor: "#5A5757",
+                indexLabelPlacement: "inside",
+                dataPoints: myDataOzone,
+            },
+        ],
+    });
+    chartOzone.render();
 };

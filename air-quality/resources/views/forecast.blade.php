@@ -20,7 +20,9 @@
             <input type="submit" id='submitBtn' value="Submit">
         </div>
     </form>
-    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+    <div id="chartContainer1" style="height: 370px; width: 100%;"></div>
+    <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
+    <div id="chartContainer3" style="height: 370px; width: 100%;"></div>
 
 
 
