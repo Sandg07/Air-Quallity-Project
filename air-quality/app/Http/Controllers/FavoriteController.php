@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Response;
 use App\Models\Favorite;
+use Illuminate\Support\Facades\DB;
 
 class FavoriteController extends Controller
 {
@@ -26,7 +26,7 @@ class FavoriteController extends Controller
      */
     public function create()
     {
-        //
+        return view('new-favorite');
     }
 
     /**
@@ -37,7 +37,25 @@ class FavoriteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validations
+        // $request->validated();
+
+        $array = explode(',', $request->coordinates);
+        // dd($array);
+
+        $favorite = new Favorite;
+        $favorite->id = $request->id;
+        $favorite->name = $request->name;
+        $favorite->coordinates_x = $array[0];
+        $favorite->coordinates_y  = $array[1];
+        // dd($array[1]);
+        $favorite->category = $request->category;
+        $favorite->user_id = $request->user_id; // use the auth id
+
+        if ($favorite->save())
+            return back()->with('success', 'Saved the favorite in the DB');
+        else
+            return back()->with('error', 'Something wrong with the DB.');
     }
 
     /**
@@ -48,7 +66,9 @@ class FavoriteController extends Controller
      */
     public function show($id)
     {
-        //
+        //Need to use favorite_id as a hidden field to use the edit/show/update method
+        //             $favorite = Favorite::find($id);
+        //     return view('favorites', ['favorite' => $favorite]);
     }
 
     /**
@@ -59,7 +79,9 @@ class FavoriteController extends Controller
      */
     public function edit($id)
     {
-        //
+        //Need to use favorite_id as a hidden field to use the edit/show/update method
+        // $favorite = Favorite::find($id);
+        // return view('edit-favorite', ['favorite' => $favorite]);
     }
 
     /**
@@ -71,8 +93,26 @@ class FavoriteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Validations
+        // $request->validated();
+        $array = explode(',', $request->coordinates);
+        // dd($array);
+
+        $favorite = Favorite::find($id);
+
+        $favorite->id = $request->id;
+        $favorite->name = $request->name;
+        $favorite->coordinates_x = $request->coordinates_x;
+        $favorite->coordinates_y  =  $request->coordinates_y;
+        $favorite->category = $request->category;
+        $favorite->user_id = $request->user_id; // use the auth id
+
+        if ($favorite->save())
+            return back()->with('success', 'Updated in the DB');
+        else
+            return back()->with('error', 'Something wrong with the DB');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -82,6 +122,15 @@ class FavoriteController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+
+        $result = Favorite::destroy($id);
+
+
+
+        if ($result)
+            return back()->with('success', 'Favorite was deleted from the DB');
+        else
+            return back()->with('error', 'Something wrong with the DB.');
     }
 }

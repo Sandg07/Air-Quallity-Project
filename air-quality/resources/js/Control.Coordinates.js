@@ -24,29 +24,72 @@ L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
 var xlng = 0.000256;
 var xlat = 0.0002;
 
+//Empty array to add all favorites
+var allFavorites = [];
+
 map.on("click", function (e) {
     console.log(e.latlng.lat, e.latlng.lng);
     //var c = L.circle([e.latlng.lat,e.latlng.lng], {radius: 15}).addTo(map);
-    L.polygon([
-        [e.latlng.lat - xlat, e.latlng.lng - xlng],
-        [e.latlng.lat + xlat, e.latlng.lng - xlng],
-        [e.latlng.lat - xlat, e.latlng.lng + xlng],
-        [e.latlng.lat + xlat, e.latlng.lng + xlng],
-    ]).addTo(map);
 
-    L.polyline([
-        [e.latlng.lat, e.latlng.lng - xlng],
-        [e.latlng.lat, e.latlng.lng + xlng],
-    ]).addTo(map);
+    var c = L.circle([e.latlng.lat, e.latlng.lng], { radius: 15 }).addTo(map);
+    // L.polygon([
+    //     [e.latlng.lat - xlat, e.latlng.lng - xlng],
+    //     [e.latlng.lat + xlat, e.latlng.lng - xlng],
+    //     [e.latlng.lat - xlat, e.latlng.lng + xlng],
+    //     [e.latlng.lat + xlat, e.latlng.lng + xlng],
+    // ]).addTo(map);
+
+    // L.polyline([
+    //     [e.latlng.lat, e.latlng.lng - xlng],
+    //     [e.latlng.lat, e.latlng.lng + xlng],
+    // ]).addTo(map);
 
     $("<input>")
         .attr({
-            value: "(" + e.latlng.lat + "," + e.latlng.lng + ")",
+            value: e.latlng.lat + "," + e.latlng.lng,
+            // value: "(" + e.latlng.lat + "," + e.latlng.lng + ")",
             id: "coordinates",
             name: "coordinates",
         })
         .appendTo("form");
 
-    // $("#coordinates").append("(" + e.latlng.lat + "," + e.latlng.lng + ")");
-    // console.log(e);
+    document.getElementById("clearBtn").addEventListener("click", function () {
+        c = null;
+    });
 });
+
+// $("#coordinates").append("(" + e.latlng.lat + "," + e.latlng.lng + ")");
+// console.log(e);
+// map.clearLayers();
+
+// tileLayer.on("click", () => {
+//      if (L.polygon) this.remove();
+//      if (L.popyline) this.remove();
+// });
+
+//   console.log(e.latlng.lat, e.latlng.lng);
+//     //var c = L.circle([e.latlng.lat,e.latlng.lng], {radius: 15}).addTo(map);
+//     L.polygon([
+//         [e.latlng.lat - xlat, e.latlng.lng - xlng],
+//         [e.latlng.lat + xlat, e.latlng.lng - xlng],
+//         [e.latlng.lat - xlat, e.latlng.lng + xlng],
+//         [e.latlng.lat + xlat, e.latlng.lng + xlng],
+//     ]).addTo(map);
+
+//     L.polyline([
+//         [e.latlng.lat, e.latlng.lng - xlng],
+//         [e.latlng.lat, e.latlng.lng + xlng],
+//     ]).addTo(map);
+
+//     $("<input>")
+//         .attr({
+//             value: "(" + e.latlng.lat + "," + e.latlng.lng + ")",
+//             id: "coordinates",
+//             name: "coordinates",
+//         })
+//         .appendTo("form");
+
+// document.getElementById("clearBtn").addEventListener("click", function () {
+//     currentMarker1 = null;
+//     currentMarker2 = null;
+// });

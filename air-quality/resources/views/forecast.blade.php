@@ -1,37 +1,39 @@
-@extends('template')
-@section('title', 'Forecast')
+<!DOCTYPE html>
+<html>
 
-@section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<head>
+    <title> Example of Bootstrap Datepicker in Laravel </title>
     <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
-@endsection
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
+        rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+</head>
 
-
-@section('content')
-
-
-    <div class="container mt-5" style="max-width: 450px">
-        <h2 class="mb-4">Choose your date</h2>
-
-        <div class="form-group">
-            <div class='input-group date' id='datetimepicker'>
-                <input id="myCustomDate" type='text' class="form-control" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
+<body>
+    <form method="post">
+        @csrf
+        <div class="container">
+            <input name="date" class="date form-control" type="text">
+            <input type="submit" id='submitBtn' value="Submit">
         </div>
-    </div>
-@endsection
-@section('script')
+    </form>
+    <div id="chartContainer1" style="height: 370px; width: 100%;"></div>
+    <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
+    <div id="chartContainer3" style="height: 370px; width: 100%;"></div>
 
 
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js">
-    </script>
 
-    <script type="text/javascript" src="/js/datepicker.js"></script>
-@endsection
+</body>
+<script>
+    let stations = {!! json_encode($stations) !!};
+</script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="/js/datepicker.js"></script>
+<script>
+
+</script>
+
+</html>

@@ -43,11 +43,15 @@ Route::get('/map', [MapController::class, 'index'])->middleware(['auth']);
 
 Route::get('/map',  [AjaxController::class, 'index'])->middleware(['auth']);
 Route::post('map', [AjaxController::class, 'dataRequest'])->middleware((['auth']));
-Route::get('/forecast', [ForecastController::class, 'calculatingDayAverage'])->middleware(['auth']);
 
 
 //Route::get('ajax-request', 'AjaxController@index');
 //Route::post('/map', 'AjaxController@dataRequest'); 
+
+
+
+Route::get('/forecast', [ForecastController::class, 'index'])->middleware(['auth']);
+Route::post('/forecast', [ForecastController::class, 'ajaxCall'])->middleware(['auth']);
 
 //Home page
 Route::get('/', function () {
@@ -57,7 +61,27 @@ Route::get('/', function () {
 //Team page
 Route::get('/team', [TeamController::class, 'index']);
 
+
+
 //favorites
 Route::get('/favorites', function () {
     return view('favorites');
 })->middleware(['auth']);
+Route::get('/favorites', [FavoriteController::class, 'index']);
+// Show the form :
+// Route::get('/favorites', [FavoriteController::class, 'create']);
+// Submit the form :
+Route::post('/favorites', [FavoriteController::class, 'store']);
+
+//Delete the form:
+Route::get('/favorites{id}', [FavoriteController::class, 'destroy'])->name('favorites.delete');
+    
+    /* 
+    * NOT TO USE
+    // Show the form :
+    Route::get('/favorites{id}', [FavoriteController::class, 'edit']);
+    // Show the form :
+    Route::get('/favorites', [FavoriteController::class, 'show']);
+    // Submit the form : 
+    Route::put('/favorites{id}', [FavoriteController::class, 'update']);
+    */
