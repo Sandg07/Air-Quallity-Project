@@ -41,8 +41,8 @@ require __DIR__ . '/auth.php';
 Route::get('/searchbox', [SearchboxController::class, 'index'])->middleware(['auth']);
 Route::get('/map', [MapController::class, 'index'])->middleware(['auth']);
 
-Route::get('/map',  [AjaxController::class, 'index'])->middleware(['auth']);
-Route::post('map', [AjaxController::class, 'dataRequest'])->middleware((['auth']));
+Route::get('/map',  [ApiController::class, 'index'])->middleware(['auth']);
+Route::post('map', [ApiController::class, 'dataRequest'])->middleware((['auth']));
 
 
 //Route::get('ajax-request', 'AjaxController@index');
