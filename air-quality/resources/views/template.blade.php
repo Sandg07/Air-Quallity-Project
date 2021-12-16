@@ -23,7 +23,7 @@
 <body>
     @include('topNavbar');
     <nav>
-        <ul class="nav  fixed-bottom  nav-tabs justify-content-center">
+        <ul class="nav  nav-tabs justify-content-center">
             <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ url('/team') }}">Our team</a></li>
             <li class="nav-item"><a class="nav-link disabled" href="{{ url('/about') }}">About FAQ</a></li>

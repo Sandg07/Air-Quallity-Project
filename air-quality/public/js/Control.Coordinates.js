@@ -12,55 +12,59 @@ var element = document.getElementById("favoriteMap"); // // Height has to be set
 element.style = "height:400px; width:600px"; // Create Leaflet map on map element.
 //By default Luxembourg city
 
-var map = L.map(element).setView([49.611622, 6.131935], 12); // Add OSM tile layer to the Leaflet map.
-
+var map = L.map(element).setView([49.611622, 6.131935], 14);
 L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
   attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+}).addTo(map); // /**
+//  ** ON CLICK EVENT
+//  */
+
+var currentMarker;
+map.on("click", function (e) {
+  if (currentMarker) {
+    currentMarker._icon.style.transition = "transform 0.3s ease-out";
+    currentMarker._shadow.style.transition = "transform 0.3s ease-out";
+    currentMarker.setLatLng(e.latlng);
+    setTimeout(function () {
+      currentMarker._icon.style.transition = null;
+      currentMarker._shadow.style.transition = null;
+    }, 300);
+    return;
+  }
+
+  currentMarker = L.marker(e.latlng, {
+    draggable: true
+  }).addTo(map).on("click", function () {
+    e.originalEvent.stopPropagation();
+  }); // Add an input to the DB
+
+  $("<input>").attr({
+    value: e.latlng.lat + "," + e.latlng.lng,
+    // value: "(" + e.latlng.lat + "," + e.latlng.lng + ")",
+    id: "coordinates",
+    name: "coordinates"
+  }).appendTo("form");
+});
+document.getElementById("done").addEventListener("click", function () {
+  currentMarker = null;
+});
 /**
- ** ON CLICK EVENT
+ * INSERT MARKER IN MAP FROM DB
  */
 
-var xlng = 0.000256;
-var xlat = 0.0002; //Empty array to add all favorites
-
-var allFavorites = [];
-map.on("click", function (e) {
-  console.log(e.latlng.lat, e.latlng.lng); //var c = L.circle([e.latlng.lat,e.latlng.lng], {radius: 15}).addTo(map);
-
-  currentMarker1 = L.polygon([[e.latlng.lat - xlat, e.latlng.lng - xlng], [e.latlng.lat + xlat, e.latlng.lng - xlng], [e.latlng.lat - xlat, e.latlng.lng + xlng], [e.latlng.lat + xlat, e.latlng.lng + xlng]]).addTo(map).on("click", function (e) {
-    e.originalEvent.stopPropagation();
-  });
-  currentMarker2 = L.polyline([[e.latlng.lat, e.latlng.lng - xlng], [e.latlng.lat, e.latlng.lng + xlng]]).addTo(map).on("click", function (e) {
-    e.originalEvent.stopPropagation();
-  });
-
-  if (currentMarker1 && currentMarker2) {
-    $("<input>").attr({
-      value: e.latlng.lat + "," + e.latlng.lng,
-      // value: "(" + e.latlng.lat + "," + e.latlng.lng + ")",
-      id: "coordinates",
-      name: "coordinates"
-    }).appendTo("form");
-    array_push();
-    return;
-  } // $("#coordinates").append("(" + e.latlng.lat + "," + e.latlng.lng + ")");
-  // console.log(e);
-  // map.clearLayers();
-
-});
-document.getElementById("clearBtn").addEventListener("click", function () {
-  currentMarker1 = null;
-  currentMarker2 = null;
-}); // tileLayer.on("click", () => {
-//     if (L.polygon) this.remove();
-//     if (L.popyline) this.remove();
-// });
+console.log(favorites);
+/*******************************************/
 
 /**
- *  console.log(e.latlng.lat, e.latlng.lng);
-    //var c = L.circle([e.latlng.lat,e.latlng.lng], {radius: 15}).addTo(map);
-    L.polygon([
+ * Circle marker example :
+ * var c = L.circle([e.latlng.lat,e.latlng.lng], {radius: 15}).addTo(map);
+ */
+
+/**
+ * Polygon / Polyline marker example :
+ * var xlng = 0.000256;
+ * var xlat = 0.0002;
+ *   L.polygon([
         [e.latlng.lat - xlat, e.latlng.lng - xlng],
         [e.latlng.lat + xlat, e.latlng.lng - xlng],
         [e.latlng.lat - xlat, e.latlng.lng + xlng],
@@ -71,14 +75,6 @@ document.getElementById("clearBtn").addEventListener("click", function () {
         [e.latlng.lat, e.latlng.lng - xlng],
         [e.latlng.lat, e.latlng.lng + xlng],
     ]).addTo(map);
-
-    $("<input>")
-        .attr({
-            value: "(" + e.latlng.lat + "," + e.latlng.lng + ")",
-            id: "coordinates",
-            name: "coordinates",
-        })
-        .appendTo("form");
  */
 /******/ })()
 ;

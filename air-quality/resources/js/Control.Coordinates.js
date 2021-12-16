@@ -10,40 +10,41 @@ element.style = "height:400px; width:600px";
 
 // Create Leaflet map on map element.
 //By default Luxembourg city
-var map = L.map(element).setView([49.611622, 6.131935], 12);
+var map = L.map(element).setView([49.611622, 6.131935], 14);
 
-// Add OSM tile layer to the Leaflet map.
 L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
     attribution:
         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
 
-/**
- ** ON CLICK EVENT
- */
-var xlng = 0.000256;
-var xlat = 0.0002;
+// /**
+//  ** ON CLICK EVENT
+//  */
 
-//Empty array to add all favorites
-var allFavorites = [];
-
+var currentMarker;
 map.on("click", function (e) {
-    console.log(e.latlng.lat, e.latlng.lng);
-    //var c = L.circle([e.latlng.lat,e.latlng.lng], {radius: 15}).addTo(map);
+    if (currentMarker) {
+        currentMarker._icon.style.transition = "transform 0.3s ease-out";
+        currentMarker._shadow.style.transition = "transform 0.3s ease-out";
 
-    var c = L.circle([e.latlng.lat, e.latlng.lng], { radius: 15 }).addTo(map);
-    // L.polygon([
-    //     [e.latlng.lat - xlat, e.latlng.lng - xlng],
-    //     [e.latlng.lat + xlat, e.latlng.lng - xlng],
-    //     [e.latlng.lat - xlat, e.latlng.lng + xlng],
-    //     [e.latlng.lat + xlat, e.latlng.lng + xlng],
-    // ]).addTo(map);
+        currentMarker.setLatLng(e.latlng);
 
-    // L.polyline([
-    //     [e.latlng.lat, e.latlng.lng - xlng],
-    //     [e.latlng.lat, e.latlng.lng + xlng],
-    // ]).addTo(map);
+        setTimeout(function () {
+            currentMarker._icon.style.transition = null;
+            currentMarker._shadow.style.transition = null;
+        }, 300);
+        return;
+    }
 
+    currentMarker = L.marker(e.latlng, {
+        draggable: true,
+    })
+        .addTo(map)
+        .on("click", function () {
+            e.originalEvent.stopPropagation();
+        });
+
+    // Add an input to the DB
     $("<input>")
         .attr({
             value: e.latlng.lat + "," + e.latlng.lng,
@@ -52,44 +53,36 @@ map.on("click", function (e) {
             name: "coordinates",
         })
         .appendTo("form");
-
-    document.getElementById("clearBtn").addEventListener("click", function () {
-        c = null;
-    });
+});
+document.getElementById("done").addEventListener("click", function () {
+    currentMarker = null;
 });
 
-// $("#coordinates").append("(" + e.latlng.lat + "," + e.latlng.lng + ")");
-// console.log(e);
-// map.clearLayers();
+/**
+ * INSERT MARKER IN MAP FROM DB
+ */
 
-// tileLayer.on("click", () => {
-//      if (L.polygon) this.remove();
-//      if (L.popyline) this.remove();
-// });
+console.log(favorites);
 
-//   console.log(e.latlng.lat, e.latlng.lng);
-//     //var c = L.circle([e.latlng.lat,e.latlng.lng], {radius: 15}).addTo(map);
-//     L.polygon([
-//         [e.latlng.lat - xlat, e.latlng.lng - xlng],
-//         [e.latlng.lat + xlat, e.latlng.lng - xlng],
-//         [e.latlng.lat - xlat, e.latlng.lng + xlng],
-//         [e.latlng.lat + xlat, e.latlng.lng + xlng],
-//     ]).addTo(map);
+/*******************************************/
+/**
+ * Circle marker example :
+ * var c = L.circle([e.latlng.lat,e.latlng.lng], {radius: 15}).addTo(map);
+ */
 
-//     L.polyline([
-//         [e.latlng.lat, e.latlng.lng - xlng],
-//         [e.latlng.lat, e.latlng.lng + xlng],
-//     ]).addTo(map);
+/**
+ * Polygon / Polyline marker example :
+ * var xlng = 0.000256;
+ * var xlat = 0.0002;
+ *   L.polygon([
+        [e.latlng.lat - xlat, e.latlng.lng - xlng],
+        [e.latlng.lat + xlat, e.latlng.lng - xlng],
+        [e.latlng.lat - xlat, e.latlng.lng + xlng],
+        [e.latlng.lat + xlat, e.latlng.lng + xlng],
+    ]).addTo(map);
 
-//     $("<input>")
-//         .attr({
-//             value: "(" + e.latlng.lat + "," + e.latlng.lng + ")",
-//             id: "coordinates",
-//             name: "coordinates",
-//         })
-//         .appendTo("form");
-
-// document.getElementById("clearBtn").addEventListener("click", function () {
-//     currentMarker1 = null;
-//     currentMarker2 = null;
-// });
+    L.polyline([
+        [e.latlng.lat, e.latlng.lng - xlng],
+        [e.latlng.lat, e.latlng.lng + xlng],
+    ]).addTo(map);
+ */
