@@ -5,10 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
-use App\Http\Controllers\ApiController\transformCoordinates;
+
 
 class ForecastController extends Controller
 {
+    public function index()
+    {
+
+        $stations = $this->calculatingDayAverage(date('d'), date('m'));
+
+        return view('forecast', ['stations' => $stations]);
+    }
+    public function ajaxCall(Request $request)
+    {
+        if ($request->has('date')) {
+            $date = explode('/', $request->date);
+            $responseStations = $this->calculatingDayAverage($date[0], $date[1]);
+
+
+            return response()->json(['responseStations' => $responseStations]);
+        }
+    }
     public function getUrlsForMonth($month = '11')
     {
         $response = Http::get('https://data.public.lu/api/1/datasets/qualite-air-reseau-telemetrique/',);
@@ -35,7 +52,7 @@ class ForecastController extends Controller
         return $arrays;
     }
 
-    public function calculatingDayAverage($day = '01')
+    public function calculatingDayAverage($day = '01', $month = '11')
     {
         $stations = [
             'Esch1' => [
@@ -44,11 +61,12 @@ class ForecastController extends Controller
                     'NO2' => 0,
                     'Ozone' => 0,
                 ],
-                'x' => '49.5050417',
-                'y' => '5.976887',
+                /* 'x' => '49.5050417',
+                'y' => '5.976887', */
                 'i' => 0,
                 'j' => 0,
                 'k' => 0,
+                'index' => 10,
 
             ],
             'Esch2' => [
@@ -57,11 +75,12 @@ class ForecastController extends Controller
                     'NO2' => 0,
                     'Ozone' => 0,
                 ],
-                'x' => '49.494166',
-                'y' => '5.9847832',
+                /* 'x' => '49.494166',
+                'y' => '5.9847832', */
                 'i' => 0,
                 'j' => 0,
                 'k' => 0,
+                'index' => 20,
             ],
             'Oberpallen' => [
                 'polLabel' => [
@@ -69,11 +88,12 @@ class ForecastController extends Controller
                     'NO2' => 0,
                     'Ozone' => 0,
                 ],
-                'x' => '49.7318503',
-                'y' => '5.8471282',
+                /* 'x' => '49.7318503',
+                'y' => '5.8471282', */
                 'i' => 0,
                 'j' => 0,
                 'k' => 0,
+                'index' => 30,
             ],
             'Vianden' => [
                 'polLabel' => [
@@ -81,11 +101,12 @@ class ForecastController extends Controller
                     'NO2' => 0,
                     'Ozone' => 0,
                 ],
-                'x' => '49.9439319',
-                'y' => '6.1759306',
+                /* 'x' => '49.9439319',
+                'y' => '6.1759306', */
                 'i' => 0,
                 'j' => 0,
                 'k' => 0,
+                'index' => 40,
             ],
             'Beidweiler' => [
                 'polLabel' => [
@@ -93,11 +114,12 @@ class ForecastController extends Controller
                     'NO2' => 0,
                     'Ozone' => 0,
                 ],
-                'x' => '49.7222753',
-                'y' => '6.3052517',
+                /* 'x' => '49.7222753',
+                'y' => '6.3052517', */
                 'i' => 0,
                 'j' => 0,
                 'k' => 0,
+                'index' => 50,
             ],
             'Luxembourg1' => [
                 'polLabel' => [
@@ -105,11 +127,12 @@ class ForecastController extends Controller
                     'NO2' => 0,
                     'Ozone' => 0,
                 ],
-                'x' => '49.5977126',
-                'y' => '6.1375938',
+                /* 'x' => '49.5977126',
+                'y' => '6.1375938', */
                 'i' => 0,
                 'j' => 0,
                 'k' => 0,
+                'index' => 60,
             ],
             'Luxembourg2' => [
                 'polLabel' => [
@@ -117,15 +140,16 @@ class ForecastController extends Controller
                     'NO2' => 0,
                     'Ozone' => 0,
                 ],
-                'x' => '49.6115433',
-                'y' => '6.1184772',
+                /* 'x' => '49.6115433',
+                'y' => '6.1184772', */
                 'i' => 0,
                 'j' => 0,
                 'k' => 0,
+                'index' => 70,
             ],
         ];
 
-        foreach ($this->getMonthData() as $dataArray) {
+        foreach ($this->getMonthData($month) as $dataArray) {
             foreach ($dataArray as $dataDay) {
                 if (explode('/', strstr($dataDay->generated, ' ', true))[2] == $day) {
                     foreach ($dataDay->station as $station) {
@@ -265,10 +289,10 @@ class ForecastController extends Controller
 
         foreach ($stations as $station => $value) {
             /*  dd($value['polLabel']['Ozone']); */
-            $stations[$station]['polLabel']['PM10'] = $value['polLabel']['PM10']  / $value['i'];
-            $stations[$station]['polLabel']['Ozone'] = $value['polLabel']['Ozone'] / $value['j'];
-            $stations[$station]['polLabel']['NO2'] = $value['polLabel']['NO2'] / $value['k'];
+            $stations[$station]['polLabel']['PM10'] = round(($value['polLabel']['PM10']  / $value['i']), 2);
+            $stations[$station]['polLabel']['Ozone'] = round(($value['polLabel']['Ozone'] / $value['j']), 2);;
+            $stations[$station]['polLabel']['NO2'] = round(($value['polLabel']['NO2'] / $value['k']), 2);;
         }
-        return view('forecast', ['stations' => $stations]);
+        return $stations;
     }
 }
