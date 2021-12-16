@@ -24,13 +24,14 @@
 <body>
     @include('topNavbar');
     <nav>
-        <ul class="nav justify-content-center">
+        <ul class="nav  nav-tabs justify-content-center">
             <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ url('/team') }}">Our team</a></li>
             <li class="nav-item"><a class="nav-link disabled" href="{{ url('/about') }}">About FAQ</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url('/favorites') }}">Favorites</a></li>
         </ul>
     </nav>
-    <hr>
+  
 
     <div class="content">
         @yield('content')
@@ -38,14 +39,10 @@
 
 
 
-    <hr>
-    <footer>
-        Footer
-    </footer>
-
-
-
-    {{-- Bootstrap js --}}
+    
+    {{-- <footer class="d-flex flex-row justify-content-around align-items-center">
+       Copyright Air Quality Project 2021
+    </footer> --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
