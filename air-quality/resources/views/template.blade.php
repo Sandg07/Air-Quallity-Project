@@ -23,9 +23,9 @@
 
 <body>
     @include('topNavbar');
-    <nav>
-        <ul class="nav  nav-tabs justify-content-center">
-            <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
+    <nav class="main-color">
+        <ul class=" nav  nav-tabs justify-content-center cyan-900">
+            <li class="nav-item"><a class="nav-link main-color" href="{{ url('/') }}">Home</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ url('/team') }}">Our team</a></li>
             <li class="nav-item"><a class="nav-link disabled" href="{{ url('/about') }}">About FAQ</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ url('/favorites') }}">Favorites</a></li>

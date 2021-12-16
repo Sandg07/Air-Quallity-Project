@@ -27,3 +27,4 @@ mix.js("resources/js/Control.Coordinates.js", "public/js").postCss(
 );
 
 mix.js("resources/js/datepicker.js", "public/js");
+mix.css("resources/css/global.css", "public/css");
