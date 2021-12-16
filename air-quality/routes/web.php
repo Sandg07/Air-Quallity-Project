@@ -48,7 +48,7 @@ Route::post('map', [ApiController::class, 'dataRequest'])->middleware((['auth'])
 //Route::get('ajax-request', 'AjaxController@index');
 //Route::post('/map', 'AjaxController@dataRequest'); 
 /* Route::get('/test',  [ApiController::class, 'index']); */
-Route::get('/test', [FavoriteController::class, 'index']);
+Route::get('/favorites', [FavoriteController::class, 'index']);
 
 
 Route::get('/forecast', [ForecastController::class, 'index'])->middleware(['auth']);

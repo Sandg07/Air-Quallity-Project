@@ -24,7 +24,7 @@ class FavoriteController extends Controller
         $data = $api->index();
         $array = [$favorites, $data];
 
-        return view('test', ['array' => $array]);
+        return view('favorites', ['array' => $array]);
     }
 
     /**
