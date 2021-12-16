@@ -10,12 +10,14 @@ class ApiController extends Controller
 {
     public function index()
     {
+        $this->readApiLux();
         $array = ['pollutant' => Storage::disk('json')->get('pm10.json')];
         return view('map', ['array' => $array]);
     }
+
     public function dataRequest(Request $request)
     {
-
+        //dd($request);
         if ($request->no2)
             $array = ['pollutant' => Storage::disk('json')->get('no2.json')];
         elseif ($request->pm10)
@@ -25,8 +27,14 @@ class ApiController extends Controller
         else
             $array = ['pollutant' => Storage::disk('json')->get('o3.json')];
 
+
+        //return response()->json(['array' => $array]);
+
+
+
         return view('map', ['array' => $array]);
     }
+
 
 
     public function readApiLux()

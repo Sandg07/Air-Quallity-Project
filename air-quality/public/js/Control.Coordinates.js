@@ -28,57 +28,57 @@ var allFavorites = [];
 map.on("click", function (e) {
   console.log(e.latlng.lat, e.latlng.lng); //var c = L.circle([e.latlng.lat,e.latlng.lng], {radius: 15}).addTo(map);
 
-  currentMarker1 = L.polygon([[e.latlng.lat - xlat, e.latlng.lng - xlng], [e.latlng.lat + xlat, e.latlng.lng - xlng], [e.latlng.lat - xlat, e.latlng.lng + xlng], [e.latlng.lat + xlat, e.latlng.lng + xlng]]).addTo(map).on("click", function (e) {
-    e.originalEvent.stopPropagation();
-  });
-  currentMarker2 = L.polyline([[e.latlng.lat, e.latlng.lng - xlng], [e.latlng.lat, e.latlng.lng + xlng]]).addTo(map).on("click", function (e) {
-    e.originalEvent.stopPropagation();
-  });
+  var c = L.circle([e.latlng.lat, e.latlng.lng], {
+    radius: 15
+  }).addTo(map); // L.polygon([
+  //     [e.latlng.lat - xlat, e.latlng.lng - xlng],
+  //     [e.latlng.lat + xlat, e.latlng.lng - xlng],
+  //     [e.latlng.lat - xlat, e.latlng.lng + xlng],
+  //     [e.latlng.lat + xlat, e.latlng.lng + xlng],
+  // ]).addTo(map);
+  // L.polyline([
+  //     [e.latlng.lat, e.latlng.lng - xlng],
+  //     [e.latlng.lat, e.latlng.lng + xlng],
+  // ]).addTo(map);
 
-  if (currentMarker1 && currentMarker2) {
-    $("<input>").attr({
-      value: e.latlng.lat + "," + e.latlng.lng,
-      // value: "(" + e.latlng.lat + "," + e.latlng.lng + ")",
-      id: "coordinates",
-      name: "coordinates"
-    }).appendTo("form");
-    array_push();
-    return;
-  } // $("#coordinates").append("(" + e.latlng.lat + "," + e.latlng.lng + ")");
-  // console.log(e);
-  // map.clearLayers();
-
-});
-document.getElementById("clearBtn").addEventListener("click", function () {
-  currentMarker1 = null;
-  currentMarker2 = null;
-}); // tileLayer.on("click", () => {
-//     if (L.polygon) this.remove();
-//     if (L.popyline) this.remove();
+  $("<input>").attr({
+    value: e.latlng.lat + "," + e.latlng.lng,
+    // value: "(" + e.latlng.lat + "," + e.latlng.lng + ")",
+    id: "coordinates",
+    name: "coordinates"
+  }).appendTo("form");
+  document.getElementById("clearBtn").addEventListener("click", function () {
+    c = null;
+  });
+}); // $("#coordinates").append("(" + e.latlng.lat + "," + e.latlng.lng + ")");
+// console.log(e);
+// map.clearLayers();
+// tileLayer.on("click", () => {
+//      if (L.polygon) this.remove();
+//      if (L.popyline) this.remove();
 // });
-
-/**
- *  console.log(e.latlng.lat, e.latlng.lng);
-    //var c = L.circle([e.latlng.lat,e.latlng.lng], {radius: 15}).addTo(map);
-    L.polygon([
-        [e.latlng.lat - xlat, e.latlng.lng - xlng],
-        [e.latlng.lat + xlat, e.latlng.lng - xlng],
-        [e.latlng.lat - xlat, e.latlng.lng + xlng],
-        [e.latlng.lat + xlat, e.latlng.lng + xlng],
-    ]).addTo(map);
-
-    L.polyline([
-        [e.latlng.lat, e.latlng.lng - xlng],
-        [e.latlng.lat, e.latlng.lng + xlng],
-    ]).addTo(map);
-
-    $("<input>")
-        .attr({
-            value: "(" + e.latlng.lat + "," + e.latlng.lng + ")",
-            id: "coordinates",
-            name: "coordinates",
-        })
-        .appendTo("form");
- */
+//   console.log(e.latlng.lat, e.latlng.lng);
+//     //var c = L.circle([e.latlng.lat,e.latlng.lng], {radius: 15}).addTo(map);
+//     L.polygon([
+//         [e.latlng.lat - xlat, e.latlng.lng - xlng],
+//         [e.latlng.lat + xlat, e.latlng.lng - xlng],
+//         [e.latlng.lat - xlat, e.latlng.lng + xlng],
+//         [e.latlng.lat + xlat, e.latlng.lng + xlng],
+//     ]).addTo(map);
+//     L.polyline([
+//         [e.latlng.lat, e.latlng.lng - xlng],
+//         [e.latlng.lat, e.latlng.lng + xlng],
+//     ]).addTo(map);
+//     $("<input>")
+//         .attr({
+//             value: "(" + e.latlng.lat + "," + e.latlng.lng + ")",
+//             id: "coordinates",
+//             name: "coordinates",
+//         })
+//         .appendTo("form");
+// document.getElementById("clearBtn").addEventListener("click", function () {
+//     currentMarker1 = null;
+//     currentMarker2 = null;
+// });
 /******/ })()
 ;
