@@ -6,7 +6,7 @@ var __webpack_exports__ = {};
 // Where you want to render the map.
 var element = document.getElementById("osm-map"); // Height has to be set. You can do this in CSS too.
 
-element.style = "height:600px; width:600px";
+element.style = "height:500px; width:100%";
 /* 
 var basemaps = {
     Grayscale: L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {

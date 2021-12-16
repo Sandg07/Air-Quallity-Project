@@ -27,10 +27,10 @@ class AjaxController extends Controller
             $array = ['pollutant' => Storage::disk('json')->get('o3.json')];
 
 
-        return response()->json(['array' => $array]);
+        //return response()->json(['array' => $array]);
 
 
 
-        /* return view('map', ['array' => $array]); */
+         return view('map', ['array' => $array]); 
     }
 }

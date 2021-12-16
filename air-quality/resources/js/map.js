@@ -2,7 +2,7 @@
 var element = document.getElementById("osm-map");
 
 // Height has to be set. You can do this in CSS too.
-element.style = "height:600px; width:600px";
+element.style = "height:500px; width:100%";
 
 
 /* 
