@@ -11,16 +11,7 @@
 
 
 @section('content')
-{{-- BARCHART SECTION --}}
-<div class="barchart-section">
-    <h2>Barchart section</h2>
 
-    <div id="map"></div>
-
-</div>
-<hr>
-
-{{-- FAVORITE + MAP SECTION --}}
 <div  class="map-section ">
     <div class="favorite-container d-flex flex-row justify-content-around align-items-center">
         <h2>My Favorites</h2>
@@ -68,12 +59,10 @@
         </div>
         <div class="favorite-form-container d-flex flex-column flex-fill justify-content-center align-items-center">
          @include('new-favorite');
+        </div>
     </div>
-            </div>
-    <div id="test">
-        
-        
-    </form>
+      
+    
 </div>
 
 

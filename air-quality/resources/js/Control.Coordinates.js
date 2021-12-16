@@ -1,4 +1,33 @@
 /**
+ * INSERT MARKER IN MAP FROM DB
+ */
+
+console.log(favorites);
+
+function addFavorites(x, y) {
+    var marker = L.marker(x, y).addTo(map);
+}
+
+// $(document).ready(function () {
+//     favorites.forEach((element) => {
+//         var x = parseFloat(element.coordinates_x);
+//         console.log(x);
+//         var y = parseFloat(element.coordinates_y);
+
+//         alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng);
+//     });
+
+//     // dbMarker.setLatLng(element.latlng.lat);
+//     // console.log(dbMarker);
+//     // dbMarker = L.marker(element.latlng).addTo(map);
+// });
+
+// addFavorites(
+//     parseFloat(element.coordinates_x),
+//     parseFloat(element.coordinates_y)
+// );
+
+/**
  ** SET UP THE MAP
  */
 
@@ -57,12 +86,6 @@ map.on("click", function (e) {
 document.getElementById("done").addEventListener("click", function () {
     currentMarker = null;
 });
-
-/**
- * INSERT MARKER IN MAP FROM DB
- */
-
-console.log(favorites);
 
 /*******************************************/
 /**
