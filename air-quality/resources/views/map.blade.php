@@ -5,24 +5,24 @@
     <meta charset="UTF-8">
     {{-- Responsive meta from Bootstrap --}}
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/style.css" >
+    <link rel="stylesheet" href="/css/style.css">
     {{-- end Bootstrap --}}
-        
-    
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-  
+
     <link href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" rel="stylesheet" />
     <link href="css/placeAutocomplete.css" rel="stylesheet" />
     <title>MAP</title>
 </head>
 
 <body>
+
+    <div id="chartContainer1" style="height: 370px; width: 100%;"></div>
+
     <div class="container d-flex flex-row justify-content-around col-12 ">
-
-
-
 
         <div class="map-container .flex-column w-100 justify-content-around p-2 mb-2 mt-2 ">
             <form method="POST">
@@ -93,7 +93,8 @@
             <h2>My Favorites</h2>
             {{-- SHOW FAVORITES --}}
 
-            <div id="all-favorites" class="border overflow-auto h-50 mb-2 mt-2 " style="background-color: rgb(247, 245, 245)">
+            <div id="all-favorites" class="border overflow-auto h-50 mb-2 mt-2 "
+                style="background-color: rgb(247, 245, 245)">
 
                 @if (count($array[0]) >= 1)
 
@@ -161,7 +162,7 @@
 
 
     </div>
-    
+
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -176,12 +177,11 @@
 
     <script>
         var pollutant = {!! json_encode($array[1]) !!}
-        console.log(pollutant.pollutant.no2)
+
         var favorites = {!! json_encode($array[0]) !!}
-        console.log(favorites)
     </script>
 
-
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
     <!--  Script for the SearchBox -->
     <script type="text/javascript" src="/js/placeAutocomplete.js"></script>
@@ -191,7 +191,7 @@
     <script type="text/javascript" src="/js/map.js"></script>
 
 
-  {{--   <script type="text/javascript">
+    {{-- <script type="text/javascript">
     new L.Control.GPlaceAutocomplete({
         callback: function(place){
             var loc = place.geometry.location;
