@@ -39,14 +39,26 @@ require __DIR__ . '/auth.php';
 
 // Route::get('/testSB', [TestController::class, 'index']);
 Route::get('/searchbox', [SearchboxController::class, 'index'])->middleware(['auth']);
-Route::get('/map', [MapController::class, 'index'])->middleware(['auth']);
-
-Route::get('/map',  [ApiController::class, 'index'])->middleware(['auth']);
-Route::post('map', [ApiController::class, 'dataRequest'])->middleware((['auth']));
+//Route::get('/map', [MapController::class, 'index'])->middleware(['auth']);
 
 
-//Route::get('ajax-request', 'AjaxController@index');
-//Route::post('/map', 'AjaxController@dataRequest'); 
+
+
+//Route::get('/map',  [ApiController::class, 'index'])->middleware(['auth']);
+Route::get('/map', [FavoriteController::class, 'index']);
+//Route::post('map', [ApiController::class, 'dataRequest'])->middleware((['auth']));
+
+Route::post('/map', [FavoriteController::class, 'store']);
+Route::get('/map{id}', [FavoriteController::class, 'destroy'])->name('favorites.delete');
+
+//favorites
+
+// Show the form :
+// Route::get('/favorites', [FavoriteController::class, 'create']);
+// Submit the form :
+
+//Delete the form:
+
 
 
 
@@ -62,19 +74,6 @@ Route::get('/', function () {
 Route::get('/team', [TeamController::class, 'index']);
 
 
-
-//favorites
-Route::get('/favorites', function () {
-    return view('favorites');
-})->middleware(['auth']);
-Route::get('/favorites', [FavoriteController::class, 'index']);
-// Show the form :
-// Route::get('/favorites', [FavoriteController::class, 'create']);
-// Submit the form :
-Route::post('/favorites', [FavoriteController::class, 'store']);
-
-//Delete the form:
-Route::get('/favorites{id}', [FavoriteController::class, 'destroy'])->name('favorites.delete');
     
     /* 
     * NOT TO USE

@@ -1,4 +1,4 @@
-<h2>Add a new favorite place</h2>
+<h3>Add a new favorite place</h3>
 
 
 <div>
