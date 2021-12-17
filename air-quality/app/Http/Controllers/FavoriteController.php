@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use App\Models\Favorite;
@@ -30,10 +31,6 @@ class FavoriteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('new-favorite');
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -60,9 +57,12 @@ class FavoriteController extends Controller
         // $favorite->user_id = $request->Auth::user()->id; // use the auth id
         // dd(Auth::user()->id);
 
-        if ($favorite->save())
-            return back()->with('success', 'Saved the favorite in the DB');
-        else
+        if ($favorite->save()) {
+            back()->with('success', 'Saved the favorite in the DB');
+            $last = DB::table('favorites')->latest()->first();
+
+            return  response()->json(['last' => $last]);
+        } else
             return back()->with('error', 'Something wrong with the DB.');
     }
 
@@ -104,7 +104,7 @@ class FavoriteController extends Controller
         // Validations
         // $request->validated();
         $array = explode(',', $request->coordinates);
-        // dd($array);
+
 
         $favorite = Favorite::find($id);
 
