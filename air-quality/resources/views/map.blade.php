@@ -25,20 +25,16 @@
 
 
         <div class="map-container .flex-column w-100 justify-content-around p-2 mb-2 mt-2 ">
-            <div class="btn-group btn-group-toggle w-100 mb-2 mt-2" data-toggle="buttons">
-                <label class="btn btn-primary active">
-                    <input type="radio" name="options" id="pm10" autocomplete="off" checked> PM10
-                </label>
-                <label class="btn btn-primary">
-                    <input type="radio" name="options" id="no2" autocomplete="off"> NO2
-                </label>
-                <label class="btn btn-primary">
-                    <input type="radio" name="options" id="o3" autocomplete="off"> O3
-                </label>
-                <label class="btn btn-primary">
-                    <input type="radio" name="options" id="pm25" autocomplete="off"> PM25
-                </label>
-            </div>
+            <form method="POST">
+                @csrf
+                <div class="btn-group btn-group-toggle w-100 mb-2 mt-2" data-toggle="buttons">
+                    <button class="btn btn-primary active" type="button" name="poll" id="pm10">PM10</button>
+                    <button class="btn btn-primary " type="button" name="poll" id="no2">NO2</button>
+                    <button class="btn btn-primary" type="button" name="poll" id="o3"> O3 </button>
+                    <button class="btn btn-primary " type="button" name="poll" id="pm25"> PM2.5 </button>
+
+                </div>
+            </form>
 
 
             <div class="w-100">
@@ -114,9 +110,7 @@
                         <input type="number" name="user_id" placeholder="user_id hidden">
                         <br>
                         <input type="text" name="coordinates" id="coordinates">
-                        <button type="submit" name="addFavoriteBtn" id="addFavoriteBtn">Add</button>
-
-
+                        <input type="submit" name="addFavoriteBtn" id="addFavoriteBtn" value="Add">
                     </form>
                 </div>
                 <div class="response">
@@ -175,7 +169,7 @@
 
     <script>
         var pollutant = {!! json_encode($array[1]) !!}
-        console.log(pollutant)
+        console.log(pollutant.pollutant.no2)
         var favorites = {!! json_encode($array[0]) !!}
         console.log(favorites)
     </script>
@@ -189,7 +183,7 @@
     <script type="text/javascript" src="/js/placeAutocomplete.js"></script>
     <script type="text/javascript" src="/js/map.js"></script>
 
-   
+
 
     <!--  Script for Favorite -->
     {{-- <script type="text/javascript">

@@ -38,12 +38,28 @@ class FavoriteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+    public function findAjaxFunction(Request $request)
+    {
+        if ($request->has('id'))
+            return $this->storeFavorites($request);
+        elseif ($request->has('poll')) {
+            return $this->requestApiData($request);
+        }
+    }
+    public function requestApiData($request)
+    {
+        $api = new ApiController();
+        $apiData = $api->dataRequest($request->poll);
+        return response()->json(['apiData' => $apiData]);
+    }
+    public function storeFavorites($request)
     {
         // Validations
         // $request->validated();
 
         $array = explode(',', $request->coordinates);
+
         // dd($array);
 
         $favorite = new Favorite;

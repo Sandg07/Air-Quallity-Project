@@ -40,7 +40,7 @@ require __DIR__ . '/auth.php';
 Route::get('/searchbox', [SearchboxController::class, 'index'])->middleware(['auth']);
 
 Route::get('/map', [FavoriteController::class, 'index']);
-Route::post('/map', [FavoriteController::class, 'store']);
+Route::post('/map', [FavoriteController::class, 'findAjaxFunction']);
 Route::get('/map{id}', [FavoriteController::class, 'destroy'])->name('favorites.delete');
 
 Route::get('/forecast', [ForecastController::class, 'index'])->middleware(['auth']);

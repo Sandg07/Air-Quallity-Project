@@ -69,6 +69,52 @@ function addPoint(LatLgn, color) {
         radius: 500,
     }).addTo(map);
 }
+var pollButtons = ["pm10", "no2", "o3", "pm25"];
+
+pollButtons.forEach((poll) => {
+    $(`#${poll}`).on("click", function (e) {
+        e.preventDefault();
+        let _token = $('meta[name="csrf-token"]').attr("content");
+        $.ajax({
+            url: "/map",
+            type: "POST",
+            data: {
+                poll: poll,
+                _token: _token,
+            },
+            success: function (response) {
+                let newData = JSON.parse(response.apiData.pollutant);
+
+                newData[poll].forEach((point) => {
+                    if (point.index == 1) {
+                        var color = "#4169E1";
+                    } else if (point.index == 2) {
+                        var color = "#7a96ea";
+                    } else if (point.index == 3) {
+                        var color = "#b3c3f3";
+                    } else if (point.index == 4) {
+                        var color = "#d9e1f9";
+                    } else if (point.index == 5) {
+                        var color = "#FFFF66";
+                    } else if (point.index == 6) {
+                        var color = "#FFCC00";
+                    } else if (point.index == 7) {
+                        var color = "#FF9800";
+                    } else if (point.index == 8) {
+                        var color = "#FF0000";
+                    } else if (point.index == 9) {
+                        var color = "#bf0000";
+                    } else if (point.index == 9) {
+                        var color = "#800000";
+                    }
+                    //this one use first y then x
+                    var LatLgn = L.latLng(point.y, point.x);
+                    addPoint(LatLgn, color);
+                });
+            },
+        });
+    });
+});
 
 var alldata = JSON.parse(pollutant.pollutant);
 
@@ -144,7 +190,7 @@ if (favorites != undefined && favorites.length != 0) {
 $("#addFavoriteBtn").on("click", function (e) {
     e.preventDefault();
 
-    let _token = $('meta[name="csrf-token"]').attr("content");
+    let newtoken = $('meta[name="csrf-token"]').attr("content");
     let id = $("input[name='id']").val();
     let name = $("input[name='name']").val();
     let category = $("select").val();
@@ -160,10 +206,11 @@ $("#addFavoriteBtn").on("click", function (e) {
             category: category,
             user_id: user_id,
             coordinates: coordinates,
-            _token: _token,
+            _token: newtoken,
         },
         success: function (response) {
             last = response.last;
+            console.log(response);
 
             L.marker([last.coordinates_x, last.coordinates_y]).addTo(map);
             $("#favoriteForm")[0].reset();
@@ -171,7 +218,7 @@ $("#addFavoriteBtn").on("click", function (e) {
             <strong>Category: </strong> ${last.category}<br>
             <strong>Coordinates_x: </strong> ${last.coordinates_x}<br>
             <strong>Coordinates_y: </strong>${last.coordinates_y} <br>
-            <strong>User_id: </strong>${last.user_id} <br>`).appendTo(
+            <strong>User_id: </strong>${last.user_id} <hr>`).appendTo(
                 "#all-favorites"
             );
         },

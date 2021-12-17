@@ -13,27 +13,24 @@ class ApiController extends Controller
         $this->readApiLux();
         $array = ['pollutant' => Storage::disk('json')->get('pm10.json')];
         return $array;
-        /* dd($favorite);
-        return view('test', ['favorite' => $favorite]); */
     }
-    public function dataRequest(Request $request)
+    public function dataRequest($pollutant)
     {
-        //dd($request);
-        if ($request->no2)
-            $array = ['pollutant' => Storage::disk('json')->get('no2.json')];
-        elseif ($request->pm10)
-            $array = ['pollutant' => Storage::disk('json')->get('pm10.json')];
-        elseif ($request->pm25)
-            $array = ['pollutant' => Storage::disk('json')->get('pm25.json')];
-        else
-            $array = ['pollutant' => Storage::disk('json')->get('o3.json')];
-
-
-        //return response()->json(['array' => $array]);
-
-
-
-        return view('map', ['array' => $array]);
+        switch ($pollutant) {
+            case 'no2':
+                $array = ['pollutant' => Storage::disk('json')->get('no2.json')];
+                break;
+            case 'o3':
+                $array = ['pollutant' => Storage::disk('json')->get('o3.json')];
+                break;
+            case 'pm25':
+                $array = ['pollutant' => Storage::disk('json')->get('pm25.json')];
+                break;
+            case 'pm10':
+                $array = ['pollutant' => Storage::disk('json')->get('pm10.json')];
+                break;
+        }
+        return $array;
     }
 
 
