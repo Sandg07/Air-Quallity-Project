@@ -144,7 +144,27 @@ var allpm10 = alldata.pm10.forEach(function (data) {
     var LatLgn = L.latLng(data.y, data.x);
     addPoint(LatLgn, color);
 });
-
+// ***************** ADD BARCHART ******************************
+let chart = function () {
+    var chartPM10 = new CanvasJS.Chart("chartContainer1", {
+        animationEnabled: true,
+        exportEnabled: true,
+        theme: "light1",
+        title: {
+            text: "PM10",
+        },
+        data: [
+            {
+                type: "column",
+                indexLabel: "{y}",
+                indexLabelFontColor: "#5A5757",
+                indexLabelPlacement: "inside",
+                dataPoints: x,
+            },
+        ],
+    });
+    chartPM10.render();
+};
 // /**
 //  ** ON CLICK EVENT
 //  */
@@ -222,25 +242,18 @@ $("#addFavoriteBtn").on("click", function (e) {
     });
 });
 
-
-
 // ***************** INSERT SEARCH BOX *********************
 
 new L.Control.GPlaceAutocomplete({
-    callback: function(place){
+    callback: function (place) {
         var loc = place.geometry.location;
         map.panTo([loc.lat(), loc.lng()]);
         map.setZoom(16);
-    }
+    },
 }).addTo(map);
-
 
 // ***************** SHOW ADD FAVORITE SECTION *********************
 
-
 $("#addFavoriteSection").on("click", function (e) {
-    
-    $("#favorite-form-container").toggleClass('invisible visible');
-
-
+    $("#favorite-form-container").toggleClass("invisible visible");
 });
