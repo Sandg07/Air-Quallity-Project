@@ -39,7 +39,7 @@ class ApiController extends Controller
     {
         if (!Storage::disk('json')->has('timestamp.txt') || (Storage::disk('json')->has('timestamp.txt') && (int)Storage::disk('json')->get('timestamp.txt') < time())) {
             //Call the API to get the URL for the data from luxembourg
-            $response = Http::get('https://data.public.lu/api/1/datasets/qualite-air-modelisation-interpolation-geostatistique',);
+            $response = Http::withoutVerifying()->get('https://data.public.lu/api/1/datasets/qualite-air-modelisation-interpolation-geostatistique',);
             $time = $response->object()->resources[18]->last_modified;
 
             $this->controllTimestamp($time);
@@ -65,7 +65,8 @@ class ApiController extends Controller
 
     public function makeCall($url)
     {
-        $response = Http::get($url);
+
+        $response = Http::withoutVerifying()->get($url);
 
         //Retrieving only coordinates, value and index from the object
         $data = $response->object()->grid;
@@ -118,7 +119,7 @@ class ApiController extends Controller
 
     public function transformCoordinates($url)
     {
-        $call = Http::get('http://epsg.io/trans?data=' . $url . '&s_srs=2169&&t_srs=4326');
+        $call = Http::withoutVerifying()->get('http://epsg.io/trans?data=' . $url . '&s_srs=2169&&t_srs=4326');
 
         return $call->body();
     }
