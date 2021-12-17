@@ -2,7 +2,7 @@
 
 
 <div>
-    <form action="" method="POST">
+    <form action="" id="favoriteForm" method="POST">
         @csrf
         <input type="hidden" name="id">
         <input type="text" name="name" placeholder="Name of place"> <br>

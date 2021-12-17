@@ -37,19 +37,11 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
 
 require __DIR__ . '/auth.php';
 
-// Route::get('/testSB', [TestController::class, 'index']);
 Route::get('/searchbox', [SearchboxController::class, 'index'])->middleware(['auth']);
 Route::get('/map', [MapController::class, 'index'])->middleware(['auth']);
 
 Route::get('/map',  [ApiController::class, 'index'])->middleware(['auth']);
 Route::post('map', [ApiController::class, 'dataRequest'])->middleware((['auth']));
-
-
-//Route::get('ajax-request', 'AjaxController@index');
-//Route::post('/map', 'AjaxController@dataRequest'); 
-/* Route::get('/test',  [ApiController::class, 'index']); */
-Route::get('/favorites', [FavoriteController::class, 'index']);
-
 
 Route::get('/forecast', [ForecastController::class, 'index'])->middleware(['auth']);
 Route::post('/forecast', [ForecastController::class, 'ajaxCall'])->middleware(['auth']);
@@ -62,15 +54,12 @@ Route::get('/', function () {
 //Team page
 Route::get('/team', [TeamController::class, 'index']);
 
-
-
 //favorites
 Route::get('/favorites', function () {
     return view('favorites');
 })->middleware(['auth']);
 Route::get('/favorites', [FavoriteController::class, 'index']);
-// Show the form :
-// Route::get('/favorites', [FavoriteController::class, 'create']);
+
 // Submit the form :
 Route::post('/favorites', [FavoriteController::class, 'store']);
 

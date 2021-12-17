@@ -62,9 +62,12 @@ class FavoriteController extends Controller
         // $favorite->user_id = $request->Auth::user()->id; // use the auth id
         // dd(Auth::user()->id);
 
-        if ($favorite->save())
-            return back()->with('success', 'Saved the favorite in the DB');
-        else
+        if ($favorite->save()) {
+            back()->with('success', 'Saved the favorite in the DB');
+            $last = DB::table('favorites')->latest()->first();
+
+            return  response()->json(['last' => $last]);
+        } else
             return back()->with('error', 'Something wrong with the DB.');
     }
 

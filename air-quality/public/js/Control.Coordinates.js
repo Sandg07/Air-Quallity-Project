@@ -4,17 +4,9 @@ var __webpack_exports__ = {};
   !*** ./resources/js/Control.Coordinates.js ***!
   \*********************************************/
 /**
- * INSERT MARKER IN MAP FROM DB
- */
-function addFavorites(x, y) {
-  var marker = L.marker(x, y).addTo(map);
-}
-/**
  ** SET UP THE MAP
  */
 //  Where you want to render the map.
-
-
 var element = document.getElementById("favoriteMap"); // // Height has to be set. You can do this in CSS too.
 
 element.style = "height:400px; width:600px"; // Create Leaflet map on map element.
@@ -58,8 +50,38 @@ map.on("click", function (e) {
 
 if (favorites != undefined && favorites.length != 0) {
   favorites.forEach(function (favorite) {
-    var favoriteMarker = L.marker([favorite.coordinates_x, favorite.coordinates_y]).addTo(map);
+    L.marker([favorite.coordinates_x, favorite.coordinates_y]).addTo(map);
   });
 }
+
+$("#addFavoriteBtn").on("click", function (e) {
+  e.preventDefault();
+
+  var _token = $('meta[name="csrf-token"]').attr("content");
+
+  var id = $("input[name='id']").val();
+  var name = $("input[name='name']").val();
+  var category = $("select").val();
+  var user_id = $("input[name='user_id']").val();
+  var coordinates = $("#coordinates").val();
+  $.ajax({
+    url: "/favorites",
+    type: "POST",
+    data: {
+      id: id,
+      name: name,
+      category: category,
+      user_id: user_id,
+      coordinates: coordinates,
+      _token: _token
+    },
+    success: function success(response) {
+      last = response.last;
+      L.marker([last.coordinates_x, last.coordinates_y]).addTo(map);
+      $("#favoriteForm")[0].reset();
+      $("<div><strong>ID: ".concat(last.id, " </strong><br><strong>Name of place :</strong> ").concat(last.name, "<br>\n            <strong>Category: </strong> ").concat(last.category, "<br>\n            <strong>Coordinates_x: </strong> ").concat(last.coordinates_x, "<br>\n            <strong>Coordinates_y: </strong>").concat(last.coordinates_y, " <br>\n            <strong>User_id: </strong>").concat(last.user_id, " <br>")).appendTo("#favoritesData");
+    }
+  });
+});
 /******/ })()
 ;

@@ -23,24 +23,25 @@
             @endif
 
             {{-- SHOW FAVORITES --}}
+            <div class="d-flex flex-row justify-content-around align-items-center" id="favoritesData">
+                @if (!empty($array[0]))
+                    @foreach ($array[0] as $favorite)
+                        <div>
+                            <strong>ID: </strong>{{ $favorite->id }}<br>
+                            <strong>Name of place : </strong>{{ $favorite->name }}<br>
+                            <strong>Category: </strong>{{ $favorite->category }}<br>
+                            <strong>Coordinates_x: </strong>{{ $favorite->coordinates_x }}<br>
+                            <strong>Coordinates_y: </strong>{{ $favorite->coordinates_y }}<br>
+                            <strong>User_id: </strong>{{ $favorite->user_id }}<br>
 
-            @if (!empty($array[0]))
-                @foreach ($array[0] as $favorite)
-                    <div>
-                        <strong>ID: </strong>{{ $favorite->id }}<br>
-                        <strong>Name of place : </strong>{{ $favorite->name }}<br>
-                        <strong>Category: </strong>{{ $favorite->category }}<br>
-                        <strong>Coordinates_x: </strong>{{ $favorite->coordinates_x }}<br>
-                        <strong>Coordinates_y: </strong>{{ $favorite->coordinates_y }}<br>
-                        <strong>User_id: </strong>{{ $favorite->user_id }}<br>
-
-                        <a href="{{ route('favorites.delete', [$favorite->id]) }}">Delete</a>
-                        <hr>
-                    </div>
-                @endforeach
-            @else
-                <p>No favorites in my DB.</p>
-            @endif
+                            <a href="{{ route('favorites.delete', [$favorite->id]) }}">Delete</a>
+                            <hr>
+                        </div>
+                    @endforeach
+                @else
+                    <p>No favorites in my DB.</p>
+                @endif
+            </div>
         </div>
     </div>
 
