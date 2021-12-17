@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     {{-- Responsive meta from Bootstrap --}}
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css"
-        integrity="sha512-T584yQ/tdRR5QwOpfvDfVQUidzfgc2339Lc8uBDtcp/wYu80d7jwBgAxbyMh0a9YM9F8N3tdErpFI8iaGx6x5g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    {{-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> --}}
+    <link rel="stylesheet" href="/css/style.css" >
     {{-- end Bootstrap --}}
+        
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+  
     <link href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" rel="stylesheet" />
     <link href="css/placeAutocomplete.css" rel="stylesheet" />
     <title>MAP</title>
@@ -24,7 +24,7 @@
 
 
 
-        <div class="map-container .flex-column w-100 justify-content-around p-2 mb-2 mt-2 ">
+        <div class="map-container flex-column w-100 justify-content-around p-2 mb-2 mt-2 ">
             <div class="btn-group btn-group-toggle w-100 mb-2 mt-2" data-toggle="buttons">
                 <label class="btn btn-primary active">
                     <input type="radio" name="options" id="pm10" autocomplete="off" checked> PM10
@@ -42,10 +42,10 @@
 
 
             <div class="w-100">
-                <div id="osm-map"></div>
-                <div class="scale .d-flex p-2 row ">
+                <div class="container" id="osm-map"></div>
+                <div class="scale d-flex row p-2 ">
                     <div class="column flex-fill">
-                        <div class="square  m-2 p-2  rounded" style="background-color: #800000;"></div>
+                        <div class="square m-2 p-2  rounded" style="background-color: #800000;"></div>
                         <span class="p-2" style="font-size:10px"> > 400</span>
                     </div>
                     <div class="column flex-fill">
