@@ -26,4 +26,11 @@ mix.js("resources/js/Control.Coordinates.js", "public/js").postCss(
     [require("postcss-import"), require("tailwindcss"), require("autoprefixer")]
 );
 
+
+mix.js("resources/js/placeAutocomplete.js", "public/js").postCss(
+    "resources/css/placeAutocomplete.css",
+    "public/css",
+    [require("postcss-import"), require("tailwindcss"), require("autoprefixer")]
+);
+
 mix.js("resources/js/datepicker.js", "public/js");
