@@ -3,9 +3,9 @@
     "/js/map.js": "/js/map.js",
     "/js/generalMap.js": "/js/generalMap.js",
     "/js/Control.Coordinates.js": "/js/Control.Coordinates.js",
-    "/js/placeAutocomplete.js": "/js/placeAutocomplete.js",
+    "/js/leaflet-gplaces-autocomplete.js": "/js/leaflet-gplaces-autocomplete.js",
     "/js/datepicker.js": "/js/datepicker.js",
-    "/css/placeAutocomplete.css": "/css/placeAutocomplete.css",
+    "/css/leaflet-gplaces-autocomplete.css": "/css/leaflet-gplaces-autocomplete.css",
     "/css/style.css": "/css/style.css",
     "/css/app.css": "/css/app.css"
 }
