@@ -11,20 +11,18 @@ const mix = require("laravel-mix");
  |
  */
 
-mix.js("resources/js/app.js", "public/js").postCss(
-    "resources/css/app.css",
-    "public/css",
-    [require("postcss-import"), require("tailwindcss"), require("autoprefixer")]
-);
+mix.webpackConfig({
+    stats: {
+        children: true,
+    },
+});
+
+mix.sass("resources/scss/style.scss", "public/css");
+
+mix.js("resources/js/app.js", "public/js");
 mix.js("resources/js/map.js", "public/js");
 
 mix.js("resources/js/generalMap.js", "public/js");
-
-mix.js("resources/js/Control.Coordinates.js", "public/js").postCss(
-    "resources/css/style.css",
-    "public/css",
-    [require("postcss-import"), require("tailwindcss"), require("autoprefixer")]
-);
+mix.js("resources/js/Control.Coordinates.js", "public/js");
 
 mix.js("resources/js/datepicker.js", "public/js");
-mix.css("resources/css/global.css", "public/css");
