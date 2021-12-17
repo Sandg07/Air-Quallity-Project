@@ -5,26 +5,23 @@
     <meta charset="UTF-8">
     {{-- Responsive meta from Bootstrap --}}
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css"
-        integrity="sha512-T584yQ/tdRR5QwOpfvDfVQUidzfgc2339Lc8uBDtcp/wYu80d7jwBgAxbyMh0a9YM9F8N3tdErpFI8iaGx6x5g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    {{-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> --}}
+    <link rel="stylesheet" href="/css/style.css" >
     {{-- end Bootstrap --}}
+        
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+  
     <link href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" rel="stylesheet" />
     <link href="css/placeAutocomplete.css" rel="stylesheet" />
     <title>MAP</title>
 </head>
 
 <body>
-    <div class="container d-flex flex-row justify-content-around h-100 w-100 ">
+    <div class="container d-flex flex-row justify-content-around col-12 ">
 
-
-
-
-        <div class="map-container .flex-column w-100 justify-content-around p-2 mb-2 mt-2 ">
+        <div class="map-container .flex-column col-6 justify-content-around p-2 mb-2 mt-2 ">
             <div class="btn-group btn-group-toggle w-100 mb-2 mt-2" data-toggle="buttons">
                 <label class="btn btn-primary active">
                     <input type="radio" name="options" id="pm10" autocomplete="off" checked> PM10
@@ -42,10 +39,10 @@
 
 
             <div class="w-100">
-                <div id="osm-map"></div>
-                <div class="scale .d-flex p-2 row ">
+                <div class="container" id="osm-map"></div>
+                <div class="scale d-flex row p-2 ">
                     <div class="column flex-fill">
-                        <div class="square  m-2 p-2  rounded" style="background-color: #800000;"></div>
+                        <div class="square m-2 p-2  rounded" style="background-color: #800000;"></div>
                         <span class="p-2" style="font-size:10px"> > 400</span>
                     </div>
                     <div class="column flex-fill">
@@ -93,13 +90,38 @@
         </div>
 
 
-        <div class="favorites-container .flex-column h-100 w-100 justify-content-around p-2 mb-2 mt-2 ">
+        <div class="favorites-container border flex-row col-6 p-2 mb-2 mt-2">
             <h2>My Favorites</h2>
             {{-- SHOW FAVORITES --}}
-            <div class="favorite-form-container d-flex flex-column flex-fill justify-content-center align-items-center">
-                <h2>Add a new favorite place</h2>
+
+            <div id="all-favorites" class="border overflow-auto h-50 mb-2 mt-2 " style="background-color: rgb(247, 245, 245)">
+
+                @if (count($array[0]) >= 1)
 
 
+                    @foreach ($array[0] as $favorite)
+                        <div>
+                            <strong>Name of place : </strong>{{ $favorite->name }}<br>
+                            <strong>Category: </strong>{{ $favorite->category }}<br>
+                            <a href="{{ route('favorites.delete', [$favorite->id]) }}">Delete</a>
+                        </div>
+                        <hr>
+                    @endforeach
+
+
+                @else
+                    <p>No favorites in my DB.</p>
+                @endif
+            </div>
+
+
+            <button class="btn btn-primary" type="button" name="add-favorite" id="addFavoriteSection" value="">Add a
+                favorite place</button>
+
+            <div class="invisible" id="favorite-form-container">
+
+
+                <h4>Add a new favorite place</h4>
                 <div>
                     <form action="" id="favoriteForm" method="POST">
                         @csrf
@@ -111,56 +133,36 @@
                             <option value="city">City</option>
                             <option value="running place">Running place</option>
                         </select><br>
-                        <input type="number" name="user_id" placeholder="user_id hidden">
-                        <br>
+                        <input type="number" name="user_id" placeholder="user_id hidden"><br>
                         <input type="text" name="coordinates" id="coordinates">
                         <button type="submit" name="addFavoriteBtn" id="addFavoriteBtn">Add</button>
-
-
                     </form>
                 </div>
-                <div class="response">
-                    {{-- ERRORS HANDLING --}}
-                    @if ($message = Session::get('success'))
-                        <p style="color:green">{{ $message }}</p>
-                    @endif
 
-                    @if ($message = Session::get('error'))
-                        <p style="color:red">{{ $message }}</p>
-                    @endif
-                </div>
             </div>
 
-            <div id="all-favorites" id="favoritesData" class="border mb-2 mt-2 "
-                style="background-color: rgb(247, 245, 245)">
-                @if (count($array[0]) >= 1)
 
-                    @foreach ($array[0] as $favorite)
-                        <div>
-                            <strong>ID: </strong>{{ $favorite->id }}<br>
-                            <strong>Name of place : </strong>{{ $favorite->name }}<br>
-                            <strong>Category: </strong>{{ $favorite->category }}<br>
-                            <strong>Coordinates_x: </strong>{{ $favorite->coordinates_x }}<br>
-                            <strong>Coordinates_y: </strong>{{ $favorite->coordinates_y }}<br>
-                            <strong>User_id: </strong>{{ $favorite->user_id }}<br>
 
-                            <a href="{{ route('favorites.delete', [$favorite->id]) }}">Delete</a>
-                            <hr>
-                        </div>
-                    @endforeach
+            <div class="response">
+                {{-- ERRORS HANDLING --}}
+                @if ($message = Session::get('success'))
+                    <p style="color:green">{{ $message }}</p>
+                @endif
 
-                @else
-                    <p>No favorites in my DB.</p>
+                @if ($message = Session::get('error'))
+                    <p style="color:red">{{ $message }}</p>
                 @endif
             </div>
-
-
-
-
-
-
         </div>
+
+
+
+
+
+
+
     </div>
+    
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -183,13 +185,22 @@
 
 
     <!--  Script for the SearchBox -->
+    <script type="text/javascript" src="/js/placeAutocomplete.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGPahFxTIjD23cemDxCcXJTeUmRblqRfs&libraries=places">
     </script>
 
-    <script type="text/javascript" src="/js/placeAutocomplete.js"></script>
     <script type="text/javascript" src="/js/map.js"></script>
 
-   
+
+  {{--   <script type="text/javascript">
+    new L.Control.GPlaceAutocomplete({
+        callback: function(place){
+            var loc = place.geometry.location;
+            map.panTo([loc.lat(), loc.lng()]);
+            map.setZoom(16);
+        }
+    }).addTo(map);
+</script> --}}
 
     <!--  Script for Favorite -->
     {{-- <script type="text/javascript">

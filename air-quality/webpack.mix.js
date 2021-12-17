@@ -26,8 +26,8 @@ mix.js("resources/js/generalMap.js", "public/js");
 mix.js("resources/js/Control.Coordinates.js", "public/js");
 
 
-mix.js("resources/js/placeAutocomplete.js", "public/js").postCss(
-    "resources/css/placeAutocomplete.css",
+mix.js("resources/js/leaflet-gplaces-autocomplete.js", "public/js").postCss(
+    "resources/css/leaflet-gplaces-autocomplete.css",
     "public/css",
     [require("postcss-import"), require("tailwindcss"), require("autoprefixer")]
 );

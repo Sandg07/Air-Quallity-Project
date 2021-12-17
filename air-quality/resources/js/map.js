@@ -167,21 +167,33 @@ $("#addFavoriteBtn").on("click", function (e) {
 
             L.marker([last.coordinates_x, last.coordinates_y]).addTo(map);
             $("#favoriteForm")[0].reset();
-            $(`<div><strong>ID: ${last.id} </strong><br><strong>Name of place :</strong> ${last.name}<br>
-            <strong>Category: </strong> ${last.category}<br>
-            <strong>Coordinates_x: </strong> ${last.coordinates_x}<br>
-            <strong>Coordinates_y: </strong>${last.coordinates_y} <br>
-            <strong>User_id: </strong>${last.user_id} <br>`).appendTo(
+            $(`<div><strong>Name of place :</strong> ${last.name}<br>
+            <strong>Category: </strong> ${last.category}<br>`).appendTo(
                 "#all-favorites"
             );
         },
     });
 });
 
+
+
+// ***************** INSERT SEARCH BOX *********************
+
 new L.Control.GPlaceAutocomplete({
-    callback: function (place) {
+    callback: function(place){
         var loc = place.geometry.location;
         map.panTo([loc.lat(), loc.lng()]);
-    },
-    // map.setZoom(18);
+        map.setZoom(16);
+    }
 }).addTo(map);
+
+
+// ***************** SHOW ADD FAVORITE SECTION *********************
+
+
+$("#addFavoriteSection").on("click", function (e) {
+    
+    $("#favorite-form-container").toggleClass('invisible visible');
+
+
+});
