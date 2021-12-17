@@ -164,11 +164,6 @@ new L.Control.GPlaceAutocomplete({
   callback: function callback(place) {
     var loc = place.geometry.location;
     map.panTo([loc.lat(), loc.lng()]);
-<<<<<<< Updated upstream
-  } // map.setZoom(18);
-
-}).addTo(map);
-=======
     map.setZoom(16);
   }
 }).addTo(map); // ***************** SHOW ADD FAVORITE SECTION *********************
@@ -176,6 +171,5 @@ new L.Control.GPlaceAutocomplete({
 $("#addFavoriteSection").on("click", function (e) {
   $("#favorite-form-container").toggleClass('invisible visible');
 });
->>>>>>> Stashed changes
 /******/ })()
 ;

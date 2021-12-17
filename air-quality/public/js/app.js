@@ -23051,14 +23051,8 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/js/app": 0,
-<<<<<<< Updated upstream
-/******/ 			"css/placeAutocomplete": 0,
-/******/ 			"css/style": 0
-=======
 /******/ 			"css/leaflet-gplaces-autocomplete": 0,
-/******/ 			"css/style": 0,
-/******/ 			"css/app": 0
->>>>>>> Stashed changes
+/******/ 			"css/style": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -23108,16 +23102,9 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-<<<<<<< Updated upstream
-/******/ 	__webpack_require__.O(undefined, ["css/placeAutocomplete","css/style"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/placeAutocomplete","css/style"], () => (__webpack_require__("./resources/scss/style.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/placeAutocomplete","css/style"], () => (__webpack_require__("./resources/css/placeAutocomplete.css")))
-=======
-/******/ 	__webpack_require__.O(undefined, ["css/leaflet-gplaces-autocomplete","css/style","css/app"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/leaflet-gplaces-autocomplete","css/style","css/app"], () => (__webpack_require__("./resources/css/app.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/leaflet-gplaces-autocomplete","css/style","css/app"], () => (__webpack_require__("./resources/css/style.css")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/leaflet-gplaces-autocomplete","css/style","css/app"], () => (__webpack_require__("./resources/css/leaflet-gplaces-autocomplete.css")))
->>>>>>> Stashed changes
+/******/ 	__webpack_require__.O(undefined, ["css/leaflet-gplaces-autocomplete","css/style"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/leaflet-gplaces-autocomplete","css/style"], () => (__webpack_require__("./resources/scss/style.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/leaflet-gplaces-autocomplete","css/style"], () => (__webpack_require__("./resources/css/leaflet-gplaces-autocomplete.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

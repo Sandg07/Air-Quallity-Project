@@ -1,9 +1,4 @@
 /******/ (() => { // webpackBootstrap
-<<<<<<< Updated upstream
-/******/ 	"use strict";
-/******/ 	
-/******/ 	
-=======
 var __webpack_exports__ = {};
 /*!******************************************************!*\
   !*** ./resources/js/leaflet-gplaces-autocomplete.js ***!
@@ -130,6 +125,5 @@ var __webpack_exports__ = {};
     }
   });
 })();
->>>>>>> Stashed changes
 /******/ })()
 ;

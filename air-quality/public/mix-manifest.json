@@ -5,12 +5,6 @@
     "/js/Control.Coordinates.js": "/js/Control.Coordinates.js",
     "/js/leaflet-gplaces-autocomplete.js": "/js/leaflet-gplaces-autocomplete.js",
     "/js/datepicker.js": "/js/datepicker.js",
-<<<<<<< Updated upstream
-    "/css/placeAutocomplete.css": "/css/placeAutocomplete.css",
-    "/css/style.css": "/css/style.css"
-=======
     "/css/leaflet-gplaces-autocomplete.css": "/css/leaflet-gplaces-autocomplete.css",
-    "/css/style.css": "/css/style.css",
-    "/css/app.css": "/css/app.css"
->>>>>>> Stashed changes
+    "/css/style.css": "/css/style.css"
 }
