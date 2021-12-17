@@ -31,35 +31,7 @@ map.setView(targetLuxCity, 9);
 // 11 - 20 = #7a96ea
 // <= 10 = #4169E1
 
-// ***************************************************
-
-/*  L.marker([39.61, -105.02]).bindPopup('Littleton, CO.').addTo(groups.poluents);
-
-var groupedOverlays = {
-    "Poluents": {
-      "PM10": groups.poluents,
-      
-    },
-    "Favorites": {
-      "Favorite": groups.favorites,
-     
-    }
-  };
-  
-  L.control.groupedLayers(basemaps, groupedOverlays, options).addTo(map);
-
-var options = {
-    exclusiveGroups: ["Poluents"],
-    groupCheckboxes:true};
-
-
-
-var layerControl = L.control.groupedLayers(groupedOverlays, options);
-map.addControl(layerControl);
-
-   */
-
-// ***************** INSERT PM10 POINTS *********************
+// ***************** INSERT POINTS *********************
 
 function addPoint(LatLgn, color) {
     var circle = L.circle(LatLgn, {
@@ -84,69 +56,131 @@ pollButtons.forEach((poll) => {
             },
             success: function (response) {
                 let newData = JSON.parse(response.apiData.pollutant);
-
+                let newbarchartData = [
+                    { label: "index1", y: 0 },
+                    { label: "index2", y: 0 },
+                    { label: "index3", y: 0 },
+                    { label: "index4", y: 0 },
+                    { label: "index5", y: 0 },
+                    { label: "index6", y: 0 },
+                    { label: "index7", y: 0 },
+                    { label: "index8", y: 0 },
+                    { label: "index9", y: 0 },
+                    { label: "index10", y: 0 },
+                ];
                 newData[poll].forEach((point) => {
                     if (point.index == 1) {
                         var color = "#4169E1";
+                        newbarchartData[0].y++;
                     } else if (point.index == 2) {
                         var color = "#7a96ea";
+                        newbarchartData[1].y++;
                     } else if (point.index == 3) {
                         var color = "#b3c3f3";
+                        newbarchartData[2].y++;
                     } else if (point.index == 4) {
                         var color = "#d9e1f9";
+                        newbarchartData[3].y++;
                     } else if (point.index == 5) {
                         var color = "#FFFF66";
+                        newbarchartData[4].y++;
                     } else if (point.index == 6) {
                         var color = "#FFCC00";
+                        newbarchartData[5].y++;
                     } else if (point.index == 7) {
                         var color = "#FF9800";
+                        newbarchartData[6].y++;
                     } else if (point.index == 8) {
                         var color = "#FF0000";
+                        newbarchartData[7].y++;
                     } else if (point.index == 9) {
                         var color = "#bf0000";
+                        newbarchartData[8].y++;
                     } else if (point.index == 9) {
                         var color = "#800000";
+                        newbarchartData[9].y++;
                     }
                     //this one use first y then x
                     var LatLgn = L.latLng(point.y, point.x);
                     addPoint(LatLgn, color);
                 });
+
+                var chart1 = new CanvasJS.Chart("chartContainer1", {
+                    animationEnabled: true,
+                    exportEnabled: true,
+                    theme: "light1",
+                    title: {
+                        text: "PM10",
+                    },
+                    data: [
+                        {
+                            type: "column",
+                            indexLabel: "{y}",
+                            indexLabelFontColor: "#5A5757",
+                            indexLabelPlacement: "inside",
+                            dataPoints: newbarchartData,
+                        },
+                    ],
+                });
+                chart1.render();
             },
         });
     });
 });
 
 var alldata = JSON.parse(pollutant.pollutant);
-
+let barchartData = [
+    { label: "index1", y: 0 },
+    { label: "index2", y: 0 },
+    { label: "index3", y: 0 },
+    { label: "index4", y: 0 },
+    { label: "index5", y: 0 },
+    { label: "index6", y: 0 },
+    { label: "index7", y: 0 },
+    { label: "index8", y: 0 },
+    { label: "index9", y: 0 },
+    { label: "index10", y: 0 },
+];
 var allpm10 = alldata.pm10.forEach(function (data) {
     if (data.index == 1) {
         var color = "#4169E1";
+        barchartData[0].y++;
     } else if (data.index == 2) {
         var color = "#7a96ea";
+        barchartData[1].y++;
     } else if (data.index == 3) {
         var color = "#b3c3f3";
+        barchartData[2].y++;
     } else if (data.index == 4) {
         var color = "#d9e1f9";
+        barchartData[3].y++;
     } else if (data.index == 5) {
         var color = "#FFFF66";
+        barchartData[4].y++;
     } else if (data.index == 6) {
         var color = "#FFCC00";
+        barchartData[5].y++;
     } else if (data.index == 7) {
         var color = "#FF9800";
+        barchartData[6].y++;
     } else if (data.index == 8) {
         var color = "#FF0000";
+        barchartData[7].y++;
     } else if (data.index == 9) {
         var color = "#bf0000";
+        barchartData[8].y++;
     } else if (data.index == 9) {
         var color = "#800000";
+        barchartData[9].y++;
     }
     //this one use first y then x
     var LatLgn = L.latLng(data.y, data.x);
     addPoint(LatLgn, color);
 });
+
 // ***************** ADD BARCHART ******************************
-let chart = function () {
-    var chartPM10 = new CanvasJS.Chart("chartContainer1", {
+window.onload = function () {
+    var chart = new CanvasJS.Chart("chartContainer1", {
         animationEnabled: true,
         exportEnabled: true,
         theme: "light1",
@@ -159,11 +193,11 @@ let chart = function () {
                 indexLabel: "{y}",
                 indexLabelFontColor: "#5A5757",
                 indexLabelPlacement: "inside",
-                dataPoints: x,
+                dataPoints: barchartData,
             },
         ],
     });
-    chartPM10.render();
+    chart.render();
 };
 // /**
 //  ** ON CLICK EVENT
