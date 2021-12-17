@@ -37,30 +37,11 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
 
 require __DIR__ . '/auth.php';
 
-// Route::get('/testSB', [TestController::class, 'index']);
 Route::get('/searchbox', [SearchboxController::class, 'index'])->middleware(['auth']);
-//Route::get('/map', [MapController::class, 'index'])->middleware(['auth']);
 
-
-
-
-//Route::get('/map',  [ApiController::class, 'index'])->middleware(['auth']);
 Route::get('/map', [FavoriteController::class, 'index']);
-//Route::post('map', [ApiController::class, 'dataRequest'])->middleware((['auth']));
-
 Route::post('/map', [FavoriteController::class, 'store']);
 Route::get('/map{id}', [FavoriteController::class, 'destroy'])->name('favorites.delete');
-
-//favorites
-
-// Show the form :
-// Route::get('/favorites', [FavoriteController::class, 'create']);
-// Submit the form :
-
-//Delete the form:
-
-
-
 
 Route::get('/forecast', [ForecastController::class, 'index'])->middleware(['auth']);
 Route::post('/forecast', [ForecastController::class, 'ajaxCall'])->middleware(['auth']);
@@ -72,9 +53,7 @@ Route::get('/', function () {
 
 //Team page
 Route::get('/team', [TeamController::class, 'index']);
-
-
-    
+  
     /* 
     * NOT TO USE
     // Show the form :

@@ -99,21 +99,13 @@ var allpm10 = alldata.pm10.forEach(function (data) {
     addPoint(LatLgn, color);
 });
 
-// ***************** INSERT FAVORITES *********************
-
-//console.log(favorites);
-
-function addFavorites(x, y) {
-    var marker = L.marker(x, y).addTo(map);
-}
-
 // /**
 //  ** ON CLICK EVENT
 //  */
 
 var currentMarker;
 map.on("click", function (e) {
-    if (currentMarker) {
+    if (currentMarker && currentMarker["cleared"] == false) {
         currentMarker._icon.style.transition = "transform 0.3s ease-out";
         currentMarker._shadow.style.transition = "transform 0.3s ease-out";
 
@@ -123,74 +115,73 @@ map.on("click", function (e) {
             currentMarker._icon.style.transition = null;
             currentMarker._shadow.style.transition = null;
         }, 300);
-        return;
-    }
-
-    currentMarker = L.marker(e.latlng, {
-        draggable: true,
-    })
-        .addTo(map)
-        .on("click", function () {
-            e.originalEvent.stopPropagation();
+        $("#coordinates").attr({
+            value: e.latlng.lat + "," + e.latlng.lng,
         });
+        return;
+    } else if (!currentMarker)
+        currentMarker = L.marker(e.latlng, {
+            draggable: true,
+        })
+            .addTo(map)
+            .on("click", function () {
+                e.originalEvent.stopPropagation();
+            });
 
     // Add an input to the DB
-    $("<input>")
-        .attr({
-            value: e.latlng.lat + "," + e.latlng.lng,
-            // value: "(" + e.latlng.lat + "," + e.latlng.lng + ")",
-            id: "coordinates",
-            name: "coordinates",
-        })
-        .appendTo("form");
-});
-document.getElementById("done").addEventListener("click", function () {
-    currentMarker = null;
+    $("#coordinates").attr({
+        value: e.latlng.lat + "," + e.latlng.lng,
+    });
+    currentMarker["cleared"] = false;
 });
 
-/*******************************************/
+if (favorites != undefined && favorites.length != 0) {
+    favorites.forEach((favorite) => {
+        L.marker([favorite.coordinates_x, favorite.coordinates_y]).addTo(map);
+    });
+}
 
-// ***************** INSERT FAVORITES *********************
+$("#addFavoriteBtn").on("click", function (e) {
+    e.preventDefault();
 
-const elmnt = document.getElementById("all-favorites");
+    let _token = $('meta[name="csrf-token"]').attr("content");
+    let id = $("input[name='id']").val();
+    let name = $("input[name='name']").val();
+    let category = $("select").val();
+    let user_id = $("input[name='user_id']").val();
+    let coordinates = $("#coordinates").val();
 
-Object.values(favorites).forEach((favorite) => {
-   console.log(favorite.id);
-   $("#all-favorites").append("<strong>Name of place : </strong>", favorite.name, "<br>");
-   $("#all-favorites").append("<strong>Category : </strong>", favorite.category, "<br>");
-   //var route = @json(route('favorites.delete', [favorite.id]));
-   
-   //$("#all-favorites").append('<button class="btn-secondary rounded">Delete</button><br>').attr('href', route);
-   // https://github.com/tighten/ziggy
-   // 
+    $.ajax({
+        url: "/map",
+        type: "POST",
+        data: {
+            id: id,
+            name: name,
+            category: category,
+            user_id: user_id,
+            coordinates: coordinates,
+            _token: _token,
+        },
+        success: function (response) {
+            last = response.last;
+
+            L.marker([last.coordinates_x, last.coordinates_y]).addTo(map);
+            $("#favoriteForm")[0].reset();
+            $(`<div><strong>ID: ${last.id} </strong><br><strong>Name of place :</strong> ${last.name}<br>
+            <strong>Category: </strong> ${last.category}<br>
+            <strong>Coordinates_x: </strong> ${last.coordinates_x}<br>
+            <strong>Coordinates_y: </strong>${last.coordinates_y} <br>
+            <strong>User_id: </strong>${last.user_id} <br>`).appendTo(
+                "#all-favorites"
+            );
+        },
+    });
 });
-
-/*  <strong>ID: </strong>{{ $favorite->id }}<br>
-        <strong>Name of place : </strong>{{ $favorite->name }}<br>
-        <strong>Category: </strong>{{ $favorite->category }}<br>
-        <strong>Coordinates_x: </strong>{{ $favorite->coordinates_x }}<br>
-        <strong>Coordinates_y: </strong>{{ $favorite->coordinates_y }}<br>
-        <strong>User_id: </strong>{{ $favorite->user_id }}<br>
-
-        <a href="{{ route('favorites.delete', [$favorite->id]) }}">Delete</a>
-        <hr>
-    </div>
-@endforeach
-@else
-<p>No favorites in my DB.</p>
-@endif */
-
-
-
-// ***************** INSERT SEARCH BOX *********************
-
 
 new L.Control.GPlaceAutocomplete({
     callback: function(place) {
         var loc = place.geometry.location;
         map.panTo([loc.lat(), loc.lng()]);
-        map.setZoom(18);
     }
+        map.setZoom(18);
 }).addTo(map);
-
-

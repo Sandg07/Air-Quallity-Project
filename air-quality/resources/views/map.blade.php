@@ -96,31 +96,29 @@
         <div class="favorites-container .flex-column h-100 w-100 justify-content-around p-2 mb-2 mt-2 ">
             <h2>My Favorites</h2>
             {{-- SHOW FAVORITES --}}
-
-            <div id="all-favorites" class="border mb-2 mt-2 " style="background-color: rgb(247, 245, 245)">
-
-                {{-- @if (!empty($favorites))
-                    @foreach ($favorites as $favorite)
-                    <div>
-                        <strong>ID: </strong>{{ $favorite->id }}<br>
-                        <strong>Name of place : </strong>{{ $favorite->name }}<br>
-                        <strong>Category: </strong>{{ $favorite->category }}<br>
-                        <strong>Coordinates_x: </strong>{{ $favorite->coordinates_x }}<br>
-                        <strong>Coordinates_y: </strong>{{ $favorite->coordinates_y }}<br>
-                        <strong>User_id: </strong>{{ $favorite->user_id }}<br>
-                        
-                        
-                        <hr>
-                    </div>
-                    @endforeach
-                    @else
-                    <p>No favorites in my DB.</p>
-                    @endif --}}
-
-
-            </div>
             <div class="favorite-form-container d-flex flex-column flex-fill justify-content-center align-items-center">
-                @include('new-favorite')
+                <h2>Add a new favorite place</h2>
+
+
+                <div>
+                    <form action="" id="favoriteForm" method="POST">
+                        @csrf
+                        <input type="hidden" name="id">
+                        <input type="text" name="name" placeholder="Name of place"> <br>
+                        <select name="category">
+                            <option value="">select here</option>
+                            <option value="park">Park</option>
+                            <option value="city">City</option>
+                            <option value="running place">Running place</option>
+                        </select><br>
+                        <input type="number" name="user_id" placeholder="user_id hidden">
+                        <br>
+                        <input type="text" name="coordinates" id="coordinates">
+                        <button type="submit" name="addFavoriteBtn" id="addFavoriteBtn">Add</button>
+
+
+                    </form>
+                </div>
                 <div class="response">
                     {{-- ERRORS HANDLING --}}
                     @if ($message = Session::get('success'))
@@ -133,14 +131,34 @@
                 </div>
             </div>
 
-            <div class="d-flex flex-row justify-content-center">
-                <input class="btn-secondary rounded w-100 mb-2 mt-2" type="submit" id="done"
-                    value="Done moving current marker">
-                <input class="btn-secondary rounded w-100 mb-2 mt-2" type="submit" name="clearBtn" id="clearBtn"
-                    value="Clear marker">
+            <div id="all-favorites" id="favoritesData" class="border mb-2 mt-2 "
+                style="background-color: rgb(247, 245, 245)">
+                @if (count($array[0]) >= 1)
 
+                    @foreach ($array[0] as $favorite)
+                        <div>
+                            <strong>ID: </strong>{{ $favorite->id }}<br>
+                            <strong>Name of place : </strong>{{ $favorite->name }}<br>
+                            <strong>Category: </strong>{{ $favorite->category }}<br>
+                            <strong>Coordinates_x: </strong>{{ $favorite->coordinates_x }}<br>
+                            <strong>Coordinates_y: </strong>{{ $favorite->coordinates_y }}<br>
+                            <strong>User_id: </strong>{{ $favorite->user_id }}<br>
 
+                            <a href="{{ route('favorites.delete', [$favorite->id]) }}">Delete</a>
+                            <hr>
+                        </div>
+                    @endforeach
+
+                @else
+                    <p>No favorites in my DB.</p>
+                @endif
             </div>
+
+
+
+
+
+
         </div>
     </div>
 
@@ -157,7 +175,7 @@
 
     <script>
         var pollutant = {!! json_encode($array[1]) !!}
-
+        console.log(pollutant)
         var favorites = {!! json_encode($array[0]) !!}
         console.log(favorites)
     </script>
