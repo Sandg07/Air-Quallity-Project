@@ -155,16 +155,27 @@ $("#addFavoriteBtn").on("click", function (e) {
       last = response.last;
       L.marker([last.coordinates_x, last.coordinates_y]).addTo(map);
       $("#favoriteForm")[0].reset();
-      $("<div><strong>ID: ".concat(last.id, " </strong><br><strong>Name of place :</strong> ").concat(last.name, "<br>\n            <strong>Category: </strong> ").concat(last.category, "<br>\n            <strong>Coordinates_x: </strong> ").concat(last.coordinates_x, "<br>\n            <strong>Coordinates_y: </strong>").concat(last.coordinates_y, " <br>\n            <strong>User_id: </strong>").concat(last.user_id, " <br>")).appendTo("#all-favorites");
+      $("<div><strong>Name of place :</strong> ".concat(last.name, "<br>\n            <strong>Category: </strong> ").concat(last.category, "<br>")).appendTo("#all-favorites");
     }
   });
-});
+}); // ***************** INSERT SEARCH BOX *********************
+
 new L.Control.GPlaceAutocomplete({
   callback: function callback(place) {
     var loc = place.geometry.location;
     map.panTo([loc.lat(), loc.lng()]);
+<<<<<<< Updated upstream
   } // map.setZoom(18);
 
 }).addTo(map);
+=======
+    map.setZoom(16);
+  }
+}).addTo(map); // ***************** SHOW ADD FAVORITE SECTION *********************
+
+$("#addFavoriteSection").on("click", function (e) {
+  $("#favorite-form-container").toggleClass('invisible visible');
+});
+>>>>>>> Stashed changes
 /******/ })()
 ;
