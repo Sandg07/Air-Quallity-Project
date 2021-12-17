@@ -65,7 +65,7 @@ function addPoint(LatLgn, color) {
     var circle = L.circle(LatLgn, {
         color: "transparent",
         fillColor: color,
-        fillOpacity: 0.7,
+        fillOpacity: 0.6,
         radius: 500,
     }).addTo(map);
 }
@@ -160,7 +160,7 @@ Object.values(favorites).forEach((favorite) => {
    $("#all-favorites").append("<strong>Category : </strong>", favorite.category, "<br>");
    //var route = @json(route('favorites.delete', [favorite.id]));
    
-   $("#all-favorites").append('<button class="btn-secondary rounded">Delete</button><br>').attr('href', route);
+   //$("#all-favorites").append('<button class="btn-secondary rounded">Delete</button><br>').attr('href', route);
    // https://github.com/tighten/ziggy
    // 
 });
@@ -179,3 +179,18 @@ Object.values(favorites).forEach((favorite) => {
 @else
 <p>No favorites in my DB.</p>
 @endif */
+
+
+
+// ***************** INSERT SEARCH BOX *********************
+
+
+new L.Control.GPlaceAutocomplete({
+    callback: function(place) {
+        var loc = place.geometry.location;
+        map.panTo([loc.lat(), loc.lng()]);
+        map.setZoom(18);
+    }
+}).addTo(map);
+
+

@@ -14,6 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" rel="stylesheet" />
+    <link href="css/placeAutocomplete.css" rel="stylesheet" />
     <title>MAP</title>
 </head>
 
@@ -95,9 +96,9 @@
         <div class="favorites-container .flex-column h-100 w-100 justify-content-around p-2 mb-2 mt-2 ">
             <h2>My Favorites</h2>
             {{-- SHOW FAVORITES --}}
-            
+
             <div id="all-favorites" class="border mb-2 mt-2 " style="background-color: rgb(247, 245, 245)">
-                
+
                 {{-- @if (!empty($favorites))
                     @foreach ($favorites as $favorite)
                     <div>
@@ -115,22 +116,22 @@
                     @else
                     <p>No favorites in my DB.</p>
                     @endif --}}
-                    
-                    
+
+
+            </div>
+            <div class="favorite-form-container d-flex flex-column flex-fill justify-content-center align-items-center">
+                @include('new-favorite')
+                <div class="response">
+                    {{-- ERRORS HANDLING --}}
+                    @if ($message = Session::get('success'))
+                        <p style="color:green">{{ $message }}</p>
+                    @endif
+
+                    @if ($message = Session::get('error'))
+                        <p style="color:red">{{ $message }}</p>
+                    @endif
                 </div>
-                <div class="favorite-form-container d-flex flex-column flex-fill justify-content-center align-items-center">
-                    @include('new-favorite')
-                    <div class="response">
-                        {{-- ERRORS HANDLING --}}
-                        @if ($message = Session::get('success'))
-                            <p style="color:green">{{ $message }}</p>
-                        @endif
-        
-                        @if ($message = Session::get('error'))
-                            <p style="color:red">{{ $message }}</p>
-                        @endif
-                    </div>
-                </div>
+            </div>
 
             <div class="d-flex flex-row justify-content-center">
                 <input class="btn-secondary rounded w-100 mb-2 mt-2" type="submit" id="done"
@@ -148,6 +149,9 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 
+
+
+
     <!--  Script for the Map -->
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
 
@@ -158,11 +162,16 @@
         console.log(favorites)
     </script>
 
-    {{-- <script type="text/javascript">
-    var pollutant = JSON.parse({!! json_encode($array['pollutant']) !!});
-</script> --}}
+
+
+    <!--  Script for the SearchBox -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGPahFxTIjD23cemDxCcXJTeUmRblqRfs&libraries=places">
+    </script>
+
+    <script type="text/javascript" src="/js/placeAutocomplete.js"></script>
     <script type="text/javascript" src="/js/map.js"></script>
 
+   
 
     <!--  Script for Favorite -->
     {{-- <script type="text/javascript">
