@@ -184,7 +184,7 @@
 
 
     <!--  Script for the SearchBox -->
-    <script type="text/javascript" src="/js/placeAutocomplete.js"></script>
+    <script type="text/javascript" src="/js/leaflet-gplaces-autocomplete.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGPahFxTIjD23cemDxCcXJTeUmRblqRfs&libraries=places">
     </script>
 
