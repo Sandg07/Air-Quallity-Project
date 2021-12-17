@@ -179,9 +179,9 @@ $("#addFavoriteBtn").on("click", function (e) {
 });
 
 new L.Control.GPlaceAutocomplete({
-    callback: function(place) {
+    callback: function (place) {
         var loc = place.geometry.location;
         map.panTo([loc.lat(), loc.lng()]);
-    }
-        map.setZoom(18);
+    },
+    // map.setZoom(18);
 }).addTo(map);
