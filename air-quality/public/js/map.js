@@ -66,6 +66,53 @@ function addPoint(LatLgn, color) {
   }).addTo(map);
 }
 
+var pollButtons = ["pm10", "no2", "o3", "pm25"];
+pollButtons.forEach(function (poll) {
+  $("#".concat(poll)).on("click", function (e) {
+    e.preventDefault();
+
+    var _token = $('meta[name="csrf-token"]').attr("content");
+
+    $.ajax({
+      url: "/map",
+      type: "POST",
+      data: {
+        poll: poll,
+        _token: _token
+      },
+      success: function success(response) {
+        var newData = JSON.parse(response.apiData.pollutant);
+        newData[poll].forEach(function (point) {
+          if (point.index == 1) {
+            var color = "#4169E1";
+          } else if (point.index == 2) {
+            var color = "#7a96ea";
+          } else if (point.index == 3) {
+            var color = "#b3c3f3";
+          } else if (point.index == 4) {
+            var color = "#d9e1f9";
+          } else if (point.index == 5) {
+            var color = "#FFFF66";
+          } else if (point.index == 6) {
+            var color = "#FFCC00";
+          } else if (point.index == 7) {
+            var color = "#FF9800";
+          } else if (point.index == 8) {
+            var color = "#FF0000";
+          } else if (point.index == 9) {
+            var color = "#bf0000";
+          } else if (point.index == 9) {
+            var color = "#800000";
+          } //this one use first y then x
+
+
+          var LatLgn = L.latLng(point.y, point.x);
+          addPoint(LatLgn, color);
+        });
+      }
+    });
+  });
+});
 var alldata = JSON.parse(pollutant.pollutant);
 var allpm10 = alldata.pm10.forEach(function (data) {
   if (data.index == 1) {
@@ -132,9 +179,7 @@ if (favorites != undefined && favorites.length != 0) {
 
 $("#addFavoriteBtn").on("click", function (e) {
   e.preventDefault();
-
-  var _token = $('meta[name="csrf-token"]').attr("content");
-
+  var newtoken = $('meta[name="csrf-token"]').attr("content");
   var id = $("input[name='id']").val();
   var name = $("input[name='name']").val();
   var category = $("select").val();
@@ -149,10 +194,11 @@ $("#addFavoriteBtn").on("click", function (e) {
       category: category,
       user_id: user_id,
       coordinates: coordinates,
-      _token: _token
+      _token: newtoken
     },
     success: function success(response) {
       last = response.last;
+      console.log(response);
       L.marker([last.coordinates_x, last.coordinates_y]).addTo(map);
       $("#favoriteForm")[0].reset();
       $("<div><strong>Name of place :</strong> ".concat(last.name, "<br>\n            <strong>Category: </strong> ").concat(last.category, "<br>")).appendTo("#all-favorites");
