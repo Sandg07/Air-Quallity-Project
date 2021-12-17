@@ -163,8 +163,7 @@ new L.Control.GPlaceAutocomplete({
   callback: function callback(place) {
     var loc = place.geometry.location;
     map.panTo([loc.lat(), loc.lng()]);
-  }
-  /* map.setZoom(18); */
+  } // map.setZoom(18);
 
 }).addTo(map);
 /******/ })()
