@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use App\Models\Favorite;
 use Illuminate\Support\Facades\DB;
@@ -14,12 +14,17 @@ class FavoriteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
         $favorites = Favorite::all();
-        return view('favorites', ['favorites' => $favorites]);
-    }
+        $api = new ApiController();
+        $data = $api->index();
+        $array = [$favorites, $data];
 
+        return view('map', ['array' => $array]);
+    }
     /**
      * Show the form for creating a new resource.
      *

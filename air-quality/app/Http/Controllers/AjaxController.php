@@ -9,4 +9,5 @@ use Illuminate\Support\Facades\Storage;
 
 class AjaxController extends Controller
 {
+   
 }
