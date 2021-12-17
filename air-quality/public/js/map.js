@@ -1,170 +1,24 @@
 /******/ (() => { // webpackBootstrap
-var __webpack_exports__ = {};
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./resources/js/map.js":
 /*!*****************************!*\
   !*** ./resources/js/map.js ***!
   \*****************************/
-// Where you want to render the map.
-var element = document.getElementById("osm-map"); // Height has to be set. You can do this in CSS too.
+/***/ (() => {
 
-element.style = "height:500px; width:100%"; // Create Leaflet map on map element.
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\Users\\catia\\Documents\\Cati\\CodingJobs\\Final-project\\Air-Quallity-Project\\air-quality\\resources\\js\\map.js: Unexpected token, expected \",\" (186:8)\n\n\u001b[0m \u001b[90m 184 |\u001b[39m         map\u001b[33m.\u001b[39mpanTo([loc\u001b[33m.\u001b[39mlat()\u001b[33m,\u001b[39m loc\u001b[33m.\u001b[39mlng()])\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 185 |\u001b[39m     }\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 186 |\u001b[39m         map\u001b[33m.\u001b[39msetZoom(\u001b[35m18\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m     |\u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 187 |\u001b[39m })\u001b[33m.\u001b[39maddTo(map)\u001b[33m;\u001b[39m\u001b[0m\n    at Parser._raise (C:\\Users\\catia\\Documents\\Cati\\CodingJobs\\Final-project\\Air-Quallity-Project\\air-quality\\node_modules\\@babel\\parser\\lib\\index.js:541:17)\n    at Parser.raiseWithData (C:\\Users\\catia\\Documents\\Cati\\CodingJobs\\Final-project\\Air-Quallity-Project\\air-quality\\node_modules\\@babel\\parser\\lib\\index.js:534:17)\n    at Parser.raise (C:\\Users\\catia\\Documents\\Cati\\CodingJobs\\Final-project\\Air-Quallity-Project\\air-quality\\node_modules\\@babel\\parser\\lib\\index.js:495:17)\n    at Parser.unexpected (C:\\Users\\catia\\Documents\\Cati\\CodingJobs\\Final-project\\Air-Quallity-Project\\air-quality\\node_modules\\@babel\\parser\\lib\\index.js:3580:16)\n    at Parser.expect (C:\\Users\\catia\\Documents\\Cati\\CodingJobs\\Final-project\\Air-Quallity-Project\\air-quality\\node_modules\\@babel\\parser\\lib\\index.js:3554:28)\n    at Parser.parseObjectLike (C:\\Users\\catia\\Documents\\Cati\\CodingJobs\\Final-project\\Air-Quallity-Project\\air-quality\\node_modules\\@babel\\parser\\lib\\index.js:12460:14)\n    at Parser.parseExprAtom (C:\\Users\\catia\\Documents\\Cati\\CodingJobs\\Final-project\\Air-Quallity-Project\\air-quality\\node_modules\\@babel\\parser\\lib\\index.js:11913:23)\n    at Parser.parseExprSubscripts (C:\\Users\\catia\\Documents\\Cati\\CodingJobs\\Final-project\\Air-Quallity-Project\\air-quality\\node_modules\\@babel\\parser\\lib\\index.js:11584:23)\n    at Parser.parseUpdate (C:\\Users\\catia\\Documents\\Cati\\CodingJobs\\Final-project\\Air-Quallity-Project\\air-quality\\node_modules\\@babel\\parser\\lib\\index.js:11564:21)\n    at Parser.parseMaybeUnary (C:\\Users\\catia\\Documents\\Cati\\CodingJobs\\Final-project\\Air-Quallity-Project\\air-quality\\node_modules\\@babel\\parser\\lib\\index.js:11539:23)");
 
-var map = L.map(element); // Add OSM tile layer to the Leaflet map.
+/***/ })
 
-L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
-  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map); // Target's GPS coordinates.
-
-var targetLuxCity = L.latLng("49.8096317", "6.064453"); //Luxembourg
-// Set map's center to target with zoom 14.
-
-map.setView(targetLuxCity, 9); // ***************** SCALE COLORS *********************
-// > 200 = #800000
-// 151 - 200 = #bf0000
-// 101 - 150 = #FF0000
-// 71 - 100 = #FF9800
-// 51 - 70 = #FFCC00
-// 41 - 50 = #FFFF66
-// 31 - 40 = #d9e1f9
-// 21 - 30 = #b3c3f3
-// 11 - 20 = #7a96ea
-// <= 10 = #4169E1
-// ***************************************************
-
-/*  L.marker([39.61, -105.02]).bindPopup('Littleton, CO.').addTo(groups.poluents);
-
-var groupedOverlays = {
-    "Poluents": {
-      "PM10": groups.poluents,
-      
-    },
-    "Favorites": {
-      "Favorite": groups.favorites,
-     
-    }
-  };
-  
-  L.control.groupedLayers(basemaps, groupedOverlays, options).addTo(map);
-
-var options = {
-    exclusiveGroups: ["Poluents"],
-    groupCheckboxes:true};
-
-
-
-var layerControl = L.control.groupedLayers(groupedOverlays, options);
-map.addControl(layerControl);
-
-   */
-// ***************** INSERT PM10 POINTS *********************
-
-function addPoint(LatLgn, color) {
-  var circle = L.circle(LatLgn, {
-    color: "transparent",
-    fillColor: color,
-    fillOpacity: 0.6,
-    radius: 500
-  }).addTo(map);
-}
-
-var alldata = JSON.parse(pollutant.pollutant);
-var allpm10 = alldata.pm10.forEach(function (data) {
-  if (data.index == 1) {
-    var color = "#4169E1";
-  } else if (data.index == 2) {
-    var color = "#7a96ea";
-  } else if (data.index == 3) {
-    var color = "#b3c3f3";
-  } else if (data.index == 4) {
-    var color = "#d9e1f9";
-  } else if (data.index == 5) {
-    var color = "#FFFF66";
-  } else if (data.index == 6) {
-    var color = "#FFCC00";
-  } else if (data.index == 7) {
-    var color = "#FF9800";
-  } else if (data.index == 8) {
-    var color = "#FF0000";
-  } else if (data.index == 9) {
-    var color = "#bf0000";
-  } else if (data.index == 9) {
-    var color = "#800000";
-  } //this one use first y then x
-
-
-  var LatLgn = L.latLng(data.y, data.x);
-  addPoint(LatLgn, color);
-}); // /**
-//  ** ON CLICK EVENT
-//  */
-
-var currentMarker;
-map.on("click", function (e) {
-  if (currentMarker && currentMarker["cleared"] == false) {
-    currentMarker._icon.style.transition = "transform 0.3s ease-out";
-    currentMarker._shadow.style.transition = "transform 0.3s ease-out";
-    currentMarker.setLatLng(e.latlng);
-    setTimeout(function () {
-      currentMarker._icon.style.transition = null;
-      currentMarker._shadow.style.transition = null;
-    }, 300);
-    $("#coordinates").attr({
-      value: e.latlng.lat + "," + e.latlng.lng
-    });
-    return;
-  } else if (!currentMarker) currentMarker = L.marker(e.latlng, {
-    draggable: true
-  }).addTo(map).on("click", function () {
-    e.originalEvent.stopPropagation();
-  }); // Add an input to the DB
-
-
-  $("#coordinates").attr({
-    value: e.latlng.lat + "," + e.latlng.lng
-  });
-  currentMarker["cleared"] = false;
-});
-
-if (favorites != undefined && favorites.length != 0) {
-  favorites.forEach(function (favorite) {
-    L.marker([favorite.coordinates_x, favorite.coordinates_y]).addTo(map);
-  });
-}
-
-$("#addFavoriteBtn").on("click", function (e) {
-  e.preventDefault();
-
-  var _token = $('meta[name="csrf-token"]').attr("content");
-
-  var id = $("input[name='id']").val();
-  var name = $("input[name='name']").val();
-  var category = $("select").val();
-  var user_id = $("input[name='user_id']").val();
-  var coordinates = $("#coordinates").val();
-  $.ajax({
-    url: "/map",
-    type: "POST",
-    data: {
-      id: id,
-      name: name,
-      category: category,
-      user_id: user_id,
-      coordinates: coordinates,
-      _token: _token
-    },
-    success: function success(response) {
-      last = response.last;
-      L.marker([last.coordinates_x, last.coordinates_y]).addTo(map);
-      $("#favoriteForm")[0].reset();
-      $("<div><strong>ID: ".concat(last.id, " </strong><br><strong>Name of place :</strong> ").concat(last.name, "<br>\n            <strong>Category: </strong> ").concat(last.category, "<br>\n            <strong>Coordinates_x: </strong> ").concat(last.coordinates_x, "<br>\n            <strong>Coordinates_y: </strong>").concat(last.coordinates_y, " <br>\n            <strong>User_id: </strong>").concat(last.user_id, " <br>")).appendTo("#all-favorites");
-    }
-  });
-});
-new L.Control.GPlaceAutocomplete({
-  callback: function callback(place) {
-    var loc = place.geometry.location;
-    map.panTo([loc.lat(), loc.lng()]);
-    map.setZoom(18);
-  }
-}).addTo(map);
+/******/ 	});
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module doesn't tell about it's top-level declarations so it can't be inlined
+/******/ 	var __webpack_exports__ = {};
+/******/ 	__webpack_modules__["./resources/js/map.js"]();
+/******/ 	
 /******/ })()
 ;
