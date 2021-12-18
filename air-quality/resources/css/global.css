@@ -1,4 +1,8 @@
 /**
+design section login/register page
+*/
+
+/**
  * Login page
  */
 
@@ -19,7 +23,7 @@ svg.logo {
     max-width: 350px;
     padding: 15px;
     margin: auto;
-    background-color: #e9ecef;
+    /* background-color: #e9ecef; */
 }
 
 .form-signin .checkbox {
