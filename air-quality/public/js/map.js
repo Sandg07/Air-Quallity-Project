@@ -37,9 +37,109 @@ function addPoint(LatLgn, color) {
     fillOpacity: 0.6,
     radius: 500
   }).addTo(map);
+  return circle;
+}
+
+function removePoints(pointsArray) {
+  pointsArray.forEach(function (pointsOnMap) {
+    map.removeLayer(pointsOnMap);
+  });
 }
 
 var pollButtons = ["pm10", "no2", "o3", "pm25"];
+var alldata = JSON.parse(pollutant.pollutant);
+var barchartData = [{
+  label: "index1",
+  y: 0
+}, {
+  label: "index2",
+  y: 0
+}, {
+  label: "index3",
+  y: 0
+}, {
+  label: "index4",
+  y: 0
+}, {
+  label: "index5",
+  y: 0
+}, {
+  label: "index6",
+  y: 0
+}, {
+  label: "index7",
+  y: 0
+}, {
+  label: "index8",
+  y: 0
+}, {
+  label: "index9",
+  y: 0
+}, {
+  label: "index10",
+  y: 0
+}];
+var allPoints = [];
+var allpm10 = alldata.pm10.forEach(function (data) {
+  if (data.index == 1) {
+    var color = "#4169E1";
+    barchartData[0].y++;
+  } else if (data.index == 2) {
+    var color = "#7a96ea";
+    barchartData[1].y++;
+  } else if (data.index == 3) {
+    var color = "#b3c3f3";
+    barchartData[2].y++;
+  } else if (data.index == 4) {
+    var color = "#d9e1f9";
+    barchartData[3].y++;
+  } else if (data.index == 5) {
+    var color = "#FFFF66";
+    barchartData[4].y++;
+  } else if (data.index == 6) {
+    var color = "#FFCC00";
+    barchartData[5].y++;
+  } else if (data.index == 7) {
+    var color = "#FF9800";
+    barchartData[6].y++;
+  } else if (data.index == 8) {
+    var color = "#FF0000";
+    barchartData[7].y++;
+  } else if (data.index == 9) {
+    var color = "#bf0000";
+    barchartData[8].y++;
+  } else if (data.index == 9) {
+    var color = "#800000";
+    barchartData[9].y++;
+  } //this one use first y then x
+
+
+  var LatLgn = L.latLng(data.y, data.x);
+  var point = addPoint(LatLgn, color);
+  allPoints.push(point);
+});
+console.log(allPoints); // ***************** ADD BARCHART ******************************
+
+window.onload = function () {
+  var chart = new CanvasJS.Chart("chartContainer1", {
+    animationEnabled: true,
+    exportEnabled: true,
+    theme: "light1",
+    title: {
+      text: "PM10"
+    },
+    data: [{
+      type: "column",
+      indexLabel: "{y}",
+      indexLabelFontColor: "#5A5757",
+      indexLabelPlacement: "inside",
+      dataPoints: barchartData
+    }]
+  });
+  chart.render();
+};
+
+var newPoints = [];
 pollButtons.forEach(function (poll) {
   $("#".concat(poll)).on("click", function (e) {
     e.preventDefault();
@@ -54,6 +154,13 @@ pollButtons.forEach(function (poll) {
         _token: _token
       },
       success: function success(response) {
+        if (allPoints.length > 1) {
+          removePoints(allPoints);
+          allPoints = [];
+        } else {
+          removePoints(newPoints);
+        }
+
         var newData = JSON.parse(response.apiData.pollutant);
         var newbarchartData = [{
           label: "index1",
@@ -121,7 +228,8 @@ pollButtons.forEach(function (poll) {
 
 
           var LatLgn = L.latLng(point.y, point.x);
-          addPoint(LatLgn, color);
+          var newPoint = addPoint(LatLgn, color);
+          newPoints.push(newPoint);
         });
         var chart1 = new CanvasJS.Chart("chartContainer1", {
           animationEnabled: true,
@@ -142,98 +250,9 @@ pollButtons.forEach(function (poll) {
       }
     });
   });
-});
-var alldata = JSON.parse(pollutant.pollutant);
-var barchartData = [{
-  label: "index1",
-  y: 0
-}, {
-  label: "index2",
-  y: 0
-}, {
-  label: "index3",
-  y: 0
-}, {
-  label: "index4",
-  y: 0
-}, {
-  label: "index5",
-  y: 0
-}, {
-  label: "index6",
-  y: 0
-}, {
-  label: "index7",
-  y: 0
-}, {
-  label: "index8",
-  y: 0
-}, {
-  label: "index9",
-  y: 0
-}, {
-  label: "index10",
-  y: 0
-}];
-var allpm10 = alldata.pm10.forEach(function (data) {
-  if (data.index == 1) {
-    var color = "#4169E1";
-    barchartData[0].y++;
-  } else if (data.index == 2) {
-    var color = "#7a96ea";
-    barchartData[1].y++;
-  } else if (data.index == 3) {
-    var color = "#b3c3f3";
-    barchartData[2].y++;
-  } else if (data.index == 4) {
-    var color = "#d9e1f9";
-    barchartData[3].y++;
-  } else if (data.index == 5) {
-    var color = "#FFFF66";
-    barchartData[4].y++;
-  } else if (data.index == 6) {
-    var color = "#FFCC00";
-    barchartData[5].y++;
-  } else if (data.index == 7) {
-    var color = "#FF9800";
-    barchartData[6].y++;
-  } else if (data.index == 8) {
-    var color = "#FF0000";
-    barchartData[7].y++;
-  } else if (data.index == 9) {
-    var color = "#bf0000";
-    barchartData[8].y++;
-  } else if (data.index == 9) {
-    var color = "#800000";
-    barchartData[9].y++;
-  } //this one use first y then x
-
-
-  var LatLgn = L.latLng(data.y, data.x);
-  addPoint(LatLgn, color);
-}); // ***************** ADD BARCHART ******************************
-
-window.onload = function () {
-  var chart = new CanvasJS.Chart("chartContainer1", {
-    animationEnabled: true,
-    exportEnabled: true,
-    theme: "light1",
-    title: {
-      text: "PM10"
-    },
-    data: [{
-      type: "column",
-      indexLabel: "{y}",
-      indexLabelFontColor: "#5A5757",
-      indexLabelPlacement: "inside",
-      dataPoints: barchartData
-    }]
-  });
-  chart.render();
-}; // /**
+}); // /**
 //  ** ON CLICK EVENT
 //  */
-
 
 var currentMarker;
 map.on("click", function (e) {

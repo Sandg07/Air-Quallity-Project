@@ -19,13 +19,10 @@
 </head>
 
 <body>
+    <div id="chartContainer1" style="height: 370px; width: 100%;"></div>
     <div class="map-favorite-container container col-12 ">
-
         <div class="row justify-content-md-center">
-
             <div class="map-container col mb-2 mt-2 ">
-
-
                 <div class="col">
                     <form method="POST">
                         @csrf
@@ -34,15 +31,11 @@
                             <button class="btn btn-primary " type="button" name="poll" id="no2">NO2</button>
                             <button class="btn btn-primary" type="button" name="poll" id="o3"> O3 </button>
                             <button class="btn btn-primary " type="button" name="poll" id="pm25"> PM2.5 </button>
-
                         </div>
                     </form>
                 </div>
-
-
                 <div class="col">
                     <div class="container-map" id="osm-map"></div>
-
 
                     <div class="row p-2">
                         <div class="col">
@@ -93,7 +86,6 @@
                 </div>
             </div>
 
-
             <div class="favorites-container col border flex-row p-2 mb-2 mt-2">
                 <h2>My Favorites</h2>
                 {{-- SHOW FAVORITES --}}
@@ -102,8 +94,6 @@
                     style="background-color: rgb(247, 245, 245)">
 
                     @if (count($array[0]) >= 1)
-
-
                         @foreach ($array[0] as $favorite)
                             <div>
                                 <strong>Name of place : </strong>{{ $favorite->name }}<br>
@@ -118,7 +108,6 @@
                         <p>No favorites in my DB.</p>
                     @endif
                 </div>
-
 
                 <button class="btn btn-primary" type="button" name="add-favorite" id="addFavoriteSection" value="">Add a
                     favorite place</button>
@@ -143,11 +132,7 @@
                             <input type="submit" name="addFavoriteBtn" id="addFavoriteBtn" value="Add">
                         </form>
                     </div>
-
                 </div>
-
-
-
                 <div class="response">
                     {{-- ERRORS HANDLING --}}
                     @if ($message = Session::get('success'))
@@ -159,44 +144,21 @@
                     @endif
                 </div>
             </div>
-
-
-
-
-
-
-
         </div>
-
-
-
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"
                 integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
-
-
-
-
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
         <!--  Script for the Map -->
         <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-
         <script>
             var pollutant = {!! json_encode($array[1]) !!}
-            console.log(pollutant.pollutant.no2)
             var favorites = {!! json_encode($array[0]) !!}
-            console.log(favorites)
         </script>
-
-
-
         <!--  Script for the SearchBox -->
         <script type="text/javascript" src="/js/leaflet-gplaces-autocomplete.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGPahFxTIjD23cemDxCcXJTeUmRblqRfs&libraries=places">
         </script>
-
         <script type="text/javascript" src="/js/map.js"></script>
-
-
         {{-- <script type="text/javascript">
     new L.Control.GPlaceAutocomplete({
         callback: function(place){
@@ -212,9 +174,6 @@
           var favorites = {!! json_encode($favorites) !!};
     </script> --}}
         {{-- <script src="/js/Control.Coordinates.js"></script> --}}
-
-
-
         <!--  AJAX call -->
 
         <script>
