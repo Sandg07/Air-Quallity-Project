@@ -11,18 +11,17 @@
             <div class="login-container container">
 
 
+                <div class="colum justify-content-center">
 
-                <div class="colum justify-content-sm-center">
 
-                    <x-slot name="logo" class="navbar-brand">
+                    <x-slot name="logo">
                         <a href="/">
-                            <img src="{{ URL::to('/assets/logo_letzbreathe.svg') }}" class="d-block mx-lg-auto img-fluid"
-                                width="70" height="100" loading="lazy" alt="...">
+                            <x-application-logo class="w-5 h-3" />
                         </a>
                     </x-slot>
 
 
-                    <div class="form-container-login justify-content-sm-center">
+                    <div class="form-container-login justify-content-center">
 
                         <!-- Validation Errors -->
                         <x-auth-validation-errors class="mb-4" :errors="$errors" />
@@ -54,8 +53,8 @@
                             <div class="mt-4">
                                 <x-label for="email" :value="__('Email')" />
 
-                                <x-input id="email" class="block mt-1 w-full" type="email" name="email"
-                                    :value="old('email')" required />
+                                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                                    required />
                             </div>
 
                             <!-- Password -->
