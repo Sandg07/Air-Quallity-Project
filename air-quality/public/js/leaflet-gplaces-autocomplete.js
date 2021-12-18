@@ -9,7 +9,7 @@ var __webpack_exports__ = {};
     options: {
       position: "topright",
       prepend: true,
-      collapsed_mode: false,
+      collapsed_mode: true,
       placeholder: null,
       autocomplete_options: {}
     },

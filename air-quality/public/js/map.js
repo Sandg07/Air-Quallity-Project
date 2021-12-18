@@ -318,9 +318,8 @@ $("#addFavoriteBtn").on("click", function (e) {
 
 new L.Control.GPlaceAutocomplete({
   callback: function callback(place) {
-    var loc = place.geometry.location;
-    map.panTo([loc.lat(), loc.lng()]);
-    map.setZoom(16);
+    var loc = L.latLng(place.geometry.location.lat(), place.geometry.location.lng());
+    map.setView(loc, 14);
   }
 }).addTo(map); // ***************** SHOW ADD FAVORITE SECTION *********************
 
