@@ -5,7 +5,7 @@
         options: {
             position: "topright",
             prepend: true,
-            collapsed_mode: false,
+            collapsed_mode: true,
             placeholder: null,
             autocomplete_options: {}
         },
@@ -99,6 +99,7 @@
 
         onLocationComplete: function (place, map) {
             // default callback
+            
             if (!place.geometry) {
                 alert("Location not found");
                 return;
