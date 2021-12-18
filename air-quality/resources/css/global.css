@@ -1,7 +1,10 @@
 /**
-design section login/register page
+global
 */
 
+body {
+    background-color: #e4e3e3;
+}
 /**
  * Login page
  */
