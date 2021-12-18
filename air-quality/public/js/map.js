@@ -117,8 +117,7 @@ var allpm10 = alldata.pm10.forEach(function (data) {
   var LatLgn = L.latLng(data.y, data.x);
   var point = addPoint(LatLgn, color);
   allPoints.push(point);
-});
-console.log(allPoints); // ***************** ADD BARCHART ******************************
+}); // ***************** ADD BARCHART ******************************
 
 window.onload = function () {
   var chart = new CanvasJS.Chart("chartContainer1", {

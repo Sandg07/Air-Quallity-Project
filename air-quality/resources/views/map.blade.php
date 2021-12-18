@@ -19,7 +19,9 @@
 </head>
 
 <body>
-    <div id="chartContainer1" style="height: 370px; width: 100%;"></div>
+    <div class="chart-container">
+        <div id="chartContainer1" style="height: 150px; width: 50%;"></div>
+    </div>
     <div class="map-favorite-container container col-12 ">
         <div class="row justify-content-md-center">
             <div class="map-container col mb-2 mt-2 ">

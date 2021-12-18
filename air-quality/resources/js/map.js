@@ -101,7 +101,7 @@ var allpm10 = alldata.pm10.forEach(function (data) {
     let point = addPoint(LatLgn, color);
     allPoints.push(point);
 });
-console.log(allPoints);
+
 // ***************** ADD BARCHART ******************************
 window.onload = function () {
     var chart = new CanvasJS.Chart("chartContainer1", {
