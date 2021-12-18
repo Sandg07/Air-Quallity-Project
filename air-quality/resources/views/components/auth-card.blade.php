@@ -7,30 +7,28 @@
 
 {{-- <div class="auth-bg bg-gray-400">
     <div class="row justify-content-center  flex-wrap "> --}}
-<div class="auth-bg bg-gray-400">
+<div class="bg-gray-400">
     <div class="d-flex flex-column flex-root">
-        <div class="d-flex flex-column flex-lg-row flex-column-fluid flex-row-fluid justify-content-around">
+        <div class="d-flex flex-column flex-lg-row flex-column-fluid flex-row-fluid justify-content-stretch">
 
             {{-- aside --}}
-            {{-- <div class="d-flex flex-column flex-lg-row-auto bg-success w-lg-600px positon-lg-relative p-10"> --}}
-            <div
-                class="d-flex flex-column bg-success position-lg-fixed top-0 bottom-0 w-xl-700px scroll-y  justify-content-center align-items-center">
-                <div class="d-flex flex-row-fluid flex-column text-center w-100 p-5 pt-lg-20 h-lg-vh-100">
-
+            <div class="d-flex flex-column bg-success  scroll-y  justify-content-center align-items-center">
+                <div class="d-flex flex-row-fluid flex-column text-center w-auto p-3 pt-lg-20 h-lg-vh-100"
+                    style="width:100%">
                     {{ $logo }}
                 </div>
 
             </div>
-            {{-- </div> --}}
+
 
             {{-- body form --}}
-            <div class="d-flex flex-column flex-lg-row-fluid p-10">
-                <div class="d-flex flex-column flex-column-fluid  justify-content-center align-items-center">
-                    <div class="w-lg-600px p-lg-15 mx-auto vh-100 p-10">
+            <div class="d-flex flex-center flex-column p-10 col-lg-6">
 
-                        {{ $slot }}
+                <div class=" flex-column-fluid p-lg-15 mx-auto vh-100 p-10 flex-center">
 
-                    </div>
+                    {{ $slot }}
+
+
                 </div>
             </div>
         </div>

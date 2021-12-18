@@ -1,4 +1,8 @@
 /**
+design section login/register page
+*/
+
+/**
  * Login page
  */
 
@@ -6,20 +10,12 @@ svg.logo {
     text-align: center;
 }
 
-.login-container {
-    /* display: flex;
-    align-items: center; */
-    padding-top: 20px;
-    padding-bottom: 20px;
-    /* background-color: #f5f5f5; */
-}
-
 .form-signin {
+    margin-top: 5vh;
     width: 100%;
     max-width: 350px;
-    padding: 15px;
-    margin: auto;
-    background-color: #e9ecef;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .form-signin .checkbox {
