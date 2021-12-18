@@ -24,7 +24,7 @@
 <body>
     @include('topNavbar');
     <div class="container-fluid">
-        <nav class=" navbar-expand-lg navbar-dark">
+        <nav class="navbar-expand-lg navbar-dark">
             <ul class="nav nav-pills justify-content-center align-content-center flex-wrap ">
                 <li class="order-sm-0 nav-item rounded"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
                 <li class="order-sm-1 nav-item rounded"> <a class="nav-link" href="{{ url('/team') }}">Our
