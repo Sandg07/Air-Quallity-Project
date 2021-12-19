@@ -17,7 +17,7 @@
     <!--  Script for the SearchBox -->
     <link href="css/leaflet-gplaces-autocomplete.css" rel="stylesheet" />
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGPahFxTIjD23cemDxCcXJTeUmRblqRfs&libraries=places">
-        </script>
+    </script>
     <title>MAP</title>
 </head>
 
@@ -46,7 +46,7 @@
                 </div>
                 <div class="col">
                     <div class="container-map" id="osm-map"></div>
-                    
+
                     <div class="row p-2">
                         <div class="col">
                             <div class="square p-2 rounded" style="background-color: #800000;"></div>
@@ -64,7 +64,7 @@
                             <div class="square  p-2  rounded" style="background-color: #FF9800;"></div>
                             <span class="p-2" style="font-size:10px"> 151 - 200</span>
                         </div>
-                        
+
                         <div class="col ">
                             <div class="square  p-2  rounded" style="background-color: #FFCC00;"></div>
                             <span class="p-2" style="font-size:10px"> 111 - 150</span>
@@ -89,87 +89,87 @@
                             <div class="square  p-2  rounded" style="background-color: #4169E1;"></div>
                             <span class="p-2" style="font-size:10px">
                                 <= 25</span>
-                            </div>
-                            
                         </div>
-                        
+
                     </div>
+
                 </div>
-                
-                <div class="favorites-container col border flex-row p-2 mb-2 mt-2">
-                    <h2>My Favorites</h2>
-                    {{-- SHOW FAVORITES --}}
-                    
-                    <div id="all-favorites" class="border overflow-auto h-50 mb-2 mt-2 "
+            </div>
+
+            <div class="favorites-container col border flex-row p-2 mb-2 mt-2">
+                <h2>My Favorites</h2>
+                {{-- SHOW FAVORITES --}}
+
+                <div id="all-favorites" class="border overflow-auto h-50 mb-2 mt-2 "
                     style="background-color: rgb(247, 245, 245)">
-                    
+
                     @if (count($array[0]) >= 1)
-                    @foreach ($array[0] as $favorite)
-                    <div>
-                        <strong>Name of place : </strong>{{ $favorite->name }}<br>
-                        <strong>Category: </strong>{{ $favorite->category }}<br>
-                        <a href="{{ route('favorites.delete', [$favorite->id]) }}">Delete</a>
-                    </div>
-                    <hr>
-                    @endforeach
-                    
-                    
+                        @foreach ($array[0] as $favorite)
+                            <div>
+                                <strong>Name of place : </strong>{{ $favorite->name }}<br>
+                                <strong>Category: </strong>{{ $favorite->category }}<br>
+                                <a href="{{ route('favorites.delete', [$favorite->id]) }}">Delete</a>
+                            </div>
+                            <hr>
+                        @endforeach
+
+
                     @else
-                    <p>No favorites in my DB.</p>
+                        <p>No favorites in my DB.</p>
                     @endif
                 </div>
-                
+
                 <button class="btn btn-primary" type="button" name="add-favorite" id="addFavoriteSection" value="">Add a
                     favorite place</button>
-                    
-                    <div class="invisible" id="favorite-form-container">
-                        
-                        
-                        <h4>Add a new favorite place</h4>
-                        <div>
-                            <form action="" id="favoriteForm" method="POST">
-                                @csrf
-                                <input type="hidden" name="id">
-                                <input type="text" name="name" placeholder="Name of place"> <br>
-                                <select name="category">
-                                    <option value="">select here</option>
-                                    <option value="park">Park</option>
-                                    <option value="city">City</option>
-                                    <option value="running place">Running place</option>
-                                </select><br>
-                                <input type="number" name="user_id" placeholder="user_id hidden"><br>
-                                <input type="text" name="coordinates" id="coordinates">
-                                <input type="submit" name="addFavoriteBtn" id="addFavoriteBtn" value="Add">
-                            </form>
-                        </div>
+
+                <div class="invisible" id="favorite-form-container">
+
+
+                    <h4>Add a new favorite place</h4>
+                    <div>
+                        <form action="" id="favoriteForm" method="POST">
+                            @csrf
+
+                            <input type="text" name="name" placeholder="Name of place"> <br>
+                            <select name="category">
+                                <option value="">select here</option>
+                                <option value="park">Park</option>
+                                <option value="city">City</option>
+                                <option value="running place">Running place</option>
+                            </select><br>
+                            {{-- <input type="number" name="user_id" placeholder="user_id hidden"><br> --}}
+                            <input type="text" name="coordinates" id="coordinates" hidden>
+                            <input type="submit" name="addFavoriteBtn" id="addFavoriteBtn" value="Add">
+                        </form>
+                    </div>
                 </div>
                 <div class="response">
                     {{-- ERRORS HANDLING --}}
                     @if ($message = Session::get('success'))
-                    <p style="color:green">{{ $message }}</p>
+                        <p style="color:green">{{ $message }}</p>
                     @endif
-                    
+
                     @if ($message = Session::get('error'))
-                    <p style="color:red">{{ $message }}</p>
+                        <p style="color:red">{{ $message }}</p>
                     @endif
                 </div>
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-        
+
         <!--  Script for the Map -->
         <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
         <script>
             var pollutant = {!! json_encode($array[1]) !!}
             var favorites = {!! json_encode($array[0]) !!}
-            </script>
+        </script>
 
 
 
-<script type="text/javascript" src="/js/leaflet-gplaces-autocomplete.js"></script>
-<script type="text/javascript" src="/js/map.js"></script>
+        <script type="text/javascript" src="/js/leaflet-gplaces-autocomplete.js"></script>
+        <script type="text/javascript" src="/js/map.js"></script>
 
 
 

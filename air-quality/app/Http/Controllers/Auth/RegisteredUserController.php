@@ -38,13 +38,30 @@ class RegisteredUserController extends Controller
                 'city' => ['string', 'max:255'],
             ]);
         }
-        $request->validate([
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
+        $request->validate(
+            [
+                'first_name' => ['required', 'string', 'max:255'],
+                'last_name' => ['required', 'string', 'max:255'],
 
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            ],
+            [
+                'first_name.required' => 'First Name is mandatory',
+                'first_name.string' => 'First Name has to be a string',
+                'first_name.max' => 'First Name cannot be longer than 255 characters',
+                'last_name.required' => 'Last Name is mandatory',
+                'last_name.string' => 'Last Name has to be a string',
+                'last_name.max' => 'Last Name cannot be longer than 255 characters',
+                'email.required' => 'Email is mandatory',
+                'email.string' => 'Email has to be a string',
+                'email.email' => 'Please enter a valid email adress',
+                'email.max' => 'Email cannot be longer than 255 characters',
+                'email.unique' => 'Email already exists in Database',
+                'password.required' => 'A password is mandatory',
+                'password.confirmed' => 'The confirmation of the password doesn\'t match'
+            ]
+        );
 
         $user = User::create([
             'first_name' => $request->first_name,
