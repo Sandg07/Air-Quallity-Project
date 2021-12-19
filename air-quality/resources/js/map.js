@@ -74,7 +74,9 @@ let pollButtons = ["pm10", "no2", "o3", "pm25"];
 
 let alldata = JSON.parse(pollutant.pollutant);
 console.log(alldata);
+
 let nearestToMyFavorite = [];
+
 let barchartData = [
     { label: "index1", y: 0, color: "#4169E1" },
     { label: "index2", y: 0, color: "#7a96ea" },
@@ -103,6 +105,7 @@ favorites.forEach((favorite) => {
     z++;
 });
 console.log(nearestToMyFavorite);
+
 // ************* CREATING MAP *********************
 
 // Where you want to render the map.
@@ -147,28 +150,10 @@ else if (sum <= 150) pieChartColor = barchartData[7].color;
 else if (sum <= 200) pieChartColor = barchartData[8].color;
 else if (sum > 200) pieChartColor = barchartData[9].color;
 
-// ***************** ADD BARCHART AND PIECHART ******************************
-function removePoints(pointsArray) {
-    pointsArray.forEach((pointsOnMap) => {
-        map.removeLayer(pointsOnMap);
-    });
-}
-var pollButtons = ["pm10", "no2", "o3", "pm25"];
+// ***************** ADD POINTS ******************************
 
-var alldata = JSON.parse(pollutant.pollutant);
-let barchartData = [
-    { label: "index1", y: 0 },
-    { label: "index2", y: 0 },
-    { label: "index3", y: 0 },
-    { label: "index4", y: 0 },
-    { label: "index5", y: 0 },
-    { label: "index6", y: 0 },
-    { label: "index7", y: 0 },
-    { label: "index8", y: 0 },
-    { label: "index9", y: 0 },
-    { label: "index10", y: 0 },
-];
-let allPoints = [];
+/* 
+
 var allpm10 = alldata.pm10.forEach(function (data) {
     if (data.index == 1) {
         var color = "#4169E1";
@@ -206,12 +191,12 @@ var allpm10 = alldata.pm10.forEach(function (data) {
     let point = addPoint(LatLgn, color);
     allPoints.push(point);
 });
-console.log(allPoints);
+console.log(allPoints); */
 
-// ***************** ADD BARCHART ******************************
+// ***************** ADD BARCHART AND PIECHART ******************************
 
-CanvasJS.addColorSet("customColorSet1",
-    ["#4169E1",
+CanvasJS.addColorSet("customColorSet1", [
+    "#4169E1",
     "#7a96ea",
     "#b3c3f3",
     "#d9e1f9",
@@ -221,37 +206,36 @@ CanvasJS.addColorSet("customColorSet1",
     "#FF0000",
     "#bf0000",
     "#800000",
-   ]);
-
+]);
 
 window.onload = function () {
     let chart = new CanvasJS.Chart("chartContainer1", {
         animationEnabled: true,
         exportEnabled: false,
         theme: "light1",
-        colorSet:  "customColorSet1",
-        axisX: {	
-            labelFormatter: function(){
+        colorSet: "customColorSet1",
+        axisX: {
+            labelFormatter: function () {
                 return " ";
-              },	       
-			lineDashType: "dot",
-			gridThickness: 0,
-    tickLength: 0,
-    lineThickness: 0,
-		},
-		axisY: {
-            labelFormatter: function(){
-                return " ";
-              },
-              gridThickness: 0,
-              tickLength: 0,
-              lineThickness: 0,
             },
+            lineDashType: "dot",
+            gridThickness: 0,
+            tickLength: 0,
+            lineThickness: 0,
+        },
+        axisY: {
+            labelFormatter: function () {
+                return " ";
+            },
+            gridThickness: 0,
+            tickLength: 0,
+            lineThickness: 0,
+        },
         data: [
             {
                 type: "column",
                 indexLabel: "{y}",
-                indexLabelFontColor: "#5A5757",
+                indexLabelFontColor: "lightgray",
                 indexLabelPlacement: "inside",
                 dataPoints: barchartData,
             },
@@ -363,24 +347,24 @@ pollButtons.forEach((poll) => {
                     animationEnabled: true,
                     exportEnabled: false,
                     theme: "light1",
-                    colorSet:  "customColorSet1",
-                    axisX: {	
-                        labelFormatter: function(){
+                    colorSet: "customColorSet1",
+                    axisX: {
+                        labelFormatter: function () {
                             return " ";
-                          },	       
+                        },
                         lineDashType: "dot",
                         gridThickness: 0,
-                tickLength: 0,
-                lineThickness: 0,
+                        tickLength: 0,
+                        lineThickness: 0,
                     },
                     axisY: {
-                        labelFormatter: function(){
+                        labelFormatter: function () {
                             return " ";
-                          },
-                          gridThickness: 0,
-                          tickLength: 0,
-                          lineThickness: 0,
                         },
+                        gridThickness: 0,
+                        tickLength: 0,
+                        lineThickness: 0,
+                    },
                     data: [
                         {
                             type: "column",
@@ -420,7 +404,7 @@ pollButtons.forEach((poll) => {
 
 // Favorites
 
-var currentMarker;
+//var currentMarker;
 map.on("click", function (e) {
     if (currentMarker && currentMarker["cleared"] == false) {
         currentMarker._icon.style.transition = "transform 0.3s ease-out";
@@ -448,44 +432,42 @@ map.on("click", function (e) {
     // Add an input to the DB
     $("#coordinates").attr({
         value: e.latlng.lat + "," + e.latlng.lng,
-       
     });
     currentMarker["cleared"] = false;
 });
 
-
 var parkIcon = L.divIcon({
     html: '<i class="bi bi-tree-fill fs-3" style="color: #88bb11"></i>',
-    className: 'myDivIcon'
+    className: "myDivIcon",
 });
 
 var cityIcon = L.divIcon({
     html: '<i class="bi bi-building fs-3" style="color: white"></i>',
-    className: 'myDivIcon'
+    className: "myDivIcon",
 });
 
 var runIcon = L.divIcon({
     html: '<i class="bi bi-bicycle fs-3" style="color: #bf0000"></i>',
-    className: 'myDivIcon'
+    className: "myDivIcon",
 });
 
 var defaultIcon = L.divIcon({
     html: '<i class="bi bi-geo-alt-fill text-secondary mb-1" style="font-size:14px; "></i>',
-    className: 'myDivIcon'
+    className: "myDivIcon",
 });
-
-
 
 if (favorites != undefined && favorites.length != 0) {
     favorites.forEach((favorite) => {
-         if (favorite.category == 'Park') {
+        if (favorite.category == "Park") {
             var icon = parkIcon;
-        } else if (favorite.category == 'City'){
+        } else if (favorite.category == "City") {
             var icon = cityIcon;
         } else {
-        var icon = runIcon;
+            var icon = runIcon;
         }
-        L.marker([favorite.coordinates_x, favorite.coordinates_y], { icon:  icon}).addTo(map);
+        L.marker([favorite.coordinates_x, favorite.coordinates_y], {
+            icon: icon,
+        }).addTo(map);
     });
 }
 
@@ -513,57 +495,44 @@ $("#addFavoriteBtn").on("click", function (e) {
         success: function (response) {
             if ($.isEmptyObject(response.error)) {
                 last = response.last;
+                var runIcon = L.divIcon({
+                    html: '<i class="bi bi-bicycle fs-3" style="color: #bf0000"></i>',
+                    className: "myDivIcon",
+                });
                 L.marker([last.coordinates_x, last.coordinates_y]).addTo(map);
                 $("#favoriteForm")[0].reset();
-                $(`<div><strong>Name of place :</strong> ${last.name}<br>
-            <strong>Category: </strong> ${last.category}<br>`).appendTo(
-                    "#all-favorites"
-                );
+                $$(
+                    `<div class="row m-0 align-items-center">
+                <div class="col col-1 ">` +
+                        (last.category == "Park"
+                            ? `
+                        <i class="bi bi-tree-fill fs-3" style="color: #88bb11"></i>`
+                            : `<i class="bi bi-building fs-3" style="color: gray"></i>`) +
+                        ` </div>
+                <div class="col ps-1 m-1">
+                    <p class="ms-2 mb-0 p-0" style="font-size:14px"><strong>` +
+                        last.name +
+                        `
+                        </strong>
+                    </p>
+                    <p class="ms-2 mb-0 mt-0 p-0" style="font-size:14px; color: gray"> ` +
+                        last.category +
+                        ` </p>
+                </div>
+                <div class="col col-1 m-2">
+                    <a style="font-size:14px"
+                        href="{{ route('favorites.delete', [$favorite->id]) }}">
+                        <div>
+                            <i class="bi bi-x-circle"></i>
+                        </div>
+                    </a>
+                </div>
+                <hr class="m-0">
+            </div>`
+                ).appendTo("#all-favorites");
             } else {
                 printErrorMsg(response.error);
             }
-            last = response.last;
-            console.log(response);
-
-            var runIcon = L.divIcon({
-                html: '<i class="bi bi-bicycle fs-3" style="color: #bf0000"></i>',
-                className: 'myDivIcon'
-            });
-
-            
-
-            L.marker([last.coordinates_x, last.coordinates_y]).addTo(map);
-            $("#favoriteForm")[0].reset();
-            $(`<div class="row m-0 align-items-center">
-            <div class="col col-1 ">`
-            + (last.category == "Park" ? `
-                    <i class="bi bi-tree-fill fs-3" style="color: #88bb11"></i>`:
-                    `<i class="bi bi-building fs-3" style="color: gray"></i>`) +
-              
-           ` </div>
-            <div class="col ps-1 m-1">
-                <p class="ms-2 mb-0 p-0" style="font-size:14px"><strong>` + 
-                        last.name + `
-                    </strong>
-                </p>
-                <p class="ms-2 mb-0 mt-0 p-0" style="font-size:14px; color: gray"> `+ 
-                    last.category + ` </p>
-            </div>
-            <div class="col col-1 m-2">
-                <a style="font-size:14px"
-                    href="{{ route('favorites.delete', [$favorite->id]) }}">
-                    <div>
-                        <i class="bi bi-x-circle"></i>
-                    </div>
-                </a>
-            </div>
-            <hr class="m-0">
-        </div>`).appendTo(
-                "#all-favorites"
-            );
-
-
-            
         },
     });
 });

@@ -160,7 +160,49 @@ var allpm10 = alldata.pm10.forEach(function (data) {
 sum /= pieCounter;
 sum = Math.round(sum * 100) / 100;
 var pieChartColor = "";
-if (sum <= 10) pieChartColor = barchartData[0].color;else if (sum <= 20) pieChartColor = barchartData[1].color;else if (sum <= 30) pieChartColor = barchartData[2].color;else if (sum <= 40) pieChartColor = barchartData[3].color;else if (sum <= 50) pieChartColor = barchartData[4].color;else if (sum <= 70) pieChartColor = barchartData[5].color;else if (sum <= 100) pieChartColor = barchartData[6].color;else if (sum <= 150) pieChartColor = barchartData[7].color;else if (sum <= 200) pieChartColor = barchartData[8].color;else if (sum > 200) pieChartColor = barchartData[9].color; // ***************** ADD BARCHART AND PIECHART ******************************
+if (sum <= 10) pieChartColor = barchartData[0].color;else if (sum <= 20) pieChartColor = barchartData[1].color;else if (sum <= 30) pieChartColor = barchartData[2].color;else if (sum <= 40) pieChartColor = barchartData[3].color;else if (sum <= 50) pieChartColor = barchartData[4].color;else if (sum <= 70) pieChartColor = barchartData[5].color;else if (sum <= 100) pieChartColor = barchartData[6].color;else if (sum <= 150) pieChartColor = barchartData[7].color;else if (sum <= 200) pieChartColor = barchartData[8].color;else if (sum > 200) pieChartColor = barchartData[9].color; // ***************** ADD POINTS ******************************
+
+/* 
+
+var allpm10 = alldata.pm10.forEach(function (data) {
+    if (data.index == 1) {
+        var color = "#4169E1";
+        barchartData[0].y++;
+    } else if (data.index == 2) {
+        var color = "#7a96ea";
+        barchartData[1].y++;
+    } else if (data.index == 3) {
+        var color = "#b3c3f3";
+        barchartData[2].y++;
+    } else if (data.index == 4) {
+        var color = "#d9e1f9";
+        barchartData[3].y++;
+    } else if (data.index == 5) {
+        var color = "#FFFF66";
+        barchartData[4].y++;
+    } else if (data.index == 6) {
+        var color = "#FFCC00";
+        barchartData[5].y++;
+    } else if (data.index == 7) {
+        var color = "#FF9800";
+        barchartData[6].y++;
+    } else if (data.index == 8) {
+        var color = "#FF0000";
+        barchartData[7].y++;
+    } else if (data.index == 9) {
+        var color = "#bf0000";
+        barchartData[8].y++;
+    } else if (data.index == 9) {
+        var color = "#800000";
+        barchartData[9].y++;
+    }
+    //this one use first y then x
+    var LatLgn = L.latLng(data.y, data.x);
+    let point = addPoint(LatLgn, color);
+    allPoints.push(point);
+});
+console.log(allPoints); */
+// ***************** ADD BARCHART AND PIECHART ******************************
 
 CanvasJS.addColorSet("customColorSet1", ["#4169E1", "#7a96ea", "#b3c3f3", "#d9e1f9", "#FFFF66", "#FFCC00", "#FF9800", "#FF0000", "#bf0000", "#800000"]);
 
@@ -190,7 +232,7 @@ window.onload = function () {
     data: [{
       type: "column",
       indexLabel: "{y}",
-      indexLabelFontColor: "#5A5757",
+      indexLabelFontColor: "lightgray",
       indexLabelPlacement: "inside",
       dataPoints: barchartData
     }]
@@ -357,8 +399,8 @@ pollButtons.forEach(function (poll) {
     });
   });
 }); // Favorites
+//var currentMarker;
 
-var currentMarker;
 map.on("click", function (e) {
   if (currentMarker && currentMarker["cleared"] == false) {
     currentMarker._icon.style.transition = "transform 0.3s ease-out";
@@ -386,26 +428,26 @@ map.on("click", function (e) {
 });
 var parkIcon = L.divIcon({
   html: '<i class="bi bi-tree-fill fs-3" style="color: #88bb11"></i>',
-  className: 'myDivIcon'
+  className: "myDivIcon"
 });
 var cityIcon = L.divIcon({
   html: '<i class="bi bi-building fs-3" style="color: white"></i>',
-  className: 'myDivIcon'
+  className: "myDivIcon"
 });
 var runIcon = L.divIcon({
   html: '<i class="bi bi-bicycle fs-3" style="color: #bf0000"></i>',
-  className: 'myDivIcon'
+  className: "myDivIcon"
 });
 var defaultIcon = L.divIcon({
   html: '<i class="bi bi-geo-alt-fill text-secondary mb-1" style="font-size:14px; "></i>',
-  className: 'myDivIcon'
+  className: "myDivIcon"
 });
 
 if (favorites != undefined && favorites.length != 0) {
   favorites.forEach(function (favorite) {
-    if (favorite.category == 'Park') {
+    if (favorite.category == "Park") {
       var icon = parkIcon;
-    } else if (favorite.category == 'City') {
+    } else if (favorite.category == "City") {
       var icon = cityIcon;
     } else {
       var icon = runIcon;
@@ -437,20 +479,15 @@ $("#addFavoriteBtn").on("click", function (e) {
       _token: newtoken
     },
     success: function success(response) {
-      last = response.last;
-      console.log(response);
-      var runIcon = L.divIcon({
-        html: '<i class="bi bi-bicycle fs-3" style="color: #bf0000"></i>',
-        className: 'myDivIcon'
-      });
-      L.marker([last.coordinates_x, last.coordinates_y]).addTo(map);
-      $("#favoriteForm")[0].reset();
-      $("<div class=\"row m-0 align-items-center\">\n            <div class=\"col col-1 \">" + (last.category == "Park" ? "\n                    <i class=\"bi bi-tree-fill fs-3\" style=\"color: #88bb11\"></i>" : "<i class=\"bi bi-building fs-3\" style=\"color: gray\"></i>") + " </div>\n            <div class=\"col ps-1 m-1\">\n                <p class=\"ms-2 mb-0 p-0\" style=\"font-size:14px\"><strong>" + last.name + "\n                    </strong>\n                </p>\n                <p class=\"ms-2 mb-0 mt-0 p-0\" style=\"font-size:14px; color: gray\"> " + last.category + " </p>\n            </div>\n            <div class=\"col col-1 m-2\">\n                <a style=\"font-size:14px\"\n                    href=\"{{ route('favorites.delete', [$favorite->id]) }}\">\n                    <div>\n                        <i class=\"bi bi-x-circle\"></i>\n                    </div>\n                </a>\n            </div>\n            <hr class=\"m-0\">\n        </div>").appendTo("#all-favorites");
       if ($.isEmptyObject(response.error)) {
         last = response.last;
+        var runIcon = L.divIcon({
+          html: '<i class="bi bi-bicycle fs-3" style="color: #bf0000"></i>',
+          className: "myDivIcon"
+        });
         L.marker([last.coordinates_x, last.coordinates_y]).addTo(map);
         $("#favoriteForm")[0].reset();
-        $("<div><strong>Name of place :</strong> ".concat(last.name, "<br>\n            <strong>Category: </strong> ").concat(last.category, "<br>")).appendTo("#all-favorites");
+        $$("<div class=\"row m-0 align-items-center\">\n                <div class=\"col col-1 \">" + (last.category == "Park" ? "\n                        <i class=\"bi bi-tree-fill fs-3\" style=\"color: #88bb11\"></i>" : "<i class=\"bi bi-building fs-3\" style=\"color: gray\"></i>") + " </div>\n                <div class=\"col ps-1 m-1\">\n                    <p class=\"ms-2 mb-0 p-0\" style=\"font-size:14px\"><strong>" + last.name + "\n                        </strong>\n                    </p>\n                    <p class=\"ms-2 mb-0 mt-0 p-0\" style=\"font-size:14px; color: gray\"> " + last.category + " </p>\n                </div>\n                <div class=\"col col-1 m-2\">\n                    <a style=\"font-size:14px\"\n                        href=\"{{ route('favorites.delete', [$favorite->id]) }}\">\n                        <div>\n                            <i class=\"bi bi-x-circle\"></i>\n                        </div>\n                    </a>\n                </div>\n                <hr class=\"m-0\">\n            </div>").appendTo("#all-favorites");
       } else {
         printErrorMsg(response.error);
       }

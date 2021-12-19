@@ -22753,6 +22753,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/css/global.css":
+/*!**********************************!*\
+  !*** ./resources/css/global.css ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./node_modules/process/browser.js":
 /*!*****************************************!*\
   !*** ./node_modules/process/browser.js ***!
@@ -23093,6 +23106,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/js/app": 0,
+/******/ 			"css/global": 0,
 /******/ 			"css/leaflet-gplaces-autocomplete": 0,
 /******/ 			"css/style": 0
 /******/ 		};
@@ -23144,9 +23158,10 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/leaflet-gplaces-autocomplete","css/style"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/leaflet-gplaces-autocomplete","css/style"], () => (__webpack_require__("./resources/scss/style.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/leaflet-gplaces-autocomplete","css/style"], () => (__webpack_require__("./resources/css/leaflet-gplaces-autocomplete.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/global","css/leaflet-gplaces-autocomplete","css/style"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/global","css/leaflet-gplaces-autocomplete","css/style"], () => (__webpack_require__("./resources/scss/style.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/global","css/leaflet-gplaces-autocomplete","css/style"], () => (__webpack_require__("./resources/css/leaflet-gplaces-autocomplete.css")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/global","css/leaflet-gplaces-autocomplete","css/style"], () => (__webpack_require__("./resources/css/global.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
