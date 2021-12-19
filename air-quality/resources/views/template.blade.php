@@ -45,10 +45,14 @@
     </div>
 
 
+    {{-- footer --}}
+
+    <footer class="bg-light">
+        <div class="d-flex flex-row justify-content-around align-items-center mt-50">
+            <p class="text-info"><i> Copyright Air Quality Project 2021</i></p>
+        </div>
 
 
-    <footer class="d-flex flex-row justify-content-around align-items-center bg-info mt-50">
-        <p class="text-primary"><i> Copyright Air Quality Project 2021</i></p>
 
     </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"

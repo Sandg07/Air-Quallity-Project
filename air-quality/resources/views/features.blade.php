@@ -1,6 +1,6 @@
 <!-- Section with four info areas left & one card right with image and waves -->
 <section class="py-6 p-50">
-    <div class="container">
+    <div class="container rounded">
         <div class="row align-items-center">
             <div class="col-lg-6">
                 <div class="row justify-content-start">

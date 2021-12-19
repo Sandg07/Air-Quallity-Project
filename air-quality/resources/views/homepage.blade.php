@@ -37,17 +37,17 @@
         {{-- MAIN FEATURES --}}
         <br>
         <br>
+        <div class="p-6 d-flex flex-column justify-content-center align-items-center" style="padding:20px">
+            <p class="text-secondary text-sm m-0">Features</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="currentColor" class="bi bi-dash-lg"
+                viewBox="0 0 20 16">
+                <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z" />
+            </svg>
+            <h2>App main features</h2>
+            <p>Discover the full features when registering on the app!</p>
+        </div>
+        {{-- shadow rounded container --}}
         <div class="features-homepage-container rounded bg-light shadow" style="margin-bottom:50px">
-            <div class="p-6 d-flex flex-column justify-content-center align-items-start shadow" style="padding:20px">
-
-                <p class="text-secondary text-sm m-0">Features</p>
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="currentColor" class="bi bi-dash-lg"
-                    viewBox="0 0 20 16">
-                    <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z" />
-                </svg>
-                <h2>App main features</h2>
-                <p>Discover the full features when registering on the app!</p>
-            </div>
             <div class="list-features" style="padding:30px">
                 @include('features');
             </div>
@@ -56,7 +56,7 @@
 
         {{-- FAQ SECTION --}}
 
-        <div class="features-homepage-container rounded bg-success shadow" style="margin-bottom:20px">
+        <div class="features-homepage-container rounded" style="margin-bottom:20px">
             <div class="p-2 d-flex flex-column justify-content-center align-items-center" style="padding:20px">
                 <p class="text-secondary text-sm m-0">Questions-Answers</p>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="currentColor" class="bi bi-dash-lg"
@@ -65,15 +65,19 @@
                 </svg>
                 <h2>Questions about Air Quality</h2>
             </div>
-            <div class="bg-light">
+        </div>
+        {{-- shadow rounded container --}}
+        <div class="features-homepage-container rounded bg-light rounded shadow" style="margin-bottom:50px">
+            <div class="list-features bg-success" style="padding:30px">
                 FAQ
 
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis numquam maxime, reiciendis labore
                     pariatur sapiente. Ad incidunt minus odit reprehenderit accusantium. Animi, nostrum sit quos ratione
                     quas suscipit similique odit!</p>
-
             </div>
         </div>
+
+
 
         {{-- MAP FEATURE --}}
         {{-- <div class="map-homepage-container border rounded bg-light-600">
