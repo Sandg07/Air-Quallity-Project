@@ -39,8 +39,8 @@
 
                     <!-- Email Address -->
                     <div class="form-floating mb-3">
-                        <x-input id="email" class="form-control" id="floatingInput" type="email" name="email"
-                            :value="old('email')" required autofocus />
+                        <x-input id="email" class="form-control" type="email" name="email" :value="old('email')" required
+                            autofocus />
                         <x-label for="floatingInput" :value="__('Email')" />
                         <div class="invalid-feedback">
                             Email is required.

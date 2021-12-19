@@ -28,8 +28,8 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
 
-    {{-- Bootstrap script js --}}
-    <script src="/js/app.js" type="text/javascript"></script>
+    {{-- Bootstrap script js
+    <script src="/js/app.js" type="text/javascript"></script> --}}
 </head>
 
 <body class="font-sans antialiased">
