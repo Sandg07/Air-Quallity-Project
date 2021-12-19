@@ -22,6 +22,18 @@ function pointsAndCharts(chartData, data) {
     allPoints.push(point);
 }
 
+function printErrorMsg(msg) {
+    $(".print-error-msg").find("ul").html("");
+
+    $(".print-error-msg").css("display", "block");
+
+    $.each(msg, function (key, value) {
+        $(".print-error-msg")
+            .find("ul")
+            .append("<li>" + value + "</li>");
+    });
+}
+
 // ********** VARIABLES DECLARING ***************
 
 let pollButtons = ["pm10", "no2", "o3", "pm25"];
@@ -273,13 +285,17 @@ $("#addFavoriteBtn").on("click", function (e) {
             _token: newtoken,
         },
         success: function (response) {
-            last = response.last;
-            L.marker([last.coordinates_x, last.coordinates_y]).addTo(map);
-            $("#favoriteForm")[0].reset();
-            $(`<div><strong>Name of place :</strong> ${last.name}<br>
+            if ($.isEmptyObject(response.error)) {
+                last = response.last;
+                L.marker([last.coordinates_x, last.coordinates_y]).addTo(map);
+                $("#favoriteForm")[0].reset();
+                $(`<div><strong>Name of place :</strong> ${last.name}<br>
             <strong>Category: </strong> ${last.category}<br>`).appendTo(
-                "#all-favorites"
-            );
+                    "#all-favorites"
+                );
+            } else {
+                printErrorMsg(response.error);
+            }
         },
     });
 });
@@ -288,7 +304,10 @@ $("#addFavoriteBtn").on("click", function (e) {
 
 new L.Control.GPlaceAutocomplete({
     callback: function (place) {
-        var loc = L.latLng(place.geometry.location.lat(), place.geometry.location.lng());
+        var loc = L.latLng(
+            place.geometry.location.lat(),
+            place.geometry.location.lng()
+        );
         map.setView(loc, 14);
     },
 }).addTo(map);

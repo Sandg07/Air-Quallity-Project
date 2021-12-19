@@ -127,9 +127,8 @@
 
                     <h4>Add a new favorite place</h4>
                     <div>
-                        <form action="" id="favoriteForm" method="POST">
+                        <form id="favoriteForm" method="POST">
                             @csrf
-
                             <input type="text" name="name" placeholder="Name of place"> <br>
                             <select name="category">
                                 <option value="">select here</option>
@@ -141,17 +140,12 @@
                             <input type="text" name="coordinates" id="coordinates" hidden>
                             <input type="submit" name="addFavoriteBtn" id="addFavoriteBtn" value="Add">
                         </form>
-                    </div>
-                </div>
-                <div class="response">
-                    {{-- ERRORS HANDLING --}}
-                    @if ($message = Session::get('success'))
-                        <p style="color:green">{{ $message }}</p>
-                    @endif
+                        <div class="alert alert-danger print-error-msg" style="display:none">
 
-                    @if ($message = Session::get('error'))
-                        <p style="color:red">{{ $message }}</p>
-                    @endif
+                            <ul></ul>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

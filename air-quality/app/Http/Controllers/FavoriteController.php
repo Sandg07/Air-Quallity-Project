@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Favorite;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
+
 
 class FavoriteController extends Controller
 {
@@ -30,9 +33,28 @@ class FavoriteController extends Controller
 
     public function findAjaxFunction(Request $request)
     {
-        if ($request->has('name'))
-            return $this->storeFavorites($request);
-        elseif ($request->has('poll')) {
+        if ($request->has('name')) {
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    'name' => 'required|max:255|string',
+                    'category' => 'required',
+                    'coordinates' => 'required'
+                ],
+                [
+                    'name.required' => 'A name is mandatory!',
+                    'category.required' => 'Choose a Category!',
+                    'name.max' => 'The name cannot be longer than 255 signs',
+                    'name.string' => 'A name must contain strings',
+                    'coordinates.required' => 'Choose a favorite point on the map'
+                ]
+            );
+            if ($validator->passes())
+                return $this->storeFavorites($request);
+            else {
+                return response()->json(['error' => $validator->errors()->all()]);
+            }
+        } elseif ($request->has('poll')) {
             return $this->requestApiData($request);
         }
     }
@@ -44,12 +66,6 @@ class FavoriteController extends Controller
     }
     public function storeFavorites($request)
     {
-
-        $request->validated([
-            'name' => 'required|string|max:255'
-            'category' => 
-        ]);
-
         $array = explode(',', $request->coordinates);
         $favorite = new Favorite;
         $favorite->name = $request->name;
@@ -64,7 +80,7 @@ class FavoriteController extends Controller
 
             return  response()->json(['last' => $last]);
         } else
-            return back()->with('error', 'Something wrong with the DB.');
+            return back()->with('error', 'Problem with DB');
     }
 
     public function destroy($id)
