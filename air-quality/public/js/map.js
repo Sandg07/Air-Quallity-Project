@@ -102,7 +102,9 @@ var allpm10 = alldata.pm10.forEach(function (data) {
   pieCounter++;
 });
 sum /= pieCounter;
-if (sum <= 10) pieChartColor = barchartData[0].color;else if (sum <= 20) pieChartColor = barchartData[1].color;else if (sum <= 30) pieChartColor = barchartData[2].color;else if (sum <= 40) pieChartColor = barchartData[2].color;else if (sum <= 50) pieChartColor = barchartData[2].color;else if (sum <= 60) pieChartColor = barchartData[2].color;else if (sum <= 70) pieChartColor = barchartData[2].color;else if (sum <= 80) pieChartColor = barchartData[2].color;else if (sum <= 90) pieChartColor = barchartData[2].color;else if (sum <= 100) pieChartColor = barchartData[2].color; // ***************** ADD BARCHART AND PIECHART ******************************
+sum = Math.round(sum * 100) / 100;
+var pieChartColor = "";
+if (sum <= 10) pieChartColor = barchartData[0].color;else if (sum <= 20) pieChartColor = barchartData[1].color;else if (sum <= 30) pieChartColor = barchartData[2].color;else if (sum <= 40) pieChartColor = barchartData[3].color;else if (sum <= 50) pieChartColor = barchartData[4].color;else if (sum <= 70) pieChartColor = barchartData[5].color;else if (sum <= 100) pieChartColor = barchartData[6].color;else if (sum <= 150) pieChartColor = barchartData[7].color;else if (sum <= 200) pieChartColor = barchartData[8].color;else if (sum > 200) pieChartColor = barchartData[9].color; // ***************** ADD BARCHART AND PIECHART ******************************
 
 window.onload = function () {
   var chart = new CanvasJS.Chart("chartContainer1", {
@@ -186,6 +188,9 @@ pollButtons.forEach(function (poll) {
           newPoints = [];
         }
 
+        var newSum = 0;
+        var newPieCounter = 0;
+        var newPieChartColor;
         var newData = JSON.parse(response.apiData.pollutant);
         var newbarchartData = [{
           label: "index1",
@@ -230,6 +235,8 @@ pollButtons.forEach(function (poll) {
         }];
         newData[poll].forEach(function (point) {
           pointsAndCharts(newbarchartData, point);
+          newSum += parseInt(point.value);
+          newPieCounter++;
         });
         var chart1 = new CanvasJS.Chart("chartContainer1", {
           animationEnabled: true,
@@ -247,6 +254,14 @@ pollButtons.forEach(function (poll) {
           }]
         });
         chart1.render();
+        newSum /= newPieCounter;
+        newSum = Math.round(newSum * 100) / 100;
+        if (newSum <= 10) newPieChartColor = barchartData[0].color;else if (newSum <= 20) newPieChartColor = barchartData[1].color;else if (newSum <= 30) newPieChartColor = barchartData[2].color;else if (newSum <= 40) newPieChartColor = barchartData[3].color;else if (newSum <= 50) newPieChartColor = barchartData[4].color;else if (newSum <= 70) newPieChartColor = barchartData[5].color;else if (newSum <= 100) newPieChartColor = barchartData[6].color;else if (newSum <= 150) newPieChartColor = barchartData[7].color;else if (newSum <= 200) newPieChartColor = barchartData[8].color;else if (newSum > 200) newPieChartColor = barchartData[9].color;
+        $("#sum").text(newSum);
+        $("#pieContainer").css({
+          "border-radius": "50%",
+          "background-color": newPieChartColor
+        });
       }
     });
   });

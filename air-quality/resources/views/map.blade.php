@@ -21,9 +21,10 @@
 <body>
     <div class="chart-container row justify-content-center align-items-center col-12">
         <div id="chartContainer1" style="height: 500px; width: 50%;"></div>
-        <div id="pieContainer" class="mx-auto d-flex justify-content-center align-items-center"
+        <div id="pieContainer" class="flex-column mx-auto d-flex justify-content-center align-items-center"
             style="height: 200px; width: 30%;">
             <p id="sum"></p>
+            <p>AQI</p>
         </div>
     </div>
     <div class="map-favorite-container container col-12 ">
