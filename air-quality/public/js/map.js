@@ -25,6 +25,14 @@ function pointsAndCharts(chartData, data) {
   var LatLgn = L.latLng(data.y, data.x);
   var point = addPoint(LatLgn, chartData[data.index - 1].color);
   allPoints.push(point);
+}
+
+function printErrorMsg(msg) {
+  $(".print-error-msg").find("ul").html("");
+  $(".print-error-msg").css("display", "block");
+  $.each(msg, function (key, value) {
+    $(".print-error-msg").find("ul").append("<li>" + value + "</li>");
+  });
 } // ********** VARIABLES DECLARING ***************
 
 
@@ -287,10 +295,14 @@ $("#addFavoriteBtn").on("click", function (e) {
       _token: newtoken
     },
     success: function success(response) {
-      last = response.last;
-      L.marker([last.coordinates_x, last.coordinates_y]).addTo(map);
-      $("#favoriteForm")[0].reset();
-      $("<div><strong>Name of place :</strong> ".concat(last.name, "<br>\n            <strong>Category: </strong> ").concat(last.category, "<br>")).appendTo("#all-favorites");
+      if ($.isEmptyObject(response.error)) {
+        last = response.last;
+        L.marker([last.coordinates_x, last.coordinates_y]).addTo(map);
+        $("#favoriteForm")[0].reset();
+        $("<div><strong>Name of place :</strong> ".concat(last.name, "<br>\n            <strong>Category: </strong> ").concat(last.category, "<br>")).appendTo("#all-favorites");
+      } else {
+        printErrorMsg(response.error);
+      }
     }
   });
 }); // ***************** INSERT SEARCH BOX *********************
