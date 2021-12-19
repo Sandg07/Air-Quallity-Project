@@ -25,7 +25,6 @@ mix.js("resources/js/map.js", "public/js");
 mix.js("resources/js/generalMap.js", "public/js");
 mix.js("resources/js/Control.Coordinates.js", "public/js");
 
-
 mix.js("resources/js/leaflet-gplaces-autocomplete.js", "public/js").postCss(
     "resources/css/leaflet-gplaces-autocomplete.css",
     "public/css",
@@ -33,3 +32,4 @@ mix.js("resources/js/leaflet-gplaces-autocomplete.js", "public/js").postCss(
 );
 
 mix.js("resources/js/datepicker.js", "public/js");
+mix.css("resources/css/global.css", "public/css");
