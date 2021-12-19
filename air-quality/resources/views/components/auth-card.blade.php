@@ -1,6 +1,7 @@
 <div class="bg-gray-400">
     <div class="d-flex flex-column flex-root">
-        <div class="d-flex flex-column flex-lg-row flex-column-fluid flex-row-fluid justify-content-center">
+        <div class="container-lg d-flex flex-column flex-lg-row flex-column-fluid flex-row-fluid justify-content-center shadow p-0"
+            style="margin-bottom:30px">
 
             {{-- aside --}}
             {{-- <div class="d-flex flex-column bg-success justify-content-center align-items-center"> --}}
