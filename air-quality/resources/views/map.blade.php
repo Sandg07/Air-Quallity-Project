@@ -19,8 +19,12 @@
 </head>
 
 <body>
-    <div class="chart-container">
-        <div id="chartContainer1" style="height: 150px; width: 50%;"></div>
+    <div class="chart-container row justify-content-center align-items-center col-12">
+        <div id="chartContainer1" style="height: 500px; width: 50%;"></div>
+        <div id="pieContainer" class="mx-auto d-flex justify-content-center align-items-center"
+            style="height: 200px; width: 30%;">
+            <p id="sum"></p>
+        </div>
     </div>
     <div class="map-favorite-container container col-12 ">
         <div class="row justify-content-md-center">
@@ -149,6 +153,7 @@
         </div>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"
                 integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
         <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
         <!--  Script for the Map -->
         <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
