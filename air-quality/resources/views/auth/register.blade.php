@@ -2,7 +2,6 @@
 
 @section('title', 'Register page')
 
-
 @section('content')
 
     <x-guest-layout>
