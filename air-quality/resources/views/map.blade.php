@@ -108,6 +108,7 @@
                             <div>
                                 <strong>Name of place : </strong>{{ $favorite->name }}<br>
                                 <strong>Category: </strong>{{ $favorite->category }}<br>
+                                <div id="{{ $favorite->id }}"></div>
                                 <a href="{{ route('favorites.delete', [$favorite->id]) }}">Delete</a>
                             </div>
                             <hr>
@@ -158,51 +159,11 @@
         <script>
             var pollutant = {!! json_encode($array[1]) !!}
             var favorites = {!! json_encode($array[0]) !!}
+            console.log(favorites)
         </script>
-
-
-
         <script type="text/javascript" src="/js/leaflet-gplaces-autocomplete.js"></script>
         <script type="text/javascript" src="/js/map.js"></script>
 
-
-
-
-
-
-        <!--  Script for Favorite -->
-        {{-- <script type="text/javascript">
-          var favorites = {!! json_encode($favorites) !!};
-    </script> --}}
-        {{-- <script src="/js/Control.Coordinates.js"></script> --}}
-        <!--  AJAX call -->
-
-        <script>
-            $(function() {
-                $("#myform").on('submit', function(event) {
-                    event.preventDefault();
-                    let value = this.value;
-
-                    $.ajax({
-                        url: "/map",
-                        type: "POST",
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        data: {
-                            value: value
-                        },
-
-                        success: function() {
-
-                        },
-                        error: function(error) {
-                            console.log(error);
-                        }
-                    });
-                });
-            });
-        </script>
         {{-- Bootstrap js --}}
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">

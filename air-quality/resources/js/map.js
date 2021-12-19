@@ -34,11 +34,47 @@ function printErrorMsg(msg) {
     });
 }
 
+function nearestCoordinates(data, favorite) {
+    let intermediateValueX = 0;
+    let intermediateValueY = 0;
+    data.forEach((object) => {
+        let xCoord = 0;
+        let sumX = 0;
+        let yCoord = 0;
+        let sumY = 0;
+        if (intermediateValueX == 0) {
+            intermediateValueX = favorite.coordinates_x - object.x;
+            if (intermediateValueX < 0) intermediateValueX *= -1;
+            intermediateValueY = favorite.coordinates_y - object.y;
+            if (intermediateValueY < 0) intermediateValueY *= -1;
+            nearestPoint = object;
+        }
+        sumX = favorite.coordinates_x - object.x;
+        sumY = favorite.coordinates_y - object.y;
+        if (sumX < 0) sumX *= -1;
+        if (sumY < 0) sumY *= -1;
+        if (intermediateValueX > sumX) {
+            xCoord = object.x;
+            intermediateValueX = sumX;
+        }
+        if (intermediateValueY > sumY) {
+            yCoord = object.y;
+            intermediateValueY = sumY;
+        }
+        if (xCoord == object.x && yCoord == object.y) {
+            nearestPoint = object;
+        }
+    });
+    return nearestPoint;
+}
+
 // ********** VARIABLES DECLARING ***************
 
 let pollButtons = ["pm10", "no2", "o3", "pm25"];
 
 let alldata = JSON.parse(pollutant.pollutant);
+console.log(alldata);
+let nearestToMyFavorite = [];
 let barchartData = [
     { label: "index1", y: 0, color: "#4169E1" },
     { label: "index2", y: 0, color: "#7a96ea" },
@@ -59,7 +95,14 @@ let highestNumber = 0;
 let highestIndex = 0;
 let sum = 0;
 let pieCounter = 0;
+let z = 0;
 
+favorites.forEach((favorite) => {
+    let myPoint = nearestCoordinates(alldata.pm10, favorite);
+    nearestToMyFavorite[z] = myPoint;
+    z++;
+});
+console.log(nearestToMyFavorite);
 // ************* CREATING MAP *********************
 
 // Where you want to render the map.
@@ -167,8 +210,16 @@ map.on("click", function (e) {
 });
 
 if (favorites != undefined && favorites.length != 0) {
-    favorites.forEach((favorite) => {
-        L.marker([favorite.coordinates_x, favorite.coordinates_y]).addTo(map);
+    favorites.forEach((favorite, favoriteIndex) => {
+        L.marker([favorite.coordinates_y, favorite.coordinates_x]).addTo(map);
+        $("<div>")
+            .css({
+                "background-color":
+                    barchartData[nearestToMyFavorite[favoriteIndex].index]
+                        .color,
+            })
+            .text("AQI: " + nearestToMyFavorite[favoriteIndex].value)
+            .appendTo("#" + favorite.id);
     });
 }
 
