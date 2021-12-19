@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-xl d-flex flex-row-lg-fluid bg-info p-4">
-    <span class="logo-nav navbar-brand mb-0 h1" style="color: white">Lëtz Breathe</span>
+    <span class="logo-nav navbar-brand mb-0 h1 shadow" style="color: white">Lëtz Breathe</span>
 
     {{-- burger menu --}}
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"

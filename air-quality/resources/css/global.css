@@ -2,6 +2,10 @@
 global
 */
 
+.my-container {
+    background-color: wheat;
+}
+
 /**
  * Login page
  */
@@ -37,3 +41,11 @@ svg.logo {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 } */
+
+/**
+* Features on Homepage
+*/
+
+.logBtn {
+    text-decoration: none;
+}

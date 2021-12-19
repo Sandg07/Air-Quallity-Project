@@ -23,7 +23,7 @@
 
 <body>
     @include('topNavbar');
-    <div class="container-fluid">
+    {{-- <div class="container-fluid">
         <nav class="navbar-expand-lg">
             <ul class="nav nav-pills justify-content-center align-content-center flex-wrap ">
                 <li class="order-sm-0 nav-item rounded"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
@@ -34,20 +34,23 @@
                 <li class="nav-item rounded"><a class="nav-link" href="{{ url('/map') }}">Map component</a></li>
             </ul>
         </nav>
-    </div>
+    </div> --}}
 
 
 
     <div class="content">
         @yield('content')
+
+
     </div>
 
 
 
 
-    {{-- <footer class="d-flex flex-row justify-content-around align-items-center">
-       Copyright Air Quality Project 2021
-    </footer> --}}
+    <footer class="d-flex flex-row justify-content-around align-items-center bg-info mt-50">
+        <p class="text-primary"><i> Copyright Air Quality Project 2021</i></p>
+
+    </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
