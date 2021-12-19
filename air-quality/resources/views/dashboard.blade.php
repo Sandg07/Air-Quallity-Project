@@ -1,4 +1,4 @@
-@extends('templateDashboard')
+@extends('template')
 
 @section('title', 'Dashboard Air Quality')
 
