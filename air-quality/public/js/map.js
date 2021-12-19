@@ -33,11 +33,52 @@ function printErrorMsg(msg) {
   $.each(msg, function (key, value) {
     $(".print-error-msg").find("ul").append("<li>" + value + "</li>");
   });
+}
+
+function nearestCoordinates(data, favorite) {
+  var intermediateValueX = 0;
+  var intermediateValueY = 0;
+  data.forEach(function (object) {
+    var xCoord = 0;
+    var sumX = 0;
+    var yCoord = 0;
+    var sumY = 0;
+
+    if (intermediateValueX == 0) {
+      intermediateValueX = favorite.coordinates_x - object.x;
+      if (intermediateValueX < 0) intermediateValueX *= -1;
+      intermediateValueY = favorite.coordinates_y - object.y;
+      if (intermediateValueY < 0) intermediateValueY *= -1;
+      nearestPoint = object;
+    }
+
+    sumX = favorite.coordinates_x - object.x;
+    sumY = favorite.coordinates_y - object.y;
+    if (sumX < 0) sumX *= -1;
+    if (sumY < 0) sumY *= -1;
+
+    if (intermediateValueX > sumX) {
+      xCoord = object.x;
+      intermediateValueX = sumX;
+    }
+
+    if (intermediateValueY > sumY) {
+      yCoord = object.y;
+      intermediateValueY = sumY;
+    }
+
+    if (xCoord == object.x && yCoord == object.y) {
+      nearestPoint = object;
+    }
+  });
+  return nearestPoint;
 } // ********** VARIABLES DECLARING ***************
 
 
 var pollButtons = ["pm10", "no2", "o3", "pm25"];
 var alldata = JSON.parse(pollutant.pollutant);
+console.log(alldata);
+var nearestToMyFavorite = [];
 var barchartData = [{
   label: "index1",
   y: 0,
@@ -86,7 +127,14 @@ var currentMarker;
 var highestNumber = 0;
 var highestIndex = 0;
 var sum = 0;
-var pieCounter = 0; // ************* CREATING MAP *********************
+var pieCounter = 0;
+var z = 0;
+favorites.forEach(function (favorite) {
+  var myPoint = nearestCoordinates(alldata.pm10, favorite);
+  nearestToMyFavorite[z] = myPoint;
+  z++;
+});
+console.log(nearestToMyFavorite); // ************* CREATING MAP *********************
 // Where you want to render the map.
 
 var element = document.getElementById("osm-map"); // Height has to be set. You can do this in CSS too.
@@ -167,8 +215,11 @@ map.on("click", function (e) {
 });
 
 if (favorites != undefined && favorites.length != 0) {
-  favorites.forEach(function (favorite) {
-    L.marker([favorite.coordinates_x, favorite.coordinates_y]).addTo(map);
+  favorites.forEach(function (favorite, favoriteIndex) {
+    L.marker([favorite.coordinates_y, favorite.coordinates_x]).addTo(map);
+    $("<div>").css({
+      "background-color": barchartData[nearestToMyFavorite[favoriteIndex].index].color
+    }).text("AQI: " + nearestToMyFavorite[favoriteIndex].value).appendTo("#" + favorite.id);
   });
 } // ************* AJAX CALLS ********************
 //Points and Charts

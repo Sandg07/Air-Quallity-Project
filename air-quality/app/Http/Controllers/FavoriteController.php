@@ -69,8 +69,8 @@ class FavoriteController extends Controller
         $array = explode(',', $request->coordinates);
         $favorite = new Favorite;
         $favorite->name = $request->name;
-        $favorite->coordinates_x = $array[0];
-        $favorite->coordinates_y  = $array[1];
+        $favorite->coordinates_x = $array[1];
+        $favorite->coordinates_y  = $array[0];
         $favorite->category = $request->category;
         $favorite->user_id = Auth::id();
 
