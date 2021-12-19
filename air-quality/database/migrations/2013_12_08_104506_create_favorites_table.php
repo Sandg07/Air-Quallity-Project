@@ -18,7 +18,7 @@ class CreateFavoritesTable extends Migration
             $table->string('name');
             $table->string('coordinates_x');
             $table->string('coordinates_y');
-            $table->enum('category', ['park', 'city', 'running place']);
+            $table->enum('category', ['park', 'city', 'running_place']);
             $table->integer('user_id');
             $table->timestamps();
         });

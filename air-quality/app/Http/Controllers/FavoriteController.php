@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Favorite;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Auth;
+use Illuminate\Validation\Rule;
 
 class FavoriteController extends Controller
 {
@@ -41,9 +42,19 @@ class FavoriteController extends Controller
 
     public function findAjaxFunction(Request $request)
     {
-        if ($request->has('id'))
+        if ($request->has('name')) {
+            $request->validate([
+                'name' => 'required|max:255|string',
+                'category' => ['required', Rule::in(['park', 'city', 'running_place'])],
+                'coordinates' => 'required|numeric'
+            ], [
+                'name.required' => 'A name is mandatory!',
+                'name.max' => 'The name cannot be longer than 255 signs',
+                'name.string' => 'A name must contain strings',
+                'category.required' => 'You have to choose a category',
+            ]);
             return $this->storeFavorites($request);
-        elseif ($request->has('poll')) {
+        } elseif ($request->has('poll')) {
             return $this->requestApiData($request);
         }
     }
@@ -55,28 +66,18 @@ class FavoriteController extends Controller
     }
     public function storeFavorites($request)
     {
-        // Validations
-        // $request->validated();
-
         $array = explode(',', $request->coordinates);
 
-        // dd($array);
-
         $favorite = new Favorite;
-        $favorite->id = $request->id;
         $favorite->name = $request->name;
         $favorite->coordinates_x = $array[0];
         $favorite->coordinates_y  = $array[1];
-        // dd($array[1]);
         $favorite->category = $request->category;
-        $favorite->user_id = $request->user_id; // use the auth id
-        // $favorite->user_id = $request->Auth::user()->id; // use the auth id
-        // dd(Auth::user()->id);
-
-        if ($favorite->save()) {
+        $favorite->user_id = $request->Auth::user()->id;
+        $result = $favorite->save();
+        if ($result) {
             back()->with('success', 'Saved the favorite in the DB');
             $last = DB::table('favorites')->latest()->first();
-
             return  response()->json(['last' => $last]);
         } else
             return back()->with('error', 'Something wrong with the DB.');
