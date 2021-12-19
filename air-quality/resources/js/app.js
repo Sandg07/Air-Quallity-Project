@@ -12,6 +12,7 @@ Alpine.start();
  */
 $("#burgerMenu").on("click", function (event) {
     $("#navbarSupportedContent").toggleClass("collapse open");
+    console.log("found");
 });
 
 /**

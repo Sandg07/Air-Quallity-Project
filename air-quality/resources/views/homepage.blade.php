@@ -3,8 +3,6 @@
 @section('title', 'Homepage Air Quality')
 
 @section('css')
-
-
 @endsection
 
 

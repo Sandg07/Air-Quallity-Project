@@ -2,9 +2,6 @@
 global
 */
 
-body {
-    background-color: #e4e3e3;
-}
 /**
  * Login page
  */
@@ -40,6 +37,4 @@ svg.logo {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
-
-/* form validation  */
 

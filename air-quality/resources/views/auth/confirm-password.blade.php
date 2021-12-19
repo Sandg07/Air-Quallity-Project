@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('title', 'Login page')
+@section('title', 'Confirm password')
 
 @section('content')
 

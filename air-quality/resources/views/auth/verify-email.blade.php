@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('title', 'Forget password')
+@section('title', 'Verify email')
 
 @section('content')
 
