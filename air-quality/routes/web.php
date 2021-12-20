@@ -30,7 +30,7 @@ use Illuminate\Support\Facades\Storage;
 
 Route::get('/dashboard', function () {
     return view('map');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['verified'])->name('dashboard');
 
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth')
@@ -38,23 +38,23 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
 
 require __DIR__ . '/auth.php';
 
-Route::get('/searchbox', [SearchboxController::class, 'index'])->middleware(['auth']);
+Route::get('/searchbox', [SearchboxController::class, 'index'])->middleware(['verified']);
 
-Route::get('/map', [FavoriteController::class, 'index'])->middleware(['auth']);
+Route::get('/map', [FavoriteController::class, 'index'])->middleware(['verified']);
 Route::post('/map', [FavoriteController::class, 'findAjaxFunction']);
 Route::get('/map{id}', [FavoriteController::class, 'destroy'])->name('favorites.delete');
 
-Route::get('/dashboard', [FavoriteController::class, 'index'])->middleware(['auth']);
+Route::get('/dashboard', [FavoriteController::class, 'index'])->middleware(['verified']);
 Route::post('/dashboard', [FavoriteController::class, 'findAjaxFunction']);
 Route::get('/dashboard{id}', [FavoriteController::class, 'destroy'])->name('favorites.delete');
 
-Route::get('/forecast', [ForecastController::class, 'index'])->middleware(['auth']);
-Route::post('/forecast', [ForecastController::class, 'ajaxCall'])->middleware(['auth']);
+Route::get('/forecast', [ForecastController::class, 'index'])->middleware(['verified']);
+Route::post('/forecast', [ForecastController::class, 'ajaxCall'])->middleware(['verified']);
 
 Route::get('/account', function () {
     $user = Auth::user();
     return view('account', ['user' => $user]);
-})->middleware(['auth'])->name('account');
+})->middleware(['verified'])->name('account');
 
 Route::post('/account', [AccountController::class, 'findPostMethod']);
 
