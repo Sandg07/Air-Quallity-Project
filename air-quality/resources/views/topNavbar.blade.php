@@ -17,14 +17,13 @@
         <ul class="navbar-nav">
             <li class="nav-item active">
                 <a class="order-sm-0 nav-link p-2 " href="{{ url('/') }}">Home
-                    {{-- <span class="sr-only">(current)</span> --}}
                 </a>
             </li>
             <li class="nav-item active">
                 <a class="order-sm-0 nav-link p-2 " href="{{ url('/team') }}">Team</a>
             </li>
             <li>
-                <a class="order-sm-2 nav-link disabled p-2" href="{{ url('/map') }}">Map</a>
+                <a class="order-sm-2 nav-link p-2" href="{{ url('/map') }}">Map</a>
             </li>
             <li class="nav-item active">
                 <a class="order-sm-0 nav-link p-2 " href="{{ url('/login') }}">Login</a>
