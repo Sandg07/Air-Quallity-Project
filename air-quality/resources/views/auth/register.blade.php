@@ -11,8 +11,8 @@
 
                 <x-slot name="logo">
                     <a href="/">
-                        <img src="{{ URL::to('/assets/logo_letzbreathe.svg') }}" class="d-bloc img-fluid mb-4" width="200"
-                            height="200" loading="lazy" alt="...">
+                        <img src="{{ URL::to('/assets/logo_letzbreathe_1.svg') }}" class="d-bloc img-fluid mb-4"
+                            width="300" height="200" loading="lazy" alt="...">
                     </a>
                     <h3 class="fw-bolder text-info pb-3 pt-lg-20">See the Air Quality next to your location</h3>
                     <p class="text-dark pb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit consectetur adipisicing
@@ -32,51 +32,44 @@
 
                         <!-- Name -->
                         <div>
-                            <x-label for="first_name" :value="__('First name')" />
-
+                            {{-- <x-label for="first_name" :value="__('First name')" /> --}}
                             <x-input id="first_name" class="block mt-2 w-full" type="text" name="first_name"
-                                :value="old('first_name')" required autofocus />
+                                :value="old('first_name')" placeholder="Your first name" required autofocus />
                         </div>
                         <div>
-                            <x-label for="last_name" :value="__('Last name')" />
-
+                            {{-- <x-label for="last_name" :value="__('Last name')" /> --}}
                             <x-input id="last_name" class="block mt-2 w-full" type="text" name="last_name"
-                                :value="old('last_name')" required autofocus />
+                                :value="old('last_name')" placeholder="Your last name" required autofocus />
                         </div>
                         <div>
-                            <x-label for="city" :value="__('City')" />
-
-                            <x-input id="city" class="block mt-2 w-full" type="text" name="city" placeholder='optional'
-                                :value="old('city')" autofocus />
+                            {{-- <x-label for="city" :value="__('City')" /> --}}
+                            <x-input id="city" class="block mt-2 w-full" type="text" name="city"
+                                placeholder='Your city (optional)' :value="old('city')" autofocus />
                         </div>
 
                         <!-- Email Address -->
                         <div class="mt-4">
-                            <x-label for="email" :value="__('Email')" />
-
+                            {{-- <x-label for="email" :value="__('Email')" /> --}}
                             <x-input id="email" class="block mt-2 w-full" type="email" name="email" :value="old('email')"
-                                required />
+                                placeholder="Your email" required />
                         </div>
 
                         <!-- Password -->
                         <div class="mt-4">
-                            <x-label for="password" :value="__('Password')" />
-
-                            <x-input id="password" class="block mt-2 w-full" type="password" name="password" required
-                                autocomplete="new-password" />
+                            {{-- <x-label for="password" :value="__('Password')" /> --}}
+                            <x-input id="password" class="block mt-2 w-full" type="password" name="password"
+                                placeholder="Your password" required autocomplete="new-password" />
                         </div>
 
                         <!-- Confirm Password -->
                         <div class="mt-4">
-                            <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
+                            {{-- <x-label for="password_confirmation" :value="__('Confirm Password')" /> --}}
                             <x-input id="password_confirmation" class="block mt-2 w-full" type="password"
-                                name="password_confirmation" required />
+                                name="password_confirmation" placeholder="Confirm your password" required />
                         </div>
 
                         <!-- Button + redirection -->
                         <div class="d-flex flex-column justify-content-end align-items-center mt-4">
-
                             <a class="underline text-sm text-gray-600 hover:bg-info mb-4" href="{{ route('login') }}">
                                 {{ __('Already registered?') }}
                             </a>
