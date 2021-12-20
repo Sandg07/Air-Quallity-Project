@@ -30,7 +30,7 @@ function printErrorMsg(msg) {
     $.each(msg, function (key, value) {
         $(".print-error-msg")
             .find("ul")
-            .append("<li>" + value + "</li>");
+            .append("<li style='font-size:12px'>" + value + "</li>");
     });
 }
 
@@ -373,7 +373,7 @@ if (favorites != undefined && favorites.length != 0) {
         } else {
             var icon = runIcon;
         }
-        L.marker([favorite.coordinates_x, favorite.coordinates_y], {
+        L.marker([favorite.coordinates_y, favorite.coordinates_x], {
             icon: icon,
         }).addTo(map);
         $("<div>")
@@ -414,10 +414,10 @@ $("#addFavoriteBtn").on("click", function (e) {
         success: function (response) {
             if ($.isEmptyObject(response.error)) {
                 last = response.last;
-                
-                L.marker([last.coordinates_x, last.coordinates_y]).addTo(map);
                 $("#favoriteForm")[0].reset();
-                $$(
+                location.reload();
+                
+              /*   $(
                     `<div class="row m-0 align-items-center">
                 <div class="col col-1 ">` +
                         (last.category == "Park"
@@ -440,7 +440,7 @@ $("#addFavoriteBtn").on("click", function (e) {
                 </div>
                 <hr class="m-0">
             </div>`
-                ).appendTo("#all-favorites");
+                ).appendTo("#all-favorites"); */
             } else {
                 printErrorMsg(response.error);
             }

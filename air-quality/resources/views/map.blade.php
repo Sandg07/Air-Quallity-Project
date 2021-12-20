@@ -22,43 +22,62 @@
     <title>MAP</title>
 </head>
 
-<body>
+<body class="bg-light">
+    @include('userTopNavbar')
 
-    <div class="charts-map-favorite-container container col-12">
-
-        <div class="chart-container row m-0 p-0 align-items-center justify-content-center" style="height: 150px">
-
-            <div id="chartContainer1" class="col col-8 h-100 p-0 m-0">
-
+    <div class="container d-flex align-items-end ">
+        <div class="max-w-7xl row mx-auto sm:px-6 lg:px-8 ">
+            <div class="p-6 align-self-end border-b border-gray-200">
+                <h3 class=""> Welcome user!</h3>
             </div>
-            <div id="piechart" class="col col-4 d-flex align-items-center justify-content-center ">
-                <div id="pieContainer" style="border-radius: 50%; height: 100px; width:100px"
+        </div>
+    </div>
+
+
+    <div class="charts-map-favorite-container container col-12 ">
+        <div class="poluttantsbtn-container row p-0 m-4 col-12  flex-fill">
+            <form class="p-0" method="POST">
+                @csrf
+                <div class="btn-group btn-group-toggle p-0 m-0 col-12" data-toggle="buttons">
+                    <button class="btn btn-secondary active" type="button" name="poll" id="pm10">PM10</button>
+                    <button class="btn btn-secondary " type="button" name="poll" id="no2">NO2</button>
+                    <button class="btn btn-secondary" type="button" name="poll" id="o3"> O3 </button>
+                    <button class="btn btn-secondary " type="button" name="poll" id="pm25"> PM2.5 </button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="chart-container row p-0 justify-content-around m-0" style="height: 150px">
+            <div class="row p-4 m-0 col-8 d-flex rounded shadow bg-white h-100">
+                <div class="barchart-title col-12 p-0 text-uppercase text-start">
+                    <h5 style="font-size:12px; color: gray" class="m-0 pb-2 ">POLLUNTANT sum </h5>
+                </div>
+                <div id="chartContainer1" class="justify-content-center p-0 m-0 h-75"></div>
+            </div>
+            <div id="piechart" 
+                class="row p-4 m-0 col-3 d-flex align-items-center rounded shadow bg-white h-100 mb-4 justify-content-center ">
+                <div class="barchart-title col-12 p-0 text-uppercase text-start">
+                    <h5 style="font-size:12px; color: gray" class="m-0 pb-2 ">POLLUNTANT medium </h5>
+                </div>
+                <div id="pieContainer" style="border-radius: 50%; height: 80px; width:80px"
                     class="align-items-center d-flex flex-column justify-content-center p-1">
                     <p class="p-0 m-0 text-white-50" id="sum"></p>
-                    <p  class="p-0 m-0 text-white-50">AQI</p>
+                    <p class="p-0 m-0 text-white-50">AQI</p>
                 </div>
             </div>
 
         </div>
 
-        <div class="map-favorite-container p-0 m-0 row justify-content-md-around">
+        <div id="map-favorite-container" class="map-favorite-container  container p-0 m-0 mt-4 row justify-content-md-around "  >
 
-            <div class="poluttantsbtn-map-scale-container border p-0 m-0 justify-content-md-center col-md-6">
-                <div class="poluttantsbtn-container row p-0 m-0 col-12  flex-fill">
-                    <form class="p-0" method="POST">
-                        @csrf
-                        <div class="btn-group btn-group-toggle p-0 m-0 col-12" data-toggle="buttons">
-                            <button class="btn btn-primary active" type="button" name="poll" id="pm10">PM10</button>
-                            <button class="btn btn-primary " type="button" name="poll" id="no2">NO2</button>
-                            <button class="btn btn-primary" type="button" name="poll" id="o3"> O3 </button>
-                            <button class="btn btn-primary " type="button" name="poll" id="pm25"> PM2.5 </button>
-                        </div>
-                    </form>
-                </div>
+            <div class="poluttantsbtn-map-scale-container p-0 m-0 justify-content-md-center col-md-7">
 
-                <div class="map-scale-container p-0 m-0 ">
+                <div class="map-scale-container rounded shadow bg-white mb-4 p-4 m-0 ">
+                    <div class="map-title col-12 p-0 text-gray-100 text-uppercase text-start">
+                        <h5 style="font-size:12px; color: gray" class="m-0 pb-2 ">POLLUNTANT DISTRIBUTION INDEX MAP</h5>
+                    </div>
                     <div class="map-container p-0 m-0 row col-12" id="osm-map"></div>
-                    <div class="scale-container p-0 m-0 row col-12">
+                    <div class="scale-container p-0 m-0 row col-12" >
                         <div class="p-1 col text-center rounded-start"
                             style="font-size:9px; color: white; background-color: #4169E1">
                             = 25</div>
@@ -87,19 +106,19 @@
             </div>
 
 
-            <div class="favorite-container col border rounded bg-light p-0 m-0 col-12 col-md-5">
-                <div class="favorite-title rounded bg-primary col-12 p-2 text-center">
-                    <h5 class="m-0 p-0 ">Favorite Places</h5>
+            <div class="favorite-container col rounded shadow bg-white mb-4 p-4 pb-0 col-12 col-md-4" style="height: 590px">
+                <div class="favorite-title col-12 p-0 text-gray-100 text-uppercase text-start">
+                    <h5 style="font-size:12px; color: gray" class="m-0 pb-2 ">Favorite Places</h5>
                 </div>
-                <div class="show-favorites-container h-50 p-2 m-0 ">
+                <div class="show-favorites-container border border-2 rounded h-50 p-0 overflow-auto  m-0 ">
                     {{-- SHOW FAVORITES --}}
                     <div id="all-favorites"
-                        class="container border border-2 rounded p-0 bg-white justify-content-center overflow-auto h-100">
+                        class="container mb-4 p-0 bg-white justify-content-center h-100">
 
                         @if (count($array[0]) >= 1)
                             @foreach ($array[0] as $favorite)
                                 <div class="row m-0 align-items-center">
-                                    <div class="col col-1 ">
+                                    <div class="col col-1 mx-1">
                                         @if ($favorite->category == 'Park')
                                             <i class="bi bi-tree-fill fs-3" style="color: #88bb11"></i>
                                         @elseif ($favorite->category == 'City')
@@ -109,11 +128,11 @@
                                         @endif
                                     </div>
                                     <div class="col ps-1 m-1">
-                                        <p class="ms-2 mb-0 p-0" style="font-size:14px"><strong>
+                                        <p class="ms-2 mb-0 p-0" style="font-size:12px"><strong>
                                                 {{ $favorite->name }}
                                             </strong>
                                         </p>
-                                        <p class="ms-2 mb-0 mt-0 p-0" style="font-size:14px; color: gray">
+                                        <p class="ms-2 mb-0 mt-0 p-0" style="font-size:12px; color: gray">
                                             {{ $favorite->category }} </p>
                                     </div>
                                     <div class="col col-1 m-2">
@@ -139,14 +158,13 @@
 
 
                 <div class="add-favorite-container col col-12 align-items-center p-0 m-0">
-                    <div class="add-section-button row m-0 p-2">
-                        <div class="col m-0 p-0"></div>
-                        <div class="col m-0 p-0 w-50">
-                            <button class="btn btn-primary w-100 m-0" style="font-size:14px" type="button"
+                    <div class="add-section-button row m-0 p-0">
+                        <div class="col m-0 p-0 w-75">
+                            <button class="btn btn-primary w-100 mt-2 mb-2 m-0" style="font-size:14px" type="button"
                                 name="add-favorite" id="addFavoriteSection">Add a new favorite place</button>
                         </div>
                     </div>
-                    <div class="invisible add-favorite-container border border-2 rounded p-2 m-2 bg-white justify-content-center"
+                    <div class="invisible add-favorite-container d-flex border border-2 rounded p-2 m-0 bg-white justify-content-center"
                         id="favorite-form-container">
                         <div>
                             <form action="" id="favoriteForm" method="POST">
@@ -161,12 +179,12 @@
                                         <option value="City">City</option>
                                         <option value="Running place">Running place</option>
                                     </select>
-                                    <i class="bi bi-geo-alt-fill text-secondary mb-1" style="font-size:12px; "></i>
-                                    <input type="text" class="w-auto text-secondary m-1 p-1"
+                                    <i class="bi bi-geo-alt-fill col-1 text-secondary w-auto m-2 bs-0 " style="font-size:14px; "></i>
+                                    <input type="text" class="text-secondary flex-wrap  w-50 me-2 pe-2"
                                         style="border: 0;  font-size:12px" name="coordinates" id="coordinates">
-                                    <input class="btn btn-primary w-auto p-1 px-4 m-1" style="font-size:14px"
-                                        type="submit" name="addFavoriteBtn" id="addFavoriteBtn" value="Save your place">
-                                    <input type="number" name="user_id" placeholder="user_id hidden"><br>
+                                    <input class="btn btn-primary flex-fill col-2 mt-1 p-1 w-auto" style="font-size:14px"
+                                        type="submit" name="addFavoriteBtn" id="addFavoriteBtn" value="Save place">
+                                    <input type="hidden" name="user_id" placeholder="user_id hidden"><br>
 
                                 </div>
 
@@ -175,14 +193,23 @@
                     </div>
 
                 </div>
-                <div class="alert alert-danger print-error-msg" style="display:none">
+                <div class="alert alert-danger print-error-msg p-0 m-0" style="display:none">
 
-                    <ul></ul>
+                    <ul class="fs-6" ></ul>
 
                 </div>
             </div>
         </div>
     </div>
+
+    <footer class="bg-light">
+        <div class="d-flex flex-row justify-content-around align-items-center mt-50">
+            <p class="text-info"><i> Copyright Air Quality Project 2021</i></p>
+        </div>
+
+
+
+    </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
