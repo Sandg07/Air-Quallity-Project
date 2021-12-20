@@ -68,6 +68,9 @@ function nearestCoordinates(data, favorite) {
     return nearestPoint;
 }
 
+
+
+
 // ********** VARIABLES DECLARING ***************
 
 let pollButtons = ["pm10", "no2", "o3", "pm25"];
@@ -348,6 +351,7 @@ map.on("click", function (e) {
 });
 
 
+
 var parkIcon = L.divIcon({
     html: '<i class="bi bi-tree-fill fs-3" style="color: #88bb11"></i>',
     className: "myDivIcon",
@@ -364,11 +368,13 @@ var runIcon = L.divIcon({
 });
 
 
+
+
 if (favorites != undefined && favorites.length != 0) {
     favorites.forEach((favorite, favoriteIndex) => {
-        if (favorite.category == "Park") {
+        if (favorite.category == "park") {
             var icon = parkIcon;
-        } else if (favorite.category == "City") {
+        } else if (favorite.category == "city") {
             var icon = cityIcon;
         } else {
             var icon = runIcon;

@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Storage;
 // });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('map');
 })->middleware(['auth'])->name('dashboard');
 
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
@@ -42,6 +42,10 @@ Route::get('/searchbox', [SearchboxController::class, 'index'])->middleware(['au
 Route::get('/map', [FavoriteController::class, 'index'])->middleware(['auth']);
 Route::post('/map', [FavoriteController::class, 'findAjaxFunction']);
 Route::get('/map{id}', [FavoriteController::class, 'destroy'])->name('favorites.delete');
+
+Route::get('/dashboard', [FavoriteController::class, 'index'])->middleware(['auth']);
+Route::post('/dashboard', [FavoriteController::class, 'findAjaxFunction']);
+Route::get('/dashboard{id}', [FavoriteController::class, 'destroy'])->name('favorites.delete');
 
 Route::get('/forecast', [ForecastController::class, 'index'])->middleware(['auth']);
 Route::post('/forecast', [ForecastController::class, 'ajaxCall'])->middleware(['auth']);
