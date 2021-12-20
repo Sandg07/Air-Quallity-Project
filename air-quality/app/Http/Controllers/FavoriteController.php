@@ -22,6 +22,7 @@ class FavoriteController extends Controller
 
     public function index()
     {
+
         $favorites = Favorite::all();
         $api = new ApiController();
         $data = $api->index();

@@ -67,3 +67,7 @@ svg.logo {
     opacity: 0.5;
 }
 
+.notThereAnymore {
+    display: none;
+}
+

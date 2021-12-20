@@ -51,6 +51,9 @@ Route::get('/account', function () {
     $user = Auth::user();
     return view('account', ['user' => $user]);
 })->middleware(['auth'])->name('account');
+
+Route::post('/account', [AccountController::class, 'findPostMethod']);
+
 //Home page
 Route::get('/', function () {
     return view('homepage');

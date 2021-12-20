@@ -66,3 +66,7 @@ svg.logo {
     background-repeat: no-repeat;
     opacity: 0.5;
 }
+
+.notThereAnymore {
+    display: none;
+}

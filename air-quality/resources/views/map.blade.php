@@ -35,7 +35,7 @@
                 <div id="pieContainer" style="border-radius: 50%; height: 100px; width:100px"
                     class="align-items-center d-flex flex-column justify-content-center p-1">
                     <p class="p-0 m-0 text-white-50" id="sum"></p>
-                    <p  class="p-0 m-0 text-white-50">AQI</p>
+                    <p class="p-0 m-0 text-white-50">AQI</p>
                 </div>
             </div>
 
@@ -143,7 +143,7 @@
                         <div class="col m-0 p-0"></div>
                         <div class="col m-0 p-0 w-50">
                             <button class="btn btn-primary w-100 m-0" style="font-size:14px" type="button"
-                                name="add-favorite" id="addFavoriteSection">Add a new favorite place</button>
+                                name="account-edit" id="accountFormEdit">Add a new favorite place</button>
                         </div>
                     </div>
                     <div class="invisible add-favorite-container border border-2 rounded p-2 m-2 bg-white justify-content-center"
