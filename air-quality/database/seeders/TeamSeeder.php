@@ -40,7 +40,7 @@ class TeamSeeder extends Seeder
             'last_name' => 'Lallemand',
             'avatar' => "/assets/paulAvatar.png",
             'title' => 'Web Developer',
-            'about' => "Paul's 29 years old and can't stop to talk about music",
+            'about' => "Paul's 29 years old and can't stop to talk about music Inventore aut velit impedit expedita eaque suscipit consequatur quibusdam consequuntur, odio consectetur, quod quas. Tempore vitae facilis minus consequatur dolores debitis sequi.",
             'github_account' =>  "https://github.com/PaulL92"
         ]);
     }

@@ -136,16 +136,16 @@ let allpm10 = alldata.pm10.forEach(function (data) {
 sum /= pieCounter;
 sum = Math.round(sum * 100) / 100;
 let pieChartColor = "";
-if (sum <= 10) pieChartColor = barchartData[0].color;
-else if (sum <= 20) pieChartColor = barchartData[1].color;
-else if (sum <= 30) pieChartColor = barchartData[2].color;
-else if (sum <= 40) pieChartColor = barchartData[3].color;
-else if (sum <= 50) pieChartColor = barchartData[4].color;
-else if (sum <= 70) pieChartColor = barchartData[5].color;
-else if (sum <= 100) pieChartColor = barchartData[6].color;
-else if (sum <= 150) pieChartColor = barchartData[7].color;
-else if (sum <= 200) pieChartColor = barchartData[8].color;
-else if (sum > 200) pieChartColor = barchartData[9].color;
+if (sum <= 25) pieChartColor = barchartData[0].color;
+else if (sum <= 45) pieChartColor = barchartData[1].color;
+else if (sum <= 60) pieChartColor = barchartData[2].color;
+else if (sum <= 80) pieChartColor = barchartData[3].color;
+else if (sum <= 110) pieChartColor = barchartData[4].color;
+else if (sum <= 150) pieChartColor = barchartData[5].color;
+else if (sum <= 200) pieChartColor = barchartData[6].color;
+else if (sum <= 270) pieChartColor = barchartData[7].color;
+else if (sum <= 400) pieChartColor = barchartData[8].color;
+else if (sum > 400) pieChartColor = barchartData[9].color;
 
 // ***************** ADD BARCHART AND PIECHART ******************************
 window.onload = function () {

@@ -15,42 +15,34 @@
     </div>
     @if (!empty($team))
 
-
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h2 class="mt-4 mb-4">Team Members</h2>
-                </div>
+        <div class="container-lg">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
                 @foreach ($team as $member)
-                    <div class="col-md-6 col-lg-4">
-
-                        <div class="bg-cyan card-box">
-                            <div class="card-thumbnail">
-                                <img src="{{ URL::asset($member->avatar) }}" class=" img-fluid" alt="">
+                    <div class="col justify-content-center align-items-center">
+                        <div class="card h-100" style="max-width: 300px">
+                            <img height="50%" src="{{ URL::asset($member->avatar) }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h3 class="card-title">{{ $member->first_name }}
+                                    {{ $member->last_name }}</h3>
+                                <h5 class="card-title">{{ $member->title }}
+                                </h5>
+                                <p class="card-text">{{ $member->about }}</p>
                             </div>
-                            <h3><a href="#" class="mt-2 text-danger">{{ $member->first_name }}
-                                    {{ $member->last_name }}</a></h3>
-                            <h3 class="mt-2 ">{{ $member->title }}</h3>
-                            <p class="text-info">{{ $member->about }}</p>
-                            <a href="#" class="btn btn-sm btn-primary float-right">Read more >></a>
-                            <hr>
+                            <div class="card-footer">
+                                <a class="btn btn-primary btn-lg px-4 me-md-2" href="{{ $member->github_account }}">Github
+                                    Account</a>
+                            </div>
                         </div>
                     </div>
                 @endforeach
             </div>
         </div>
-        {{-- <div class="card">
-                <img class="card-img-top" src="{{ URL::asset($member->avatar) }}" alt="...">
-                <div class="card-body">
-                    <h3 class="text-center"> </h3>
-                    <p class="text-center"><i>  </i></p>
-                    <p class="d-block ">  </p>
-                    <a href="{{ $member->github_account }}"> Github Account </a>
-                </div>
-            </div> --}}
+
+
 
     @else
         <p>No member in the Team DB.</p>
     @endif
 
 @endsection
+{{-- {{ $member->title }} --}}
