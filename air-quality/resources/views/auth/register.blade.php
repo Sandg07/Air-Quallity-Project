@@ -82,9 +82,12 @@
 
                 </div>
             </div>
+        @section('script')
+            {{-- Bootstrap script js --}}
+            <script src="/js/app.js" type="text/javascript"></script>
+        @endsection()
 
-
-        </x-auth-card>
-    </x-guest-layout>
+    </x-auth-card>
+</x-guest-layout>
 
 @endsection
