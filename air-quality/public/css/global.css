@@ -4,11 +4,20 @@ global
 
 .my-header {
     margin: 0;
-    width: 100%;
-    height: 100vh;
-    background-image: url("/assets/testheader.svg");
+    padding: 0;
+    width: 100wh;
+    height: calc(100vh - 200px);
+    background-image: url("/assets/test.svg");
     background-repeat: no-repeat;
     background-size: contain;
+}
+
+.right-hero {
+    margin-top: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
 }
 
 /**
@@ -57,15 +66,6 @@ svg.logo {
 
 /* footer */
 
-/* .my-footer {
-    width: 100%;
-    height: 40vh;
-    background-image: url("/assets/img/luxembourg1r.jpg");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    opacity: 0.5;
-} */
 .footer {
     background-color: #808588;
 }
