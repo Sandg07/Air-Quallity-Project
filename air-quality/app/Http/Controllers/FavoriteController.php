@@ -22,10 +22,16 @@ class FavoriteController extends Controller
 
     public function index()
     {
-        $favorites = Favorite::all();
+        $user = Auth::id();
+        $favorites = DB::select('SELECT * FROM favorites where user_id = ' . $user);
+        
+        $user_name = Auth::user()->first_name;
         $api = new ApiController();
         $data = $api->index();
-        $array = [$favorites, $data];
+
+        $array = [$favorites, $data, $user_name];
+
+    
 
         return view('map', ['array' => $array]);
     }
@@ -96,4 +102,8 @@ class FavoriteController extends Controller
         else
             return back()->with('error', 'Something wrong with the DB.');
     }
+
+
+    
+
 }

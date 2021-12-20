@@ -359,9 +359,9 @@ var runIcon = L.divIcon({
 
 if (favorites != undefined && favorites.length != 0) {
   favorites.forEach(function (favorite, favoriteIndex) {
-    if (favorite.category == "Park") {
+    if (favorite.category == "park") {
       var icon = parkIcon;
-    } else if (favorite.category == "City") {
+    } else if (favorite.category == "city") {
       var icon = cityIcon;
     } else {
       var icon = runIcon;
