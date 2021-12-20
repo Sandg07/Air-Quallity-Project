@@ -65,7 +65,7 @@
             <p>Discover the full features when registering on the app!</p>
         </div>
         {{-- shadow rounded container --}}
-        <div class="features-homepage-container rounded bg-light shadow" style="margin-bottom:50px">
+        <div class="features-homepage-container rounded-lg bg-light shadow" style="margin-bottom:50px">
             <div class="list-features" style="padding:30px">
                 @include('features');
             </div>
@@ -74,7 +74,7 @@
 
         {{-- FAQ SECTION --}}
 
-        <div class="features-homepage-container rounded" style="margin-bottom:20px">
+        <div class="features-homepage-container rounded-lg" style="margin-bottom:20px">
             <div class="p-2 d-flex flex-column justify-content-center align-items-center" style="padding:20px">
                 <p class="text-secondary text-sm m-0">Questions-Answers</p>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="currentColor" class="bi bi-dash-lg"
