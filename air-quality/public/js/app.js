@@ -5459,7 +5459,7 @@ alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
  */
 
 $("#burgerMenu").on("click", function (event) {
-  $("#navbarSupportedContent").toggleClass("collapse open");
+  $("#navbarNav").toggleClass("collapse open");
   console.log("found");
 });
 /**
