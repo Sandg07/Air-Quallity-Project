@@ -17,15 +17,13 @@
         <ul class="navbar-nav">
             <li class="nav-item active">
                 <a class="order-sm-0 nav-link p-2 " href="{{ url('/') }}">Home
-                    {{-- <span class="sr-only">(current)</span> --}}
                 </a>
             </li>
             <li class="nav-item active">
                 <a class="order-sm-0 nav-link p-2 " href="{{ url('/team') }}">Team</a>
             </li>
-            
-            
-            <li> <a class="order-sm-3 nav-link border rounded p-2" href="{{ route('logout') }}"
+            <li>
+                <a class="order-sm-3 nav-link border rounded p-2" href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
             </li>
         </ul>

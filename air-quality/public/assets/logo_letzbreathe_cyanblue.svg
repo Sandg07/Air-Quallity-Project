@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="139.116 -11.616 234.729 127.081" width="234.729" height="127.081" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <filter id="posterize-filter-0" x="-500%" y="-500%" width="1000%" height="1000%" bx:preset="posterize 1 r 3 0.9">
+      <feColorMatrix type="saturate" values="0.9"/>
+      <feComponentTransfer>
+        <feFuncR type="discrete" tableValues="0 0.333 0.667 1"/>
+        <feFuncG type="discrete" tableValues=""/>
+        <feFuncB type="discrete" tableValues=""/>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+  <text style="fill: rgb(31, 32, 65); font-family: Arial; font-size: 42px; paint-order: fill; white-space: pre; opacity: 0.82;" x="441.211" y="273.146" transform="matrix(1.036567, -0.281153, 0.389876, 1.472891, -345.831731, -175.522311)">Breathe</text>
+  <text style="fill: rgb(46, 196, 182); font-family: &quot;Lucida Handwriting&quot;; font-size: 36px; stroke-width: 2px; white-space: pre; filter: url(#posterize-filter-0);" transform="matrix(1.036567, -0.281153, 0.389876, 1.472891, -349.626562, -178.165271)" x="394.122" y="240.276">Lëtz</text>
+</svg>
