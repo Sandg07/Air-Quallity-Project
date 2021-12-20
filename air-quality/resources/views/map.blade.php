@@ -43,7 +43,7 @@
 
         <div class="map-favorite-container p-0 m-0 row justify-content-md-around">
 
-            <div class="poluttantsbtn-map-scale-container border p-0 m-0 justify-content-md-around col-md-6">
+            <div class="poluttantsbtn-map-scale-container border p-0 m-0 justify-content-md-center col-md-6">
                 <div class="poluttantsbtn-container row p-0 m-0 col-12  flex-fill">
                     <form class="p-0" method="POST">
                         @csrf

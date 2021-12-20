@@ -73,7 +73,6 @@ function nearestCoordinates(data, favorite) {
 let pollButtons = ["pm10", "no2", "o3", "pm25"];
 
 let alldata = JSON.parse(pollutant.pollutant);
-console.log(alldata);
 
 let nearestToMyFavorite = [];
 
@@ -104,7 +103,6 @@ favorites.forEach((favorite) => {
     nearestToMyFavorite[z] = myPoint;
     z++;
 });
-console.log(nearestToMyFavorite);
 
 // ************* CREATING MAP *********************
 
@@ -139,59 +137,18 @@ let allpm10 = alldata.pm10.forEach(function (data) {
 sum /= pieCounter;
 sum = Math.round(sum * 100) / 100;
 let pieChartColor = "";
-if (sum <= 10) pieChartColor = barchartData[0].color;
-else if (sum <= 20) pieChartColor = barchartData[1].color;
-else if (sum <= 30) pieChartColor = barchartData[2].color;
-else if (sum <= 40) pieChartColor = barchartData[3].color;
-else if (sum <= 50) pieChartColor = barchartData[4].color;
-else if (sum <= 70) pieChartColor = barchartData[5].color;
-else if (sum <= 100) pieChartColor = barchartData[6].color;
-else if (sum <= 150) pieChartColor = barchartData[7].color;
-else if (sum <= 200) pieChartColor = barchartData[8].color;
-else if (sum > 200) pieChartColor = barchartData[9].color;
+if (sum <= 25) pieChartColor = barchartData[0].color;
+else if (sum <= 45) pieChartColor = barchartData[1].color;
+else if (sum <= 60) pieChartColor = barchartData[2].color;
+else if (sum <= 80) pieChartColor = barchartData[3].color;
+else if (sum <= 110) pieChartColor = barchartData[4].color;
+else if (sum <= 150) pieChartColor = barchartData[5].color;
+else if (sum <= 200) pieChartColor = barchartData[6].color;
+else if (sum <= 270) pieChartColor = barchartData[7].color;
+else if (sum <= 400) pieChartColor = barchartData[8].color;
+else if (sum > 400) pieChartColor = barchartData[9].color;
 
-// ***************** ADD POINTS ******************************
 
-/* 
-
-var allpm10 = alldata.pm10.forEach(function (data) {
-    if (data.index == 1) {
-        var color = "#4169E1";
-        barchartData[0].y++;
-    } else if (data.index == 2) {
-        var color = "#7a96ea";
-        barchartData[1].y++;
-    } else if (data.index == 3) {
-        var color = "#b3c3f3";
-        barchartData[2].y++;
-    } else if (data.index == 4) {
-        var color = "#d9e1f9";
-        barchartData[3].y++;
-    } else if (data.index == 5) {
-        var color = "#FFFF66";
-        barchartData[4].y++;
-    } else if (data.index == 6) {
-        var color = "#FFCC00";
-        barchartData[5].y++;
-    } else if (data.index == 7) {
-        var color = "#FF9800";
-        barchartData[6].y++;
-    } else if (data.index == 8) {
-        var color = "#FF0000";
-        barchartData[7].y++;
-    } else if (data.index == 9) {
-        var color = "#bf0000";
-        barchartData[8].y++;
-    } else if (data.index == 9) {
-        var color = "#800000";
-        barchartData[9].y++;
-    }
-    //this one use first y then x
-    var LatLgn = L.latLng(data.y, data.x);
-    let point = addPoint(LatLgn, color);
-    allPoints.push(point);
-});
-console.log(allPoints); */
 
 // ***************** ADD BARCHART AND PIECHART ******************************
 
@@ -250,53 +207,7 @@ window.onload = function () {
     $("#sum").text(sum);
 };
 
-// *********** Drawing line on PieChart ******************
 
-// ******************* ADDING NEW FAVORITES AND SHOWING FAVORITES FROM DB *******
-map.on("click", function (e) {
-    if (currentMarker && currentMarker["cleared"] == false) {
-        currentMarker._icon.style.transition = "transform 0.3s ease-out";
-        currentMarker._shadow.style.transition = "transform 0.3s ease-out";
-
-        currentMarker.setLatLng(e.latlng);
-
-        setTimeout(function () {
-            currentMarker._icon.style.transition = null;
-            currentMarker._shadow.style.transition = null;
-        }, 300);
-        $("#coordinates").attr({
-            value: e.latlng.lat + "," + e.latlng.lng,
-        });
-        return;
-    } else if (!currentMarker)
-        currentMarker = L.marker(e.latlng, {
-            draggable: true,
-        })
-            .addTo(map)
-            .on("click", function () {
-                e.originalEvent.stopPropagation();
-            });
-
-    // Add an input to the DB
-    $("#coordinates").attr({
-        value: e.latlng.lat + "," + e.latlng.lng,
-    });
-    currentMarker["cleared"] = false;
-});
-
-if (favorites != undefined && favorites.length != 0) {
-    favorites.forEach((favorite, favoriteIndex) => {
-        L.marker([favorite.coordinates_y, favorite.coordinates_x]).addTo(map);
-        $("<div>")
-            .css({
-                "background-color":
-                    barchartData[nearestToMyFavorite[favoriteIndex].index]
-                        .color,
-            })
-            .text("AQI: " + nearestToMyFavorite[favoriteIndex].value)
-            .appendTo("#" + favorite.id);
-    });
-}
 
 // ************* AJAX CALLS ********************
 
@@ -379,19 +290,19 @@ pollButtons.forEach((poll) => {
 
                 newSum /= newPieCounter;
                 newSum = Math.round(newSum * 100) / 100;
-                if (newSum <= 10) newPieChartColor = barchartData[0].color;
-                else if (newSum <= 20) newPieChartColor = barchartData[1].color;
-                else if (newSum <= 30) newPieChartColor = barchartData[2].color;
-                else if (newSum <= 40) newPieChartColor = barchartData[3].color;
-                else if (newSum <= 50) newPieChartColor = barchartData[4].color;
-                else if (newSum <= 70) newPieChartColor = barchartData[5].color;
-                else if (newSum <= 100)
-                    newPieChartColor = barchartData[6].color;
-                else if (newSum <= 150)
-                    newPieChartColor = barchartData[7].color;
+                if (newSum <= 25) newPieChartColor = barchartData[0].color;
+                else if (newSum <= 45) newPieChartColor = barchartData[1].color;
+                else if (newSum <= 60) newPieChartColor = barchartData[2].color;
+                else if (newSum <= 80) newPieChartColor = barchartData[3].color;
+                else if (newSum <= 110) newPieChartColor = barchartData[4].color;
+                else if (newSum <= 150) newPieChartColor = barchartData[5].color;
                 else if (newSum <= 200)
+                    newPieChartColor = barchartData[6].color;
+                else if (newSum <= 270)
+                    newPieChartColor = barchartData[7].color;
+                else if (newSum <= 400)
                     newPieChartColor = barchartData[8].color;
-                else if (newSum > 200) newPieChartColor = barchartData[9].color;
+                else if (newSum > 400) newPieChartColor = barchartData[9].color;
                 $("#sum").text(newSum);
                 $("#pieContainer").css({
                     "border-radius": "50%",
@@ -402,9 +313,9 @@ pollButtons.forEach((poll) => {
     });
 });
 
-// Favorites
 
-//var currentMarker;
+
+// ******************* ADDING NEW FAVORITES AND SHOWING FAVORITES FROM DB *******
 map.on("click", function (e) {
     if (currentMarker && currentMarker["cleared"] == false) {
         currentMarker._icon.style.transition = "transform 0.3s ease-out";
@@ -436,6 +347,7 @@ map.on("click", function (e) {
     currentMarker["cleared"] = false;
 });
 
+
 var parkIcon = L.divIcon({
     html: '<i class="bi bi-tree-fill fs-3" style="color: #88bb11"></i>',
     className: "myDivIcon",
@@ -451,13 +363,9 @@ var runIcon = L.divIcon({
     className: "myDivIcon",
 });
 
-var defaultIcon = L.divIcon({
-    html: '<i class="bi bi-geo-alt-fill text-secondary mb-1" style="font-size:14px; "></i>',
-    className: "myDivIcon",
-});
 
 if (favorites != undefined && favorites.length != 0) {
-    favorites.forEach((favorite) => {
+    favorites.forEach((favorite, favoriteIndex) => {
         if (favorite.category == "Park") {
             var icon = parkIcon;
         } else if (favorite.category == "City") {
@@ -468,8 +376,19 @@ if (favorites != undefined && favorites.length != 0) {
         L.marker([favorite.coordinates_x, favorite.coordinates_y], {
             icon: icon,
         }).addTo(map);
+        $("<div>")
+            .css({
+                "background-color":
+                    barchartData[nearestToMyFavorite[favoriteIndex].index]
+                        .color,
+            })
+            .text("AQI: " + nearestToMyFavorite[favoriteIndex].value)
+            .appendTo("#" + favorite.id);
     });
 }
+
+
+//***************** ADD NEW FAVORITE *********************
 
 $("#addFavoriteBtn").on("click", function (e) {
     e.preventDefault();
@@ -495,10 +414,7 @@ $("#addFavoriteBtn").on("click", function (e) {
         success: function (response) {
             if ($.isEmptyObject(response.error)) {
                 last = response.last;
-                var runIcon = L.divIcon({
-                    html: '<i class="bi bi-bicycle fs-3" style="color: #bf0000"></i>',
-                    className: "myDivIcon",
-                });
+                
                 L.marker([last.coordinates_x, last.coordinates_y]).addTo(map);
                 $("#favoriteForm")[0].reset();
                 $$(
@@ -520,12 +436,7 @@ $("#addFavoriteBtn").on("click", function (e) {
                         ` </p>
                 </div>
                 <div class="col col-1 m-2">
-                    <a style="font-size:14px"
-                        href="{{ route('favorites.delete', [$favorite->id]) }}">
-                        <div>
-                            <i class="bi bi-x-circle"></i>
-                        </div>
-                    </a>
+                    
                 </div>
                 <hr class="m-0">
             </div>`
