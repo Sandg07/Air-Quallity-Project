@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="col-10 col-sm-8 col-lg-6">
-                <img src="{{ URL::to('/assets/logo_letzbreathe.svg') }}" class="d-block mx-lg-auto img-fluid" width="700"
+                <img src="{{ URL::to('/assets/testheader.svg') }}" class="d-block mx-lg-auto img-fluid" width="700"
                     height="500" loading="lazy" alt="...">
             </div>
         </div>
