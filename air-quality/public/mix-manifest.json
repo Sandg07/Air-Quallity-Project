@@ -5,6 +5,7 @@
     "/js/Control.Coordinates.js": "/js/Control.Coordinates.js",
     "/js/leaflet-gplaces-autocomplete.js": "/js/leaflet-gplaces-autocomplete.js",
     "/js/datepicker.js": "/js/datepicker.js",
+    "/js/account.js": "/js/account.js",
     "/css/global.css": "/css/global.css",
     "/css/leaflet-gplaces-autocomplete.css": "/css/leaflet-gplaces-autocomplete.css",
     "/css/style.css": "/css/style.css"

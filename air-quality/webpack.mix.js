@@ -32,4 +32,5 @@ mix.js("resources/js/leaflet-gplaces-autocomplete.js", "public/js").postCss(
 );
 
 mix.js("resources/js/datepicker.js", "public/js");
+mix.js("resources/js/account.js", "public/js");
 mix.css("resources/css/global.css", "public/css");

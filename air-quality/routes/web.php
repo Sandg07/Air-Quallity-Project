@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\SearchboxController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\TeamController;
@@ -7,7 +8,7 @@ use App\Http\Controllers\ApiController;
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\ForecastController;
 use App\Http\Controllers\FavoriteController;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -49,6 +50,13 @@ Route::get('/dashboard{id}', [FavoriteController::class, 'destroy'])->name('favo
 
 Route::get('/forecast', [ForecastController::class, 'index'])->middleware(['auth']);
 Route::post('/forecast', [ForecastController::class, 'ajaxCall'])->middleware(['auth']);
+
+Route::get('/account', function () {
+    $user = Auth::user();
+    return view('account', ['user' => $user]);
+})->middleware(['auth'])->name('account');
+
+Route::post('/account', [AccountController::class, 'findPostMethod']);
 
 //Home page
 Route::get('/', function () {

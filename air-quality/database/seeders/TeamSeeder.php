@@ -29,7 +29,7 @@ class TeamSeeder extends Seeder
         DB::table('teams')->insert([
             'first_name' =>  'Catiana',
             'last_name' => 'Meyer Miranda',
-            'avatar' => "/assets/sandrine.png",
+            'avatar' => "/assets/catiana.png",
             'title' => 'Web Developer',
             'about' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore aut velit impedit expedita eaque suscipit consequatur quibusdam consequuntur, odio consectetur, quod quas. Tempore vitae facilis minus consequatur dolores debitis sequi.",
             'github_account' =>  "https://github.com/catianamm"

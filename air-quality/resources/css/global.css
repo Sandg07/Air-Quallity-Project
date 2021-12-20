@@ -69,3 +69,7 @@ svg.logo {
 .footer {
     background-color: #808588;
 }
+
+.notThereAnymore {
+    display: none;
+}
