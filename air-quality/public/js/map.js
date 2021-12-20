@@ -31,7 +31,7 @@ function printErrorMsg(msg) {
   $(".print-error-msg").find("ul").html("");
   $(".print-error-msg").css("display", "block");
   $.each(msg, function (key, value) {
-    $(".print-error-msg").find("ul").append("<li>" + value + "</li>");
+    $(".print-error-msg").find("ul").append("<li style='font-size:12px'>" + value + "</li>");
   });
 }
 
@@ -367,7 +367,7 @@ if (favorites != undefined && favorites.length != 0) {
       var icon = runIcon;
     }
 
-    L.marker([favorite.coordinates_x, favorite.coordinates_y], {
+    L.marker([favorite.coordinates_y, favorite.coordinates_x], {
       icon: icon
     }).addTo(map);
     $("<div>").css({
@@ -399,9 +399,32 @@ $("#addFavoriteBtn").on("click", function (e) {
     success: function success(response) {
       if ($.isEmptyObject(response.error)) {
         last = response.last;
-        L.marker([last.coordinates_x, last.coordinates_y]).addTo(map);
         $("#favoriteForm")[0].reset();
-        $$("<div class=\"row m-0 align-items-center\">\n                <div class=\"col col-1 \">" + (last.category == "Park" ? "\n                        <i class=\"bi bi-tree-fill fs-3\" style=\"color: #88bb11\"></i>" : "<i class=\"bi bi-building fs-3\" style=\"color: gray\"></i>") + " </div>\n                <div class=\"col ps-1 m-1\">\n                    <p class=\"ms-2 mb-0 p-0\" style=\"font-size:14px\"><strong>" + last.name + "\n                        </strong>\n                    </p>\n                    <p class=\"ms-2 mb-0 mt-0 p-0\" style=\"font-size:14px; color: gray\"> " + last.category + " </p>\n                </div>\n                <div class=\"col col-1 m-2\">\n                    \n                </div>\n                <hr class=\"m-0\">\n            </div>").appendTo("#all-favorites");
+        location.reload();
+        /*   $(
+              `<div class="row m-0 align-items-center">
+          <div class="col col-1 ">` +
+                  (last.category == "Park"
+                      ? `
+                  <i class="bi bi-tree-fill fs-3" style="color: #88bb11"></i>`
+                      : `<i class="bi bi-building fs-3" style="color: gray"></i>`) +
+                  ` </div>
+          <div class="col ps-1 m-1">
+              <p class="ms-2 mb-0 p-0" style="font-size:14px"><strong>` +
+                  last.name +
+                  `
+                  </strong>
+              </p>
+              <p class="ms-2 mb-0 mt-0 p-0" style="font-size:14px; color: gray"> ` +
+                  last.category +
+                  ` </p>
+          </div>
+          <div class="col col-1 m-2">
+              
+          </div>
+          <hr class="m-0">
+        </div>`
+          ).appendTo("#all-favorites"); */
       } else {
         printErrorMsg(response.error);
       }
