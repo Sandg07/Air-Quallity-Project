@@ -17,7 +17,6 @@
     @yield('meta')
     @yield('css')
 
-
     <title>@yield('title')</title>
 </head>
 
@@ -31,6 +30,8 @@
 
 
     {{-- footer --}}
+
+    {{-- wave design --}}
     <footer class="footer pb-5 pt-10 bg-light mt-n8 position-relative">
         <div class="position-relative w-100 z-index-1 top-0 mt-n3">
             <svg width="100%" viewBox="0 -2 1920 157" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -49,6 +50,7 @@
                 </g>
             </svg>
         </div>
+        {{-- container section --}}
         <div class="container-lg" style="padding-top: 20px">
             <div class="row">
                 <div class="col-lg-4">
@@ -125,7 +127,6 @@
 
     {{-- Bootstrap script js --}}
     <script src="/js/app.js" type="text/javascript"></script>
-
 
     @yield('script')
 
