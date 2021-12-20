@@ -16,10 +16,10 @@
     @if (!empty($team))
 
         <div class="container-lg">
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="row row-cols-1 row-cols-md-3 g-4 ">
                 @foreach ($team as $member)
-                    <div class="col justify-content-center align-items-center">
-                        <div class="card h-100" style="max-width: 300px">
+                    <div class="col d-flex justify-content-center align-items-center">
+                        <div class="card h-100" style="max-width: 350px">
                             <img height="50%" src="{{ URL::asset($member->avatar) }}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h3 class="card-title">{{ $member->first_name }}
