@@ -11,7 +11,7 @@ Alpine.start();
  * MENU burger Top Navbar
  */
 $("#burgerMenu").on("click", function (event) {
-    $("#navbarSupportedContent").toggleClass("collapse open");
+    $("#navbarNav").toggleClass("collapse open");
     console.log("found");
 });
 
