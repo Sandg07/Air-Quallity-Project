@@ -3,7 +3,7 @@
 @section('css')
 @endsection
 @section('content')
-    @if ($message = Session::get('success'))
+    {{-- @if ($message = Session::get('success'))
         <p style="color:green">{{ $message }}</p>
     @endif
     @if ($message = Session::get('error'))
@@ -17,7 +17,7 @@
                 @endforeach
             </ul>
         </div>
-    @endif
+    @endif --}}
     <main class="container-lg flex-column justify-content-around mb-4">
         <h2 class="text-center">Account Page</h2>
         <div class="container d-flex justify-content-center mb-4 ">
