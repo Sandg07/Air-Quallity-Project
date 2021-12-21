@@ -32,20 +32,30 @@
 <body class="bg-light">
     @include('userTopNavbar')
     <div class="container-lg">
-        <div class="row">
-            <div class="col-12 align-self-end">
+        <div class="row col-12 mx-2">
+            <div class="col-12 o-0 ">
                 <div class="row">
-                    <div class="p-6 m-4 ">
+                    <div class="py-6 mt-4 text-primary">
                         <h3 class=""> Welcome {{ $array[2] }}!</h3>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row">
-
-            <div class="charts-map-favorite-container container">
-                <div class="poluttantsbtn-container row p-0 m-4 flex-fill justify-content-center">
+        <div class="row col-12 mx-2">
+            <div class="info-text col-12 py-6 my-4 text-justify">
+                <span>Here you find the Index Dashboard that shows the most probable distribution of the pollutant in question with a spatial resolution of 1 km², which is updated every hour, using   geostatistical interpolation API from <a href="https://data.public.lu/fr/">Luxembourg data platform.</a><br><br>Choose the pollutant to see how many stations per index, the medium of the values and the distribuiton in the map. Don't forget to save your favorite's places. Enjoy!
+                </span>
+            </div>
+            
+        </div>
+        <div class="row p-0">
+            <div class="charts-map-favorite-container col-12 p-0 container">
+                <div class="poluttantsbtn-container row p-0 m-4 justify-content-center">
+                    <div class="row p-4 m-0 col-12 d-flex rounded shadow bg-white h-100">
+                    <div class="barchart-title col-12 p-0 text-uppercase text-start">
+                        <h5 style="font-size:12px; color: gray" class="m-0 pb-2 ">Choose the pollutant :</h5>
+                    </div>
                     <form class="p-0" method="POST">
                         @csrf
                         <div class="btn-group btn-group-toggle p-0 m-0 col-12" data-toggle="buttons">
@@ -56,18 +66,51 @@
                         </div>
                     </form>
                 </div>
+                </div>
 
-                <div class="chart-container row p-0 col-12 flex-fill justify-content-around m-0" style="height: 150px">
+                <div class="chart-container row p-0 col-12 flex-fill justify-content-around m-0" style="height: 200px">
                     <div class="row p-4 m-0 col-8 d-flex rounded shadow bg-white h-100">
-                        <div class="barchart-title col-12 p-0 text-uppercase text-start">
-                            <h5 style="font-size:12px; color: gray" class="m-0 pb-2 ">POLLUNTANT sum </h5>
+                        <div class="barchart-title col-12 p-0 justify-content-start text-uppercase text-start">
+                            <h5 style="font-size:12px; color: gray" class="m-0 pb-2 ">stations / index</h5>
                         </div>
-                        <div id="chartContainer1" class="justify-content-center p-0 m-0 h-75"></div>
+                        <div id="chartContainer1" class="justify-content-center flex-nowrap p-0 m-0 h-75"></div>
+                       {{--  <div class="scale-container p-0 m-0 row col-12">
+                            <div class="p-1 ps-2 ms-2 col text-center "
+                                style="font-size:8px; color: white; height: 20px; width: 10%;background-color: #4169E1">
+                                >= 25</div>
+                            <div class="p-1 ms-1 col text-center"
+                                style="font-size:8px; color: white;background-color: #7a96ea">
+                                26 - 45</div>
+                            <div class="p-1 ms-1 col text-center"
+                                style="font-size:8px; color: white;background-color: #b3c3f3">
+                                46 - 60</div>
+                            <div class="p-1 ms-1 col text-center"
+                                style="font-size:8px; color: white;background-color: #d9e1f9">
+                                61 - 80</div>
+                            <div class="p-1 ms-1 col text-center"
+                                style="font-size:8px; color: white;background-color: #FFFF66">
+                                81 - 110</div>
+                            <div class="p-1 ms-1 col text-center"
+                                style="font-size:8px; color: white;background-color: #FFCC00">
+                                111 - 150</div>
+                            <div class="p-1 ms-1 col text-center"
+                                style="font-size:8px; color: white;background-color: #FF9800">
+                                151 - 200</div>
+                            <div class="p-1 ms-1 col text-center"
+                                style="font-size:8px; color: white;background-color: #FF0000">
+                                201 - 270</div>
+                            <div class="p-1 ms-1 col text-center"
+                                style="font-size:9px; color: white;background-color: #bf0000">
+                                271 - 400</div>
+                            <div class="p-1 ms-1 col text-center "
+                                style="font-size:9px;  color: white;background-color: #800000">
+                                > 400</div>
+                        </div> --}}
                     </div>
                     <div id="piechart"
-                        class="row p-4 m-0 col-3 d-flex align-items-center rounded shadow bg-white h-100 mb-4 justify-content-center ">
+                        class="row p-4 m-0 col-3 d-flex align-items-start rounded shadow bg-white h-100 mb-4 justify-content-center ">
                         <div class="barchart-title col-12 p-0 text-uppercase text-start">
-                            <h5 style="font-size:12px; color: gray" class="m-0 pb-2 ">POLLUNTANT medium </h5>
+                            <h5 style="font-size:12px; color: gray" class="m-0 pb-2 ">medium index</h5>
                         </div>
                         <div id="pieContainer" style="border-radius: 50%; height: 80px; width:80px"
                             class="align-items-center d-flex flex-column justify-content-center p-1">
@@ -85,8 +128,8 @@
 
                         <div class="map-scale-container rounded shadow bg-white mb-4 p-4 m-0 ">
                             <div class="map-title col-12 p-0 text-gray-100 text-uppercase text-start">
-                                <h5 style="font-size:12px; color: gray" class="m-0 pb-2 ">POLLUNTANT DISTRIBUTION
-                                    INDEX
+                                <h5 style="font-size:12px; color: gray" class="m-0 pb-2 ">stations  
+                                    INDEX DISTRIBUTION
                                     MAP
                                 </h5>
                             </div>
@@ -142,11 +185,11 @@
                                         <div class="row m-0 align-items-center">
                                             <div class="col col-1 mx-1">
                                                 @if ($favorite->category == 'park')
-                                                    <i class="bi bi-tree-fill fs-3" style="color: #88bb11"></i>
+                                                    <i class="bi bi-tree-fill fs-3" style="color: #4FA64F"></i>
                                                 @elseif ($favorite->category == 'city')
-                                                    <i class="bi bi-building fs-3" style="color: gray"></i>
+                                                    <i class="bi bi-building fs-3" style="color: #bf0000"></i>
                                                 @else
-                                                    <i class="bi bi-bicycle fs-3" style="color: #bf0000"></i>
+                                                    <i class="bi bi-bicycle fs-3" style="color: #FFCC00"></i>
                                                 @endif
                                             </div>
                                             <div class="col ps-1 m-1">
@@ -157,7 +200,12 @@
                                                 <p class="ms-2 mb-0 mt-0 p-0 text-capitalize"
                                                     style="font-size:12px; color: gray">
                                                     {{ $favorite->category }} </p>
-                                            </div>
+                                                </div>
+                                                <div class="col ps-1 m-1 " id="nearest{{ $favorite->id }}">
+
+                                                </div>
+
+
                                             <div class="col col-1 m-2">
                                                 <a style="font-size:14px"
                                                     href="{{ route('favorites.delete', [$favorite->id]) }}">
@@ -166,6 +214,7 @@
                                                     </div>
                                                 </a>
                                             </div>
+
                                             <hr class="m-0">
                                         </div>
                                     @endforeach
@@ -244,53 +293,53 @@
 <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
 <div id="chartContainer3" style="height: 370px; width: 100%;"></div> --}}
 
-</div>
-        {{-- footer --}}
-        <footer class="footer pb-5 pt-0 bg-info mt-0 position-relative">
-            <div class="position-relative w-100 z-index-0 top-0 mt-0">
-                <svg width="100%" viewBox="0 -2 1920 157" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink">
-                    <title>wave-down</title>
-                    <g stroke="none" stroke-width="0" fill="none" fill-rule="evenodd">
-                        <g fill="#e9ecef" fill-rule="nonzero">
-                            <g id="wave-down">
-                                <path
-                                    d="M0,60.8320331 C299.333333,115.127115 618.333333,111.165365 959,47.8320321 C1299.66667,-15.5013009 1620.66667,-15.2062179 1920,47.8320331 L1920,156.389409 L0,156.389409 L0,60.8320331 Z"
-                                    id="Path-Copy-2"
-                                    transform="translate(960.000000, 78.416017) rotate(180.000000) translate(-960.000000, -78.416017) ">
-                                </path>
-                            </g>
+    </div>
+    {{-- footer --}}
+    <footer class="footer pb-5 pt-0 bg-info mt-0 position-relative">
+        <div class="position-relative w-100 z-index-0 top-0 mt-0">
+            <svg width="100%" viewBox="0 1 1920 157" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                <title>wave-down</title>
+                <g stroke="none" stroke-width="0" fill="none" fill-rule="evenodd">
+                    <g fill="#e9ecef" fill-rule="nonzero">
+                        <g id="wave-down">
+                            <path
+                                d="M0,60.8320331 C299.333333,115.127115 618.333333,111.165365 959,47.8320321 C1299.66667,-15.5013009 1620.66667,-15.2062179 1920,47.8320331 L1920,156.389409 L0,156.389409 L0,60.8320331 Z"
+                                id="Path-Copy-2"
+                                transform="translate(960.000000, 78.416017) rotate(180.000000) translate(-960.000000, -78.416017) ">
+                            </path>
                         </g>
                     </g>
-                </svg>
-            </div>
-            <div class="container-lg" style="padding-top: 0px">
+                </g>
+            </svg>
+        </div>
+        <div class="container-lg" style="padding-top: 0px">
 
+        </div>
+        <div class="text-center column">
+            <div class="ms-auto text-lg-center text-center">
+                <ul class="nav flex-row align-items-center mb-2 mt-sm-0 justify-content-center">
+                    <li class="nav-item">
+                        <a class="order-sm-0 nav-link p-2 text-primary " href="{{ url('/') }}">Home</a>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <a class="order-sm-0 nav-link p-2 text-primary " href="{{ url('/team') }}">Team</a>
+                    </li>
+                    </li>
+                    <li>
+                        <a class="order-sm-2 nav-link p-2 text-primary" href="{{ url('/map') }}">Map</a>
+                    </li>
+                </ul>
+                <p class="mb-0 text-white">
+                    &copy; NumericALL final project
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script>
+                </p>
             </div>
-            <div class="text-center column">
-                <div class="ms-auto text-lg-center text-center">
-                    <ul class="nav flex-row align-items-center mb-2 mt-sm-0 justify-content-center">
-                        <li class="nav-item">
-                            <a class="order-sm-0 nav-link p-2 text-primary " href="{{ url('/') }}">Home</a>
-                        </li>
-                        </li>
-                        <li class="nav-item">
-                            <a class="order-sm-0 nav-link p-2 text-primary " href="{{ url('/team') }}">Team</a>
-                        </li>
-                        </li>
-                        <li>
-                            <a class="order-sm-2 nav-link p-2 text-primary" href="{{ url('/map') }}">Map</a>
-                        </li>
-                    </ul>
-                    <p class="mb-0 text-white">
-                        &copy; NumericALL final project
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script>
-                    </p>
-                </div>
-     
-    </div>
+
+        </div>
     </footer>
     {{-- </footer> --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"

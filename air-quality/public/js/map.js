@@ -79,43 +79,43 @@ var pollButtons = ["pm10", "no2", "o3", "pm25"];
 var alldata = JSON.parse(pollutant.pollutant);
 var nearestToMyFavorite = [];
 var barchartData = [{
-  label: "index1",
+  label: "<= 25",
   y: 0,
   color: "#4169E1"
 }, {
-  label: "index2",
+  label: "26 - 45",
   y: 0,
   color: "#7a96ea"
 }, {
-  label: "index3",
+  label: "46-60",
   y: 0,
   color: "#b3c3f3"
 }, {
-  label: "index4",
+  label: "61-80",
   y: 0,
   color: "#d9e1f9"
 }, {
-  label: "index5",
+  label: "81-110",
   y: 0,
   color: "#FFFF66"
 }, {
-  label: "index6",
+  label: "111-150",
   y: 0,
   color: "#FFCC00"
 }, {
-  label: "index7",
+  label: "151-200",
   y: 0,
   color: "#FF9800"
 }, {
-  label: "index8",
+  label: "201-270",
   y: 0,
   color: "#FF0000"
 }, {
-  label: "index9",
+  label: "271-400",
   y: 0,
   color: "#bf0000"
 }, {
-  label: "index10",
+  label: ">400",
   y: 0,
   color: "#800000"
 }];
@@ -170,8 +170,9 @@ window.onload = function () {
     colorSet: "customColorSet1",
     axisX: {
       labelFormatter: function labelFormatter() {
-        return " ";
+        return "";
       },
+      labelFontColor: "gray",
       lineDashType: "dot",
       gridThickness: 0,
       tickLength: 0,
@@ -345,15 +346,15 @@ map.on("click", function (e) {
   currentMarker["cleared"] = false;
 });
 var parkIcon = L.divIcon({
-  html: '<i class="bi bi-tree-fill fs-3" style="color: #88bb11"></i>',
+  html: '<i class="bi bi-tree-fill fs-3" style="color: #249225"></i>',
   className: "myDivIcon"
 });
 var cityIcon = L.divIcon({
-  html: '<i class="bi bi-building fs-3" style="color: white"></i>',
+  html: '<i class="bi bi-building fs-3" style="color: #800000"></i>',
   className: "myDivIcon"
 });
 var runIcon = L.divIcon({
-  html: '<i class="bi bi-bicycle fs-3" style="color: #bf0000"></i>',
+  html: '<i class="bi bi-bicycle fs-3" style="color: #FFCC00"></i>',
   className: "myDivIcon"
 });
 
@@ -370,9 +371,9 @@ if (favorites != undefined && favorites.length != 0) {
     L.marker([favorite.coordinates_y, favorite.coordinates_x], {
       icon: icon
     }).addTo(map);
-    $("<div>").css({
+    $("<div class='rounded text-center text-white'>").css({
       "background-color": barchartData[nearestToMyFavorite[favoriteIndex].index].color
-    }).text("AQI: " + nearestToMyFavorite[favoriteIndex].value).appendTo("#" + favorite.id);
+    }).text("AQI: " + nearestToMyFavorite[favoriteIndex].value).appendTo("#nearest" + favorite.id);
   });
 } //***************** ADD NEW FAVORITE *********************
 

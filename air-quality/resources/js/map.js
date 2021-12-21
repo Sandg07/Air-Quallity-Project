@@ -80,16 +80,17 @@ let pollButtons = ["pm10", "no2", "o3", "pm25"];
 let alldata = JSON.parse(pollutant.pollutant);
 let nearestToMyFavorite = [];
 let barchartData = [
-    { label: "index1", y: 0, color: "#4169E1" },
-    { label: "index2", y: 0, color: "#7a96ea" },
-    { label: "index3", y: 0, color: "#b3c3f3" },
-    { label: "index4", y: 0, color: "#d9e1f9" },
-    { label: "index5", y: 0, color: "#FFFF66" },
-    { label: "index6", y: 0, color: "#FFCC00" },
-    { label: "index7", y: 0, color: "#FF9800" },
-    { label: "index8", y: 0, color: "#FF0000" },
-    { label: "index9", y: 0, color: "#bf0000" },
-    { label: "index10", y: 0, color: "#800000" },
+    { label: "<= 25", y: 0, color: "#4169E1"},
+    { label: "26 - 45", y: 0, color: "#7a96ea" },
+    { label: "46-60", y: 0, color: "#b3c3f3" },
+    { label: "61-80", y: 0, color: "#d9e1f9" },
+    { label: "81-110", y: 0, color: "#FFFF66" },
+    { label: "111-150", y: 0, color: "#FFCC00" },
+    { label: "151-200", y: 0, color: "#FF9800" },
+    { label: "201-270", y: 0, color: "#FF0000" },
+    { label: "271-400", y: 0, color: "#bf0000" },
+    { label: ">400", y: 0, color: "#800000" },
+
 ];
 let colors = [];
 let allPoints = [];
@@ -172,14 +173,17 @@ window.onload = function () {
         theme: "light1",
         colorSet: "customColorSet1",
         axisX: {
-            labelFormatter: function () {
-                return " ";
-            },
+             labelFormatter: function () {
+                return "";
+            }, 
+            labelFontColor: "gray",
             lineDashType: "dot",
             gridThickness: 0,
             tickLength: 0,
             lineThickness: 0,
+           
         },
+     
         axisY: {
             labelFormatter: function () {
                 return " ";
@@ -373,14 +377,15 @@ if (favorites != undefined && favorites.length != 0) {
         L.marker([favorite.coordinates_y, favorite.coordinates_x], {
             icon: icon,
         }).addTo(map);
-        $("<div>")
+        $("<div class='rounded text-center text-white'>")
             .css({
                 "background-color":
                     barchartData[nearestToMyFavorite[favoriteIndex].index]
                         .color,
+
             })
             .text("AQI: " + nearestToMyFavorite[favoriteIndex].value)
-            .appendTo("#" + favorite.id);
+            .appendTo("#nearest" + favorite.id);
     });
 }
 
