@@ -16,9 +16,8 @@
                     </a>
                     <h3 class="fw-bolder text-info pb-3 pt-lg-20">All the air quality information you want, in one place!
                     </h3>
-                    <p class="text-dark pb-3"> What if you could take proactive steps to reduce your personal exposure to air
-                        pollution, any time,
-                        anywhere?</p>
+                    <p class="text-dark pb-3"> What if you could check your personal exposure to air
+                        pollution?</p>
                 </x-slot>
 
 
