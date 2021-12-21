@@ -4,6 +4,7 @@ var __webpack_exports__ = {};
   !*** ./resources/js/map.js ***!
   \*****************************/
 // ************ FUNCTIONS *******************
+//adding all the points on the card
 function addPoint(LatLgn, color) {
   var circle = L.circle(LatLgn, {
     color: "transparent",
@@ -12,20 +13,23 @@ function addPoint(LatLgn, color) {
     radius: 500
   }).addTo(map);
   return circle;
-}
+} //before adding a new layer, remove all the points from the last layer
+
 
 function removePoints(pointsArray) {
   pointsArray.forEach(function (pointsOnMap) {
     map.removeLayer(pointsOnMap);
   });
-}
+} //processing the data for the layer/points and the barchart
+
 
 function pointsAndCharts(chartData, data) {
   chartData[data.index - 1].y++;
   var LatLgn = L.latLng(data.y, data.x);
   var point = addPoint(LatLgn, chartData[data.index - 1].color);
   allPoints.push(point);
-}
+} //error messages for the favorites ajax call
+
 
 function printErrorMsg(msg) {
   $(".print-error-msg").find("ul").html("");
@@ -33,7 +37,8 @@ function printErrorMsg(msg) {
   $.each(msg, function (key, value) {
     $(".print-error-msg").find("ul").append("<li style='font-size:12px'>" + value + "</li>");
   });
-}
+} // calculating the nearest point to your favorite to show the aqi
+
 
 function nearestCoordinates(data, favorite) {
   var intermediateValueX = 0;
@@ -42,18 +47,20 @@ function nearestCoordinates(data, favorite) {
     var xCoord = 0;
     var sumX = 0;
     var yCoord = 0;
-    var sumY = 0;
+    var sumY = 0; //only for the first object in the loop
 
     if (intermediateValueX == 0) {
       intermediateValueX = favorite.coordinates_x - object.x;
       if (intermediateValueX < 0) intermediateValueX *= -1;
       intermediateValueY = favorite.coordinates_y - object.y;
-      if (intermediateValueY < 0) intermediateValueY *= -1;
+      if (intermediateValueY < 0) intermediateValueY *= -1; //if this is the nearest point-> has to be the object
+
       nearestPoint = object;
     }
 
     sumX = favorite.coordinates_x - object.x;
-    sumY = favorite.coordinates_y - object.y;
+    sumY = favorite.coordinates_y - object.y; //can't ever be negatif!!
+
     if (sumX < 0) sumX *= -1;
     if (sumY < 0) sumY *= -1;
 
@@ -65,7 +72,8 @@ function nearestCoordinates(data, favorite) {
     if (intermediateValueY > sumY) {
       yCoord = object.y;
       intermediateValueY = sumY;
-    }
+    } //when both of them match the object, which is a point on the map, this is the nearest one
+
 
     if (xCoord == object.x && yCoord == object.y) {
       nearestPoint = object;
@@ -73,6 +81,7 @@ function nearestCoordinates(data, favorite) {
   });
   return nearestPoint;
 } // ********** VARIABLES DECLARING ***************
+//diffrent variables needed for functions or to store later on variables
 
 
 var pollButtons = ["pm10", "no2", "o3", "pm25"];
@@ -123,11 +132,10 @@ var colors = [];
 var allPoints = [];
 var newPoints = [];
 var currentMarker;
-var highestNumber = 0;
-var highestIndex = 0;
 var sum = 0;
 var pieCounter = 0;
-var z = 0;
+var z = 0; //populating the array with the points nearest to my favorite
+
 favorites.forEach(function (favorite) {
   var myPoint = nearestCoordinates(alldata.pm10, favorite);
   nearestToMyFavorite[z] = myPoint;
@@ -149,6 +157,7 @@ var targetLuxCity = L.latLng("49.8096317", "6.064453"); //Luxembourg
 // Set map's center to target with zoom 14.
 
 map.setView(targetLuxCity, 9); // ***************** INSERT POINTS *********************
+//default data when opening the page
 
 var allpm10 = alldata.pm10.forEach(function (data) {
   pointsAndCharts(barchartData, data);
@@ -160,7 +169,7 @@ sum = Math.round(sum * 100) / 100;
 var pieChartColor = "";
 if (sum <= 25) pieChartColor = barchartData[0].color;else if (sum <= 45) pieChartColor = barchartData[1].color;else if (sum <= 60) pieChartColor = barchartData[2].color;else if (sum <= 80) pieChartColor = barchartData[3].color;else if (sum <= 110) pieChartColor = barchartData[4].color;else if (sum <= 150) pieChartColor = barchartData[5].color;else if (sum <= 200) pieChartColor = barchartData[6].color;else if (sum <= 270) pieChartColor = barchartData[7].color;else if (sum <= 400) pieChartColor = barchartData[8].color;else if (sum > 400) pieChartColor = barchartData[9].color; // ***************** ADD BARCHART AND PIECHART ******************************
 
-CanvasJS.addColorSet("customColorSet1", ["#4169E1", "#7a96ea", "#b3c3f3", "#d9e1f9", "#FFFF66", "#FFCC00", "#FF9800", "#FF0000", "#bf0000", "#800000"]);
+CanvasJS.addColorSet("customColorSet1", ["#4169E1", "#7a96ea", "#b3c3f3", "#d9e1f9", "#FFFF66", "#FFCC00", "#FF9800", "#FF0000", "#bf0000", "#800000"]); //adding default barchart on opening the page
 
 window.onload = function () {
   var chart = new CanvasJS.Chart("chartContainer1", {
@@ -194,14 +203,15 @@ window.onload = function () {
       dataPoints: barchartData
     }]
   });
-  chart.render();
+  chart.render(); //adding the overall aqi on the page
+
   $("#pieContainer").css({
     "border-radius": "50%",
     "background-color": pieChartColor
   });
   $("#sum").text(sum);
 }; // ************* AJAX CALLS ********************
-//Points and Charts
+//Points and Charts changing when clicked on a diffrent polluant (pm10, no2, o3, pm2.5)
 
 
 pollButtons.forEach(function (poll) {
@@ -346,26 +356,26 @@ map.on("click", function (e) {
   currentMarker["cleared"] = false;
 });
 var parkIcon = L.divIcon({
-  html: '<i class="bi bi-tree-fill fs-3" style="color: #249225"></i>',
+  html: '<i class="bi bi-tree-fill fs-3" style="color: #88bb11"></i>',
   className: "myDivIcon"
 });
 var cityIcon = L.divIcon({
-  html: '<i class="bi bi-building fs-3" style="color: #800000"></i>',
+  html: '<i class="bi bi-building fs-3" style="color: white"></i>',
   className: "myDivIcon"
 });
 var runIcon = L.divIcon({
-  html: '<i class="bi bi-bicycle fs-3" style="color: #FFCC00"></i>',
+  html: '<i class="bi bi-bicycle fs-3" style="color: #bf0000"></i>',
   className: "myDivIcon"
 });
 
 if (favorites != undefined && favorites.length != 0) {
   favorites.forEach(function (favorite, favoriteIndex) {
     if (favorite.category == "park") {
-      var icon = parkIcon;
+      var _icon = parkIcon;
     } else if (favorite.category == "city") {
-      var icon = cityIcon;
+      var _icon2 = cityIcon;
     } else {
-      var icon = runIcon;
+      var _icon3 = runIcon;
     }
 
     L.marker([favorite.coordinates_y, favorite.coordinates_x], {
@@ -403,29 +413,29 @@ $("#addFavoriteBtn").on("click", function (e) {
         $("#favoriteForm")[0].reset();
         location.reload();
         /*   $(
-              `<div class="row m-0 align-items-center">
-          <div class="col col-1 ">` +
-                  (last.category == "Park"
-                      ? `
-                  <i class="bi bi-tree-fill fs-3" style="color: #88bb11"></i>`
-                      : `<i class="bi bi-building fs-3" style="color: gray"></i>`) +
-                  ` </div>
-          <div class="col ps-1 m-1">
-              <p class="ms-2 mb-0 p-0" style="font-size:14px"><strong>` +
-                  last.name +
-                  `
-                  </strong>
-              </p>
-              <p class="ms-2 mb-0 mt-0 p-0" style="font-size:14px; color: gray"> ` +
-                  last.category +
-                  ` </p>
-          </div>
-          <div class="col col-1 m-2">
-              
-          </div>
-          <hr class="m-0">
+            `<div class="row m-0 align-items-center">
+        <div class="col col-1 ">` +
+                (last.category == "Park"
+                    ? `
+                <i class="bi bi-tree-fill fs-3" style="color: #88bb11"></i>`
+                    : `<i class="bi bi-building fs-3" style="color: gray"></i>`) +
+                ` </div>
+        <div class="col ps-1 m-1">
+            <p class="ms-2 mb-0 p-0" style="font-size:14px"><strong>` +
+                last.name +
+                `
+                </strong>
+            </p>
+            <p class="ms-2 mb-0 mt-0 p-0" style="font-size:14px; color: gray"> ` +
+                last.category +
+                ` </p>
+        </div>
+        <div class="col col-1 m-2">
+            
+        </div>
+        <hr class="m-0">
         </div>`
-          ).appendTo("#all-favorites"); */
+        ).appendTo("#all-favorites"); */
       } else {
         printErrorMsg(response.error);
       }
