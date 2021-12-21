@@ -15,6 +15,8 @@
                 </a>
             </x-slot>
 
+            <h3 class="h4 m-3 fw-normal">Registration process</h3>
+
             <div class=" ms-4 mb-4 pb-3 pt-lg-20 text-sm text-gray-600">
                 {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
             </div>
@@ -25,7 +27,7 @@
                 </div>
             @endif
 
-            <div class="mt-4 ms-4 flex items-center justify-between">
+            <div class="mt-4 ms-4 flex align-items-center justify-content-between">
                 <form method="POST" action="{{ route('verification.send') }}">
                     @csrf
 

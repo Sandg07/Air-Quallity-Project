@@ -20,11 +20,6 @@
                     <a class="btn btn-outline-secondary btn-lg px-4" href="{{ url('/register') }}">Register</a>
                 </div>
             </div>
-
-            {{-- <div class="d-grid d-md-flex justify-content-md-end position-absolute fixed-bottom-md me-4 ms-4 me-lg-5 p-1">
-                <a class="btn btn-primary btn-lg px-4 me-md-2 " href="{{ url('/login') }}">Login</a>
-                <a class="btn btn-outline-secondary btn-lg px-4" href="{{ url('/register') }}">Register</a>
-            </div> --}}
         </div>
 
     </header>
@@ -44,7 +39,7 @@
             </svg>
             <h2>Better plan your day and protect your health</h2>
             <p>What if you could take proactive steps to reduce your personal exposure to air pollution, any time,
-                anywhere?!</p>
+                anywhere?</p>
         </div>
         {{-- shadow rounded container --}}
         <div class="features-homepage-container rounded-lg bg-light shadow" style="margin-bottom:50px">
