@@ -32,9 +32,6 @@ class ApiController extends Controller
         }
         return $array;
     }
-
-
-
     public function readApiLux()
     {
         if (!Storage::disk('json')->has('timestamp.txt') || (Storage::disk('json')->has('timestamp.txt') && (int)Storage::disk('json')->get('timestamp.txt') < time())) {
@@ -56,13 +53,11 @@ class ApiController extends Controller
             }
         }
     }
-
     public function controllTimestamp($date)
     {
         $formattedDate = strtotime('+1 day', strtotime(implode(' ', explode('T', strstr($date, '.', true)))));
         Storage::disk('json')->put('timestamp.txt', $formattedDate);
     }
-
     public function makeCall($url)
     {
 
@@ -116,7 +111,6 @@ class ApiController extends Controller
 
         return $transformed;
     }
-
     public function transformCoordinates($url)
     {
         $call = Http::withoutVerifying()->get('http://epsg.io/trans?data=' . $url . '&s_srs=2169&&t_srs=4326');

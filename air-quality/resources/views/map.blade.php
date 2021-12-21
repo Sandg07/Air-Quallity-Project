@@ -35,7 +35,12 @@
 
         <div class="row col-12 mx-2">
             <div class="info-text col-12 py-2 my-4 text-center">
-                <span>Here you find the Index Dashboard that shows the most probable distribution of the pollutant in question with a spatial resolution of 1 km², which is updated every hour, using   geostatistical interpolation API from <a href="https://data.public.lu/fr/">Luxembourg data platform.</a><br><br>Choose the pollutant to see how many stations per index, the medium of the values and the distribuiton in the map. <br>Don't forget to save your favorite's places to check their index. Enjoy!
+                <span>Here you find the Index Dashboard that shows the most probable distribution of the pollutant in
+                    question with a spatial resolution of 1 km², which is updated every hour, using geostatistical
+                    interpolation API from <a href="https://data.public.lu/fr/">Luxembourg data
+                        platform.</a><br><br>Choose the pollutant to see how many stations per index, the medium of the
+                    values and the distribuiton in the map. <br>Don't forget to save your favorite's places to check
+                    their index. Enjoy!
                 </span>
             </div>
 
@@ -44,10 +49,10 @@
             <div class="charts-map-favorite-container col-12 p-0 container">
                 <div class="poluttantsbtn-container row p-0 m-2 m-md-4 justify-content-center">
                     <div class="row p-2 p-md-4  col-12 d-flex rounded shadow bg-white h-100">
-                    <div class="barchart-title col-12 p-0 text-uppercase text-start">
-                        <h5 style="font-size:12px; color: gray" class="m-0 pb-2 ">Choose the pollutant :</h5>
-                    </div>
-                    <form class="p-0" method="POST">
+                        <div class="barchart-title col-12 p-0 text-uppercase text-start">
+                            <h5 style="font-size:12px; color: gray" class="m-0 pb-2 ">Choose the pollutant :</h5>
+                        </div>
+
                         @csrf
                         <div class="btn-group btn-group-toggle p-0 m-0 col-12" data-toggle="buttons">
                             <button class="btn btn-secondary active" type="button" name="poll" id="pm10">PM10</button>
@@ -55,26 +60,18 @@
                             <button class="btn btn-secondary" type="button" name="poll" id="o3"> O3 </button>
                             <button class="btn btn-secondary " type="button" name="poll" id="pm25"> PM2.5 </button>
                         </div>
-                        <form class="p-0" method="POST">
-                            @csrf
-                            <div class="btn-group btn-group-toggle p-0 m-0 col-12" data-toggle="buttons">
-                                <button class="btn btn-secondary active" type="button" name="poll"
-                                    id="pm10">PM10</button>
-                                <button class="btn btn-secondary " type="button" name="poll" id="no2">NO2</button>
-                                <button class="btn btn-secondary" type="button" name="poll" id="o3"> O3 </button>
-                                <button class="btn btn-secondary " type="button" name="poll" id="pm25"> PM2.5 </button>
-                            </div>
                         </form>
                     </div>
                 </div>
 
-                <div class="chart-container row p-0 flex-fill justify-content-around m-2 m-md-0" >
-                    <div class="row p-2 p-md-4 m-0 col-12 col-md-8 d-flex rounded shadow bg-white h-100" >
-                        <div class="barchart-title col-12 p-0 justify-content-start text-uppercase text-start"  >
+                <div class="chart-container row p-0 flex-fill justify-content-around m-2 m-md-0">
+                    <div class="row p-2 p-md-4 m-0 col-12 col-md-8 d-flex rounded shadow bg-white h-100">
+                        <div class="barchart-title col-12 p-0 justify-content-start text-uppercase text-start">
                             <h5 style="font-size:12px; color: gray" class="m-0 pb-2 ">stations / index</h5>
                         </div>
-                        <div id="chartContainer1" class="justify-content-center flex-nowrap p-0 m-0 " style="height: 20vh"></div>
-                       {{--  <div class="scale-container p-0 m-0 row col-12">
+                        <div id="chartContainer1" class="justify-content-center flex-nowrap p-0 m-0 "
+                            style="height: 20vh"></div>
+                        {{-- <div class="scale-container p-0 m-0 row col-12">
                             <div class="p-1 ps-2 ms-2 col text-center "
                                 style="font-size:8px; color: white; height: 20px; width: 10%;background-color: #4169E1">
                                 >= 25</div>
@@ -112,7 +109,7 @@
                         <div class="barchart-title col-12 p-0 text-uppercase text-start">
                             <h5 style="font-size:12px; color: gray" class="m-0 pb-2 ">medium index</h5>
                         </div>
-                        <div id="pieContainer" style="border-radius: 50%; height: 20vh; width:20vh" 
+                        <div id="pieContainer" style="border-radius: 50%; height: 20vh; width:20vh"
                             class="align-items-center d-flex flex-column justify-content-center p-1 pt-2">
                             <p class="p-0 m-0 text-white-50" id="sum"></p>
                             <p class="p-0 m-0 text-white-50">AQI</p>
@@ -128,7 +125,7 @@
 
                         <div class="map-scale-container rounded shadow bg-white mb-2 p-2 p-md-4 m-0 me-md-4">
                             <div class="map-title p-0 text-gray-100 text-uppercase text-start">
-                                <h5 style="font-size:12px; color: gray" class="m-0 pb-2 ">stations  
+                                <h5 style="font-size:12px; color: gray" class="m-0 pb-2 ">stations
                                     INDEX DISTRIBUTION
                                     MAP
                                 </h5>
@@ -389,8 +386,8 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
 
-   {{-- Bootstrap script js --}}
-   <script src="/js/app.js" type="text/javascript"></script>
+    {{-- Bootstrap script js --}}
+    <script src="/js/app.js" type="text/javascript"></script>
 
 
     {{-- FORECAST --}}
