@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg d-flex flex-row-lg-fluid  bg-info p-4 px-5">
+<nav class="navbar navbar-expand-lg d-flex flex-row-lg-fluid  bg-info p-4 px-5 py-3">
     {{-- <span class="logo-nav navbar-brand mb-0 h1 shadow" style="color: white">Lëtz Breathe</span> --}}
     <span>
         <img src="/assets/logo_letzbreathe_whitecyan.svg" width="120px" alt="Letz Breathe logo">
@@ -26,20 +26,17 @@
                 <a class="order-sm-0 nav-link p-2 " href="{{ url('/team') }}">Team</a>
             </li>
             <li>
-                <a class="order-sm-2 nav-link p-2" href="{{ url('/map') }}">Map</a>
-            </li>
-            <li class="nav-item active">
-                <a class="order-sm-0 nav-link p-2 " href="{{ url('/login') }}">Login</a>
-            </li>
-            <li>
-                <a class="order-sm-1 nav-link p-2" href="{{ url('/register') }}">Register</a>
-            </li>
-            <li> <a class="order-sm-3 nav-link border rounded p-2" href="{{ route('logout') }}"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                <a class="order-sm-1 nav-link p-2" href="{{ url('/dashboard') }}"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#2EC4B6"
+                        class="bi bi-person-workspace" viewBox="0 0 20 18">
+                        <path
+                            d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H4Zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+                        <path
+                            d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.373 5.373 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2H2Z" />
+                    </svg>Dashboard</a>
             </li>
         </ul>
     </div>
-    {{-- </div> --}}
 </nav>
 
 {{-- logout --}}

@@ -18,8 +18,9 @@
                                 </svg>
                             </div>
                             <h5>User dashboard</h5>
-                            <p>All-in-one solution to gather air quality around you and access daily updates in selected
-                                locations in Luxembourg.</p>
+                            <p>All-in-one solution
+                                information to help organize your outdoor activities in Luxembourg.
+                            </p>
                         </div>
                     </div>
                     {{-- feature 2 --}}
@@ -33,8 +34,8 @@
                                 </svg>
 
                             </div>
-                            <h5>Barchart</h5>
-                            <p>Some text about air quality in different stations of Luxembourg.</p>
+                            <h5>Graph of polluant</h5>
+                            <p>Reliable measurements from several stations of Luxembourg on the last 24 hours.</p>
                         </div>
                     </div>
                 </div>
@@ -50,8 +51,8 @@
                                 </svg>
                             </div>
                             <h5>Air quality around you</h5>
-                            <p>Have a look at the air quality in Luxembourg. text about PM10 03 N02 PM25; AQI is updated
-                                each day according to Luxembourg API (name of api). </p>
+                            <p>Explore real-time pollution index (AQI) in Luxembourg on this type of polluants PM10 03
+                                N02 PM25.</p>
                         </div>
                     </div>
 
@@ -66,7 +67,8 @@
                                 </svg>
                             </div>
                             <h5>Save your locations</h5>
-                            <p>Save your location in your favorites and access them when logging in. </p>
+                            <p>Quick access to your location and see the updated AQI for this selected place, in just
+                                one application.</p>
                         </div>
                     </div>
                 </div>
@@ -102,12 +104,11 @@
                     {{-- card info --}}
                     <div class="card-body">
                         <h4>
-                            Use of OpenStreetMap
+                            Track air pollution
                         </h4>
                         <p>
-                            About OpenStreetMap : using API fetch AQI in Luxembourg, on click/searchbox grad this
-                            location - rename it and save in your favorites. Quick access to your location and see the
-                            updated AQI for this selected place.
+                            Map with historical data which track the air pollution for the last 24 hours, and show
+                            pollutant levels derived from government-run sensors and stations.
                         </p>
                         <button class="logBtn btn btn-outline-secondary btn-lg px-4" style="text-decoration: none"
                             target="_blank">
@@ -126,62 +127,3 @@
         </div>
     </div>
 </section>
-<!-- END Section with four info areas left & one card right with image and waves -->
-
-
-
-
-{{-- <div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col">
-        <div class="card h-100">
-            <img src="..." class="card-img-top" alt="...">
-            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="150" fill="currentColor"
-                class="bi bi-geo-alt-fill card-img-top" viewBox="0 0 20 20">
-                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-            </svg>
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                    additional content. This content is a little bit longer.</p>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card h-100">
-            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="150" fill="currentColor"
-                class="bi bi-geo-alt-fill card-img-top" viewBox="0 0 20 20">
-                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-            </svg>
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a short card.</p>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card h-100">
-            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="150" fill="currentColor"
-                class="bi bi-geo-alt-fill card-img-top" viewBox="0 0 20 20">
-                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-            </svg>
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                    additional content.</p>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card h-100">
-            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="150" fill="currentColor"
-                class="bi bi-geo-alt-fill card-img-top" viewBox="0 0 20 20">
-                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-            </svg>
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                    additional content. This content is a little bit longer.</p>
-            </div>
-        </div>
-    </div>
-</div> --}}
