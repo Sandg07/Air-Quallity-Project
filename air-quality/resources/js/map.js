@@ -350,17 +350,17 @@ map.on("click", function (e) {
     currentMarker["cleared"] = false;
 });
 
-let parkIcon = L.divIcon({
+var parkIcon = L.divIcon({
     html: '<i class="bi bi-tree-fill fs-3" style="color: #88bb11"></i>',
     className: "myDivIcon",
 });
 
-let cityIcon = L.divIcon({
+var cityIcon = L.divIcon({
     html: '<i class="bi bi-building fs-3" style="color: white"></i>',
     className: "myDivIcon",
 });
 
-let runIcon = L.divIcon({
+var runIcon = L.divIcon({
     html: '<i class="bi bi-bicycle fs-3" style="color: #bf0000"></i>',
     className: "myDivIcon",
 });
@@ -368,11 +368,11 @@ let runIcon = L.divIcon({
 if (favorites != undefined && favorites.length != 0) {
     favorites.forEach((favorite, favoriteIndex) => {
         if (favorite.category == "park") {
-            let icon = parkIcon;
+            var icon = parkIcon;
         } else if (favorite.category == "city") {
-            let icon = cityIcon;
+            var icon = cityIcon;
         } else {
-            let icon = runIcon;
+            var icon = runIcon;
         }
         L.marker([favorite.coordinates_y, favorite.coordinates_x], {
             icon: icon,

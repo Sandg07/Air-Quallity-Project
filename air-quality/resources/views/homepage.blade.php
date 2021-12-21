@@ -11,7 +11,7 @@
     {{-- HEADER --}}
     <header class="my-header container-fluid-lg mb-3">
         <div class="column-fluid me-lg-5 ">
-            <div class="d-grid gap-2 d-md-flex flex-column justify-content-md-end align-items-md-end position-relative me-4">
+            <div class="d-grid  d-md-flex flex-column justify-content-md-end align-items-md-end position-relative me-4">
                 <h1 class="right-hero hero-h1-title text-info display-5 fw-bold lh-1 mb-3">Air Quality app</h1>
                 <p class="lead text-end">All the air quality information you want, in one place</p>
             </div>

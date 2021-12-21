@@ -11,10 +11,7 @@ global
     background-image: url("/assets/test2.svg");
     background-repeat: no-repeat;
     background-size: contain;
-    overflow: visible;
-
-    /* padding-bottom: 50px;
-    margin-bottom: -50px; */
+    /* overflow: visible; */
 }
 
 .right-hero {
@@ -54,18 +51,6 @@ svg.logo {
 .form-signin .form-floating:focus-within {
     z-index: 2;
 }
-
-/* .form-signin input[type="email"] {
-    margin-bottom: 15px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-.form-signin input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-} */
 
 /**
 * Features on Homepage
