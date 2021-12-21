@@ -11,14 +11,13 @@
 
                 <x-slot name="logo">
                     <a href="/">
-                        <img src="{{ URL::to('/assets/logo_letzbreathe_1.svg') }}" class="d-bloc img-fluid mb-4"
-                            width="300" height="200" loading="lazy" alt="...">
+                        <img src="/assets/logo/letzbreathe_logo_woman.png" class="d-bloc img-fluid mb-4" width="300"
+                            height="200" loading="lazy" alt="logo letzbreathe">
                     </a>
                     <h3 class="fw-bolder text-info pb-3 pt-lg-20">All the air quality information you want, in one place!
                     </h3>
-                    <p class="text-dark pb-3"> What if you could take proactive steps to reduce your personal exposure to air
-                        pollution, any time,
-                        anywhere?</p>
+                    <p class="text-dark pb-3"> What if you could check your personal exposure to air
+                        pollution?</p>
                 </x-slot>
 
 

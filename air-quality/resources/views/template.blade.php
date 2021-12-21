@@ -54,8 +54,8 @@
         <div class="container-lg" style="padding-top: 20px">
             <div class="row">
                 <div class="col-lg-4">
-                    <img src="/assets/logo_letzbreathe_1.svg" class="img-fluid mb-lg-4 mb-3" width="200" height="100"
-                        alt="">
+                    <img src="/assets/logo/letzbreathe_logo_woman.png" class="img-fluid mb-lg-4 mb-3" width="200"
+                        height="100" alt="Logo Letz Breathe">
                 </div>
                 <div class="col-lg-8 text-end ">
                     <div class="column flex-wrap text-center">

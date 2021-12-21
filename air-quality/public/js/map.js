@@ -388,11 +388,11 @@ var runIcon = L.divIcon({
 if (favorites != undefined && favorites.length != 0) {
   favorites.forEach(function (favorite, favoriteIndex) {
     if (favorite.category == "park") {
-      var _icon = parkIcon;
+      var icon = parkIcon;
     } else if (favorite.category == "city") {
-      var _icon2 = cityIcon;
+      var icon = cityIcon;
     } else {
-      var _icon3 = runIcon;
+      var icon = runIcon;
     }
 
     L.marker([favorite.coordinates_y, favorite.coordinates_x], {

@@ -10,8 +10,8 @@
         <x-auth-card>
             <x-slot name="logo">
                 <a href="/">
-                    <img src="{{ URL::to('/assets/logo_letzbreathe_1.svg') }}" class="d-bloc img-fluid mb-4" width="300"
-                        height="200" loading="lazy" alt="...">
+                    <img src="/assets/logo/letzbreathe_logo_woman.png" class="d-bloc img-fluid mb-4" width="300" height="200"
+                        loading="lazy" alt="logo letz breathe">
                 </a>
             </x-slot>
 

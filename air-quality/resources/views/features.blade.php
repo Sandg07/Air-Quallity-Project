@@ -78,7 +78,7 @@
             <div class="col-lg-4 ms-auto">
                 <div class="card shadow">
                     {{-- picture --}}
-                    <img class="card-img-top" src="/assets/OpenStreetMap-1.jpg">
+                    <img class="card-img-top" src="/assets/img/map-picture.png">
                     {{-- Design --}}
                     <div class="position-relative overflow-hidden" style="height:50px;margin-top:-50px;">
                         <div class="position-absolute w-100 top-0 z-index-1">
