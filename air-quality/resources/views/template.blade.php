@@ -22,7 +22,7 @@
 
 <body>
 
-    @include('topNavbar');
+    @include('topNavbar')
 
     <div class="content">
         @yield('content')

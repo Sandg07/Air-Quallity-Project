@@ -9,17 +9,16 @@
 @section('content')
 
     {{-- HEADER --}}
-    <header class="my-header container-fluid-lg mb-3">
-        <div class="column-fluid me-lg-5 ">
-            <div class="d-grid gap-2 d-md-flex flex-column justify-content-md-end align-items-md-end position-relative me-4">
+    <header class="my-header container-fluid-lg mb-1">
+        <div class="column-fluid me-lg-5">
+            <div
+                class="d-grid gap-2 d-md-flex flex-column justify-content-md-end align-items-md-end position-relative me-4 ms-4">
                 <h1 class="right-hero hero-h1-title text-info display-5 fw-bold lh-1 mb-3">Air Quality app</h1>
                 <p class="lead text-end">All the air quality information you want, in one place</p>
-            </div>
-
-            <div class="d-grid d-md-flex justify-content-md-end position-absolute fixed-bottom me-4 me-lg-5 p-4">
-                <a class="btn btn-primary btn-lg px-4 me-md-2" href="{{ url('/login') }}">Login</a>
-                <a class="btn btn-outline-secondary btn-lg px-4" href="{{ url('/register') }}">Register</a>
-
+                <div class="button-header">
+                    <a class="btn btn-primary btn-lg px-4 me-md-2 " href="{{ url('/login') }}">Login</a>
+                    <a class="btn btn-outline-secondary btn-lg px-4" href="{{ url('/register') }}">Register</a>
+                </div>
             </div>
         </div>
 
@@ -40,7 +39,7 @@
             </svg>
             <h2>Better plan your day and protect your health</h2>
             <p>What if you could take proactive steps to reduce your personal exposure to air pollution, any time,
-                anywhere?!</p>
+                anywhere?</p>
         </div>
         {{-- shadow rounded container --}}
         <div class="features-homepage-container rounded-lg bg-light shadow" style="margin-bottom:50px">

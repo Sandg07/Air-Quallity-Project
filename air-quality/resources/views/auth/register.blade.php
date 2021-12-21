@@ -14,9 +14,11 @@
                         <img src="{{ URL::to('/assets/logo_letzbreathe_1.svg') }}" class="d-bloc img-fluid mb-4"
                             width="300" height="200" loading="lazy" alt="...">
                     </a>
-                    <h3 class="fw-bolder text-info pb-3 pt-lg-20">See the Air Quality next to your location</h3>
-                    <p class="text-dark pb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit consectetur adipisicing
-                        elit consectetur adipisicing elit..</p>
+                    <h3 class="fw-bolder text-info pb-3 pt-lg-20">All the air quality information you want, in one place!
+                    </h3>
+                    <p class="text-dark pb-3"> What if you could take proactive steps to reduce your personal exposure to air
+                        pollution, any time,
+                        anywhere?</p>
                 </x-slot>
 
 
