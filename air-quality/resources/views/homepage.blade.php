@@ -38,8 +38,8 @@
                 <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z" />
             </svg>
             <h2>Better plan your day and protect your health</h2>
-            <p>What if you could take proactive steps to reduce your personal exposure to air pollution, any time,
-                anywhere?</p>
+            <p>What if you could check your personal exposure to air
+                pollution?</p>
         </div>
         {{-- shadow rounded container --}}
         <div class="features-homepage-container rounded-lg bg-light shadow" style="margin-bottom:50px">
