@@ -80,7 +80,7 @@ let pollButtons = ["pm10", "no2", "o3", "pm25"];
 let alldata = JSON.parse(pollutant.pollutant);
 let nearestToMyFavorite = [];
 let barchartData = [
-    { label: "<= 25", y: 0, color: "#4169E1"},
+    { label: "<= 25", y: 0, color: "#4169E1" },
     { label: "26 - 45", y: 0, color: "#7a96ea" },
     { label: "46-60", y: 0, color: "#b3c3f3" },
     { label: "61-80", y: 0, color: "#d9e1f9" },
@@ -90,7 +90,6 @@ let barchartData = [
     { label: "201-270", y: 0, color: "#FF0000" },
     { label: "271-400", y: 0, color: "#bf0000" },
     { label: ">400", y: 0, color: "#800000" },
-
 ];
 let colors = [];
 let allPoints = [];
@@ -173,17 +172,16 @@ window.onload = function () {
         theme: "light1",
         colorSet: "customColorSet1",
         axisX: {
-             labelFormatter: function () {
+            labelFormatter: function () {
                 return "";
-            }, 
+            },
             labelFontColor: "gray",
             lineDashType: "dot",
             gridThickness: 0,
             tickLength: 0,
             lineThickness: 0,
-           
         },
-     
+
         axisY: {
             labelFormatter: function () {
                 return " ";
@@ -255,7 +253,33 @@ pollButtons.forEach((poll) => {
                     newSum += parseInt(point.value);
                     newPieCounter++;
                 });
-
+                let newNearestToMyFavorite = [];
+                let newZ = 0;
+                favorites.forEach((favorite) => {
+                    console.log(newData);
+                    let myNewPoint = nearestCoordinates(
+                        newData[poll],
+                        favorite
+                    );
+                    newNearestToMyFavorite[newZ] = myNewPoint;
+                    newZ++;
+                });
+                if (favorites != undefined && favorites.length != 0) {
+                    favorites.forEach((favorite, favoriteIndex) => {
+                        $("#favoriteAqiShower")
+                            .css({
+                                "background-color":
+                                    barchartData[
+                                        newNearestToMyFavorite[favoriteIndex]
+                                            .index
+                                    ].color,
+                            })
+                            .text(
+                                "AQI: " +
+                                    newNearestToMyFavorite[favoriteIndex].value
+                            );
+                    });
+                }
                 let chart1 = new CanvasJS.Chart("chartContainer1", {
                     animationEnabled: true,
                     exportEnabled: false,
@@ -368,21 +392,20 @@ let runIcon = L.divIcon({
 if (favorites != undefined && favorites.length != 0) {
     favorites.forEach((favorite, favoriteIndex) => {
         if (favorite.category == "park") {
-            let icon = parkIcon;
+            var icon = parkIcon;
         } else if (favorite.category == "city") {
-            let icon = cityIcon;
+            var icon = cityIcon;
         } else {
-            let icon = runIcon;
+            var icon = runIcon;
         }
         L.marker([favorite.coordinates_y, favorite.coordinates_x], {
             icon: icon,
         }).addTo(map);
-        $("<div class='rounded text-center text-white'>")
+        $("<div id='favoriteAqiShower' class='rounded text-center text-white'>")
             .css({
                 "background-color":
                     barchartData[nearestToMyFavorite[favoriteIndex].index]
                         .color,
-
             })
             .text("AQI: " + nearestToMyFavorite[favoriteIndex].value)
             .appendTo("#nearest" + favorite.id);

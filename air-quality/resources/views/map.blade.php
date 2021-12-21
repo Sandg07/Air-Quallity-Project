@@ -44,28 +44,33 @@
 
         <div class="row col-12 mx-2">
             <div class="info-text col-12 py-6 my-4 text-justify">
-                <span>Here you find the Index Dashboard that shows the most probable distribution of the pollutant in question with a spatial resolution of 1 km², which is updated every hour, using   geostatistical interpolation API from <a href="https://data.public.lu/fr/">Luxembourg data platform.</a><br><br>Choose the pollutant to see how many stations per index, the medium of the values and the distribuiton in the map. Don't forget to save your favorite's places. Enjoy!
+                <span>Here you find the Index Dashboard that shows the most probable distribution of the pollutant in
+                    question with a spatial resolution of 1 km², which is updated every hour, using geostatistical
+                    interpolation API from <a href="https://data.public.lu/fr/">Luxembourg data
+                        platform.</a><br><br>Choose the pollutant to see how many stations per index, the medium of the
+                    values and the distribuiton in the map. Don't forget to save your favorite's places. Enjoy!
                 </span>
             </div>
-            
+
         </div>
         <div class="row p-0">
             <div class="charts-map-favorite-container col-12 p-0 container">
                 <div class="poluttantsbtn-container row p-0 m-4 justify-content-center">
                     <div class="row p-4 m-0 col-12 d-flex rounded shadow bg-white h-100">
-                    <div class="barchart-title col-12 p-0 text-uppercase text-start">
-                        <h5 style="font-size:12px; color: gray" class="m-0 pb-2 ">Choose the pollutant :</h5>
-                    </div>
-                    <form class="p-0" method="POST">
-                        @csrf
-                        <div class="btn-group btn-group-toggle p-0 m-0 col-12" data-toggle="buttons">
-                            <button class="btn btn-secondary active" type="button" name="poll" id="pm10">PM10</button>
-                            <button class="btn btn-secondary " type="button" name="poll" id="no2">NO2</button>
-                            <button class="btn btn-secondary" type="button" name="poll" id="o3"> O3 </button>
-                            <button class="btn btn-secondary " type="button" name="poll" id="pm25"> PM2.5 </button>
+                        <div class="barchart-title col-12 p-0 text-uppercase text-start">
+                            <h5 style="font-size:12px; color: gray" class="m-0 pb-2 ">Choose the pollutant :</h5>
                         </div>
-                    </form>
-                </div>
+                        <form class="p-0" method="POST">
+                            @csrf
+                            <div class="btn-group btn-group-toggle p-0 m-0 col-12" data-toggle="buttons">
+                                <button class="btn btn-secondary active" type="button" name="poll"
+                                    id="pm10">PM10</button>
+                                <button class="btn btn-secondary " type="button" name="poll" id="no2">NO2</button>
+                                <button class="btn btn-secondary" type="button" name="poll" id="o3"> O3 </button>
+                                <button class="btn btn-secondary " type="button" name="poll" id="pm25"> PM2.5 </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
 
                 <div class="chart-container row p-0 col-12 flex-fill justify-content-around m-0" style="height: 200px">
@@ -74,7 +79,7 @@
                             <h5 style="font-size:12px; color: gray" class="m-0 pb-2 ">stations / index</h5>
                         </div>
                         <div id="chartContainer1" class="justify-content-center flex-nowrap p-0 m-0 h-75"></div>
-                       {{--  <div class="scale-container p-0 m-0 row col-12">
+                        {{-- <div class="scale-container p-0 m-0 row col-12">
                             <div class="p-1 ps-2 ms-2 col text-center "
                                 style="font-size:8px; color: white; height: 20px; width: 10%;background-color: #4169E1">
                                 >= 25</div>
@@ -128,7 +133,7 @@
 
                         <div class="map-scale-container rounded shadow bg-white mb-4 p-4 m-0 ">
                             <div class="map-title col-12 p-0 text-gray-100 text-uppercase text-start">
-                                <h5 style="font-size:12px; color: gray" class="m-0 pb-2 ">stations  
+                                <h5 style="font-size:12px; color: gray" class="m-0 pb-2 ">stations
                                     INDEX DISTRIBUTION
                                     MAP
                                 </h5>
@@ -200,10 +205,10 @@
                                                 <p class="ms-2 mb-0 mt-0 p-0 text-capitalize"
                                                     style="font-size:12px; color: gray">
                                                     {{ $favorite->category }} </p>
-                                                </div>
-                                                <div class="col ps-1 m-1 " id="nearest{{ $favorite->id }}">
+                                            </div>
+                                            <div class="col ps-1 m-1 " id="nearest{{ $favorite->id }}">
 
-                                                </div>
+                                            </div>
 
 
                                             <div class="col col-1 m-2">
@@ -277,21 +282,6 @@
                 </div>
             </div>
         </div>
-
-
-        {{-- FORECAST --}}
-        {{-- @include('forecast') --}}
-
-        {{-- <form method="post">
-    @csrf
-    <div class="container">
-        <input name="date" class="date form-control" type="text">
-        <input type="submit" id='submitBtn' value="Submit">
-    </div>
-</form>
-<div id="chartContainer1" style="height: 370px; width: 100%;"></div>
-<div id="chartContainer2" style="height: 370px; width: 100%;"></div>
-<div id="chartContainer3" style="height: 370px; width: 100%;"></div> --}}
 
     </div>
     {{-- footer --}}
