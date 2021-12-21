@@ -39,7 +39,11 @@
             <div class="container d-flex flex-column">
                 <p class="toHide">{{ $user->first_name }}</p>
                 <p class="toHide">{{ $user->last_name }}</p>
-                <p class="toHide">{{ $user->city }}</p>
+                @if (empty($user->city))
+                    <p class="toHide">No city</p>
+                @else
+                    <p class="toHide">{{ $user->city }}</p>
+                @endif
                 <p class="toHide">{{ $user->email }}</p>
             </div>
             <div class="container d-flex flex-column invisible">

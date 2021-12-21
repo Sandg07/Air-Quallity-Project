@@ -1,4 +1,5 @@
 // ************ FUNCTIONS *******************
+//adding all the points on the card
 function addPoint(LatLgn, color) {
     let circle = L.circle(LatLgn, {
         color: "transparent",
@@ -8,20 +9,20 @@ function addPoint(LatLgn, color) {
     }).addTo(map);
     return circle;
 }
-
+//before adding a new layer, remove all the points from the last layer
 function removePoints(pointsArray) {
     pointsArray.forEach((pointsOnMap) => {
         map.removeLayer(pointsOnMap);
     });
 }
-
+//processing the data for the layer/points and the barchart
 function pointsAndCharts(chartData, data) {
     chartData[data.index - 1].y++;
     let LatLgn = L.latLng(data.y, data.x);
     let point = addPoint(LatLgn, chartData[data.index - 1].color);
     allPoints.push(point);
 }
-
+//error messages for the favorites ajax call
 function printErrorMsg(msg) {
     $(".print-error-msg").find("ul").html("");
 
@@ -33,7 +34,7 @@ function printErrorMsg(msg) {
             .append("<li style='font-size:12px'>" + value + "</li>");
     });
 }
-
+// calculating the nearest point to your favorite to show the aqi
 function nearestCoordinates(data, favorite) {
     let intermediateValueX = 0;
     let intermediateValueY = 0;
@@ -42,15 +43,19 @@ function nearestCoordinates(data, favorite) {
         let sumX = 0;
         let yCoord = 0;
         let sumY = 0;
+        //only for the first object in the loop
         if (intermediateValueX == 0) {
             intermediateValueX = favorite.coordinates_x - object.x;
             if (intermediateValueX < 0) intermediateValueX *= -1;
             intermediateValueY = favorite.coordinates_y - object.y;
             if (intermediateValueY < 0) intermediateValueY *= -1;
+            //if this is the nearest point-> has to be the object
             nearestPoint = object;
         }
+
         sumX = favorite.coordinates_x - object.x;
         sumY = favorite.coordinates_y - object.y;
+        //can't ever be negatif!!
         if (sumX < 0) sumX *= -1;
         if (sumY < 0) sumY *= -1;
         if (intermediateValueX > sumX) {
@@ -61,6 +66,7 @@ function nearestCoordinates(data, favorite) {
             yCoord = object.y;
             intermediateValueY = sumY;
         }
+        //when both of them match the object, which is a point on the map, this is the nearest one
         if (xCoord == object.x && yCoord == object.y) {
             nearestPoint = object;
         }
@@ -68,17 +74,11 @@ function nearestCoordinates(data, favorite) {
     return nearestPoint;
 }
 
-
-
-
 // ********** VARIABLES DECLARING ***************
-
+//diffrent variables needed for functions or to store later on variables
 let pollButtons = ["pm10", "no2", "o3", "pm25"];
-
 let alldata = JSON.parse(pollutant.pollutant);
-
 let nearestToMyFavorite = [];
-
 let barchartData = [
     { label: "index1", y: 0, color: "#4169E1" },
     { label: "index2", y: 0, color: "#7a96ea" },
@@ -95,12 +95,11 @@ let colors = [];
 let allPoints = [];
 let newPoints = [];
 let currentMarker;
-let highestNumber = 0;
-let highestIndex = 0;
 let sum = 0;
 let pieCounter = 0;
 let z = 0;
 
+//populating the array with the points nearest to my favorite
 favorites.forEach((favorite) => {
     let myPoint = nearestCoordinates(alldata.pm10, favorite);
     nearestToMyFavorite[z] = myPoint;
@@ -131,7 +130,7 @@ var targetLuxCity = L.latLng("49.8096317", "6.064453"); //Luxembourg
 map.setView(targetLuxCity, 9);
 
 // ***************** INSERT POINTS *********************
-
+//default data when opening the page
 let allpm10 = alldata.pm10.forEach(function (data) {
     pointsAndCharts(barchartData, data);
     sum += parseInt(data.value);
@@ -151,8 +150,6 @@ else if (sum <= 270) pieChartColor = barchartData[7].color;
 else if (sum <= 400) pieChartColor = barchartData[8].color;
 else if (sum > 400) pieChartColor = barchartData[9].color;
 
-
-
 // ***************** ADD BARCHART AND PIECHART ******************************
 
 CanvasJS.addColorSet("customColorSet1", [
@@ -167,7 +164,7 @@ CanvasJS.addColorSet("customColorSet1", [
     "#bf0000",
     "#800000",
 ]);
-
+//adding default barchart on opening the page
 window.onload = function () {
     let chart = new CanvasJS.Chart("chartContainer1", {
         animationEnabled: true,
@@ -202,7 +199,7 @@ window.onload = function () {
         ],
     });
     chart.render();
-
+    //adding the overall aqi on the page
     $("#pieContainer").css({
         "border-radius": "50%",
         "background-color": pieChartColor,
@@ -210,11 +207,9 @@ window.onload = function () {
     $("#sum").text(sum);
 };
 
-
-
 // ************* AJAX CALLS ********************
 
-//Points and Charts
+//Points and Charts changing when clicked on a diffrent polluant (pm10, no2, o3, pm2.5)
 
 pollButtons.forEach((poll) => {
     $(`#${poll}`).on("click", function (e) {
@@ -297,8 +292,10 @@ pollButtons.forEach((poll) => {
                 else if (newSum <= 45) newPieChartColor = barchartData[1].color;
                 else if (newSum <= 60) newPieChartColor = barchartData[2].color;
                 else if (newSum <= 80) newPieChartColor = barchartData[3].color;
-                else if (newSum <= 110) newPieChartColor = barchartData[4].color;
-                else if (newSum <= 150) newPieChartColor = barchartData[5].color;
+                else if (newSum <= 110)
+                    newPieChartColor = barchartData[4].color;
+                else if (newSum <= 150)
+                    newPieChartColor = barchartData[5].color;
                 else if (newSum <= 200)
                     newPieChartColor = barchartData[6].color;
                 else if (newSum <= 270)
@@ -316,9 +313,8 @@ pollButtons.forEach((poll) => {
     });
 });
 
-
-
 // ******************* ADDING NEW FAVORITES AND SHOWING FAVORITES FROM DB *******
+
 map.on("click", function (e) {
     if (currentMarker && currentMarker["cleared"] == false) {
         currentMarker._icon.style.transition = "transform 0.3s ease-out";
@@ -350,34 +346,29 @@ map.on("click", function (e) {
     currentMarker["cleared"] = false;
 });
 
-
-
-var parkIcon = L.divIcon({
+let parkIcon = L.divIcon({
     html: '<i class="bi bi-tree-fill fs-3" style="color: #88bb11"></i>',
     className: "myDivIcon",
 });
 
-var cityIcon = L.divIcon({
+let cityIcon = L.divIcon({
     html: '<i class="bi bi-building fs-3" style="color: white"></i>',
     className: "myDivIcon",
 });
 
-var runIcon = L.divIcon({
+let runIcon = L.divIcon({
     html: '<i class="bi bi-bicycle fs-3" style="color: #bf0000"></i>',
     className: "myDivIcon",
 });
 
-
-
-
 if (favorites != undefined && favorites.length != 0) {
     favorites.forEach((favorite, favoriteIndex) => {
         if (favorite.category == "park") {
-            var icon = parkIcon;
+            let icon = parkIcon;
         } else if (favorite.category == "city") {
-            var icon = cityIcon;
+            let icon = cityIcon;
         } else {
-            var icon = runIcon;
+            let icon = runIcon;
         }
         L.marker([favorite.coordinates_y, favorite.coordinates_x], {
             icon: icon,
@@ -392,7 +383,6 @@ if (favorites != undefined && favorites.length != 0) {
             .appendTo("#" + favorite.id);
     });
 }
-
 
 //***************** ADD NEW FAVORITE *********************
 
@@ -422,8 +412,8 @@ $("#addFavoriteBtn").on("click", function (e) {
                 last = response.last;
                 $("#favoriteForm")[0].reset();
                 location.reload();
-                
-              /*   $(
+
+                /*   $(
                     `<div class="row m-0 align-items-center">
                 <div class="col col-1 ">` +
                         (last.category == "Park"
@@ -458,7 +448,7 @@ $("#addFavoriteBtn").on("click", function (e) {
 
 new L.Control.GPlaceAutocomplete({
     callback: function (place) {
-        var loc = L.latLng(
+        let loc = L.latLng(
             place.geometry.location.lat(),
             place.geometry.location.lng()
         );
