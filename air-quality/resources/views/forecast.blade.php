@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    @include('userTopNavbar')
     <form method="post">
         @csrf
         <div class="container">
