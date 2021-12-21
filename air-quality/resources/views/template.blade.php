@@ -104,7 +104,7 @@
                     </li>
                     </li>
                     <li>
-                        <a class="order-sm-2 nav-link p-2 text-primary" href="{{ url('/map') }}">Map</a>
+                        <a class="order-sm-2 nav-link p-2 text-primary" href="{{ url('/map') }}">Dashboard</a>
                     </li>
                 </ul>
                 <p class="mb-0">

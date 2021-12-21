@@ -7,15 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/style.css">
     {{-- end Bootstrap --}}
-
-    {{-- Forecast --}}
-
-    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
-        rel="stylesheet">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script> --}}
-    {{--  --}}
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -318,7 +309,7 @@
                     </li>
                     </li>
                     <li>
-                        <a class="order-sm-2 nav-link p-2 text-primary" href="{{ url('/map') }}">Map</a>
+                        <a class="order-sm-2 nav-link p-2 text-primary" href="{{ url('/map') }}">Dashboard</a>
                     </li>
                 </ul>
                 <p class="mb-0 text-white">

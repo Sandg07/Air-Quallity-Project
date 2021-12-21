@@ -470,5 +470,29 @@ new L.Control.GPlaceAutocomplete({
 $("#addFavoriteSection").on("click", function (e) {
   $("#favorite-form-container").toggleClass("invisible visible");
 });
+$("#pm10").on("click", function () {
+  $(this).addClass("active");
+  $("#no2").removeClass("active");
+  $("#o3").removeClass("active");
+  $("#pm25").removeClass("active");
+});
+$("#no2").on("click", function () {
+  $(this).addClass("active");
+  $("#pm10").removeClass("active");
+  $("#o3").removeClass("active");
+  $("#pm25").removeClass("active");
+});
+$("#o3").on("click", function () {
+  $(this).addClass("active");
+  $("#pm10").removeClass("active");
+  $("#no2").removeClass("active");
+  $("#pm25").removeClass("active");
+});
+$("#pm25").on("click", function () {
+  $(this).addClass("active");
+  $("#pm10").removeClass("active");
+  $("#no2").removeClass("active");
+  $("#o3").removeClass("active");
+});
 /******/ })()
 ;
