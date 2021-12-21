@@ -76,7 +76,7 @@
                 <p>"Outdoor air pollution is a mix of chemicals, particulate matter, and biological materials that react
                     with each other to form tiny hazardous particles. It contributes to breathing problems, chronic
                     diseases, increased hospitalization, and premature mortality.</p>
-
+                <p class="text-secondary text-sm m-0">About PM10 and PM2.5</p>
                 <p>The concentration of particulate matter (PM) is a key air quality indicator since it is the most common
                     air pollutant that affects short term and long term health. Two sizes of particulate matter are used to
                     analyze air quality; fine particles with a diameter of less than 2.5 µm or PM2.5 and coarse particles
@@ -85,6 +85,7 @@
 
                 <p>The World Health Organization’s air quality guidelines recommend that the annual mean concentrations of
                     PM2.5 should not exceed 10 µg/m3 and 20 µg/m3 for PM10."</p>
+                <p class="text-secondary text-sm m-0">About NO2</p>
                 <a href="https://www.iamat.org/country/luxembourg/risk/air-pollution">Read more</a>
             </div>
         </div>
