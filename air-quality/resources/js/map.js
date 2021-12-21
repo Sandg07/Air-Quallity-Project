@@ -386,14 +386,15 @@ if (favorites != undefined && favorites.length != 0) {
         L.marker([favorite.coordinates_y, favorite.coordinates_x], {
             icon: icon,
         }).addTo(map);
-        $("<div>")
+        $("<div class='rounded text-center text-white'>")
             .css({
                 "background-color":
                     barchartData[nearestToMyFavorite[favoriteIndex].index]
                         .color,
+
             })
             .text("AQI: " + nearestToMyFavorite[favoriteIndex].value)
-            .appendTo("#" + favorite.id);
+            .appendTo("#nearest" + favorite.id);
     });
 }
 

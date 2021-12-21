@@ -371,9 +371,9 @@ if (favorites != undefined && favorites.length != 0) {
     L.marker([favorite.coordinates_y, favorite.coordinates_x], {
       icon: icon
     }).addTo(map);
-    $("<div>").css({
+    $("<div class='rounded text-center text-white'>").css({
       "background-color": barchartData[nearestToMyFavorite[favoriteIndex].index].color
-    }).text("AQI: " + nearestToMyFavorite[favoriteIndex].value).appendTo("#" + favorite.id);
+    }).text("AQI: " + nearestToMyFavorite[favoriteIndex].value).appendTo("#nearest" + favorite.id);
   });
 } //***************** ADD NEW FAVORITE *********************
 

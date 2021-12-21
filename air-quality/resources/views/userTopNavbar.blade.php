@@ -1,7 +1,8 @@
-<nav class="navbar navbar-expand-lg d-flex flex-row-lg-fluid  bg-info p-4 px-5">
+
+<nav class="navbar navbar-expand-lg d-flex py-3 flex-row-lg-fluid  bg-info p-2 px-5">
     {{-- <span class="logo-nav navbar-brand mb-0 h1 shadow" style="color: white">Lëtz Breathe</span> --}}
     <span>
-        <img src="/assets/logo_letzbreathe_whitecyan.svg" width="120px" alt="Letz Breathe logo">
+        <img src="/assets/logo_letzbreathe_whitecyan.svg" width="120px" height="80px" alt="Letz Breathe logo">
     </span>
 
     {{-- burger menu --}}

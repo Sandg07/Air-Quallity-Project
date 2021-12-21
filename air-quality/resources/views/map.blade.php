@@ -200,7 +200,12 @@
                                                 <p class="ms-2 mb-0 mt-0 p-0 text-capitalize"
                                                     style="font-size:12px; color: gray">
                                                     {{ $favorite->category }} </p>
-                                            </div>
+                                                </div>
+                                                <div class="col ps-1 m-1 " id="nearest{{ $favorite->id }}">
+
+                                                </div>
+
+
                                             <div class="col col-1 m-2">
                                                 <a style="font-size:14px"
                                                     href="{{ route('favorites.delete', [$favorite->id]) }}">
@@ -209,6 +214,7 @@
                                                     </div>
                                                 </a>
                                             </div>
+
                                             <hr class="m-0">
                                         </div>
                                     @endforeach
