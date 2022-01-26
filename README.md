@@ -2,6 +2,7 @@
 
 Group final project of bootcamp 'Coding Jobs' from NumericALL.
 December 2021.
+![ps_header](https://user-images.githubusercontent.com/90138974/151150921-1dbfdc0f-229c-41ef-bd66-85e314c26d81.png)
 
 ABOUT
 Web application to find the Air Quality Index in a current city located in Luxembourg or in another chosen city in Luxembourg. 
