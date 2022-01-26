@@ -64,12 +64,7 @@
         {{-- shadow rounded container --}}
         <div class="features-homepage-container rounded bg-light rounded shadow" style="margin-bottom:50px">
             <div class="list-features bg-success" style="padding:30px">
-                <h5> FAQ</h5>
 
-                <p>ABOUT POLLUANTS - TYPES OF POLLUANTS</p>
-                <p>Add text here</p>
-
-                <hr class="col-4">
 
                 <h5>Article</h5>
                 <p>"Outdoor air pollution is a mix of chemicals, particulate matter, and biological materials that react
